@@ -9,7 +9,22 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => {
+    try {
+      return sessionStorage.getItem('skilluence_has_preloaded') !== 'true';
+    } catch {
+      return true;
+    }
+  });
+
+  const handlePreloadComplete = () => {
+    try {
+      sessionStorage.setItem('skilluence_has_preloaded', 'true');
+    } catch {
+      // safe fallback
+    }
+    setIsLoading(false);
+  };
 
   return (
     <Router>
@@ -18,7 +33,7 @@ export default function App() {
       {/* Editorial Platform Preloader */}
       <AnimatePresence mode="wait">
         {isLoading && (
-          <Preloader key="platform-preloader" onComplete={() => setIsLoading(false)} />
+          <Preloader key="platform-preloader" onComplete={handlePreloadComplete} />
         )}
       </AnimatePresence>
 

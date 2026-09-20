@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 export default function Preloader({ onComplete }) {
+  const prefersReducedMotion = useReducedMotion();
   const [progress, setProgress] = useState(0);
   const [statusText, setStatusText] = useState("INITIALIZING PLATFORM...");
 
   useEffect(() => {
+    // If reduced motion is requested, exit immediately without long animation
+    if (prefersReducedMotion) {
+      if (onComplete) onComplete();
+      return;
+    }
+
     const statuses = [
       "INITIALIZING PLATFORM...",
       "CALIBRATING ATS RESUME ENGINES...",
@@ -16,7 +24,7 @@ export default function Preloader({ onComplete }) {
 
     let currentProgress = 0;
     const interval = setInterval(() => {
-      currentProgress += Math.floor(Math.random() * 8) + 4;
+      currentProgress += Math.floor(Math.random() * 8) + 6;
       if (currentProgress >= 100) {
         currentProgress = 100;
         setProgress(100);
@@ -24,7 +32,7 @@ export default function Preloader({ onComplete }) {
         clearInterval(interval);
         setTimeout(() => {
           if (onComplete) onComplete();
-        }, 350);
+        }, 220);
       } else {
         setProgress(currentProgress);
         const statusIdx = Math.min(
@@ -33,17 +41,22 @@ export default function Preloader({ onComplete }) {
         );
         setStatusText(statuses[statusIdx]);
       }
-    }, 45);
+    }, 38);
 
     return () => clearInterval(interval);
-  }, [onComplete]);
+  }, [onComplete, prefersReducedMotion]);
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -25 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, y: -18 }}
+      transition={{ duration: prefersReducedMotion ? 0.05 : 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-[9999] bg-sp-white text-sp-ink flex flex-col justify-between p-6 sm:p-10 md:p-14 select-none"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow={progress}
+      aria-label="Loading Skilluence Solutions"
     >
       {/* Top Bar */}
       <div className="flex items-center justify-between font-mono text-[10px] sm:text-xs text-sp-midGray uppercase tracking-widest border-b border-sp-lightGray pb-4">

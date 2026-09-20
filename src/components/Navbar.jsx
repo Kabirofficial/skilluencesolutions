@@ -6,26 +6,7 @@ import { siteConfig } from '../data/siteData';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Prevent background body scroll when mobile menu is active
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
+  const [activeSection, setActiveSection] = useState('hero');
 
   const navItems = [
     { name: "Home", href: "#hero" },
@@ -39,6 +20,53 @@ export default function Navbar() {
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
+
+  // Scroll detection for shrink state and active section scroll spy
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      // Scroll spy logic
+      const sectionIds = ['contact', 'faq', 'employers', 'why', 'testimonials', 'pricing', 'journey', 'process', 'services', 'hero'];
+      const scrollPosition = window.scrollY + 180;
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Prevent background body scroll when mobile menu is active & listen for Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className="fixed top-3 sm:top-5 inset-x-0 z-50 flex flex-col items-center px-3 sm:px-6 pointer-events-none">
@@ -94,15 +122,27 @@ export default function Navbar() {
           className="hidden lg:flex items-center space-x-1 sm:space-x-1.5 text-xs font-mono font-bold tracking-wider uppercase"
           aria-label="Main Navigation"
         >
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sp-charcoal hover:text-sp-ink hover:bg-sp-offWhite transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-sp-ink rounded-full px-2.5 py-1.5"
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const targetId = item.href.slice(1);
+            const isActive = activeSection === targetId;
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                aria-current={isActive ? 'page' : undefined}
+                className={`transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-sp-ink rounded-full px-2.5 py-1.5 flex items-center gap-1.5 ${
+                  isActive
+                    ? 'text-sp-ink bg-sp-offWhite border border-sp-lightGray/80 font-bold shadow-xs'
+                    : 'text-sp-charcoal hover:text-sp-ink hover:bg-sp-offWhite/60'
+                }`}
+              >
+                <span>{item.name}</span>
+                {isActive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-sp-ink shrink-0" aria-hidden="true" />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right Action CTA */}
@@ -148,16 +188,26 @@ export default function Navbar() {
               </div>
 
               <div className="grid grid-cols-2 gap-2 max-h-[50vh] overflow-y-auto pr-1">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-xs font-mono font-bold text-sp-charcoal hover:text-sp-ink hover:bg-sp-offWhite px-3 py-2 rounded-btn transition-colors border border-sp-lightGray/40"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navItems.map((item) => {
+                  const targetId = item.href.slice(1);
+                  const isActive = activeSection === targetId;
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      aria-current={isActive ? 'page' : undefined}
+                      className={`text-xs font-mono font-bold px-3 py-2 rounded-btn transition-colors border flex items-center justify-between ${
+                        isActive
+                          ? 'bg-sp-ink text-sp-white border-sp-ink shadow-sm'
+                          : 'text-sp-charcoal hover:text-sp-ink hover:bg-sp-offWhite border-sp-lightGray/40'
+                      }`}
+                    >
+                      <span>{item.name}</span>
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-sp-white" />}
+                    </a>
+                  );
+                })}
               </div>
 
               <div className="pt-2 border-t border-sp-lightGray">
