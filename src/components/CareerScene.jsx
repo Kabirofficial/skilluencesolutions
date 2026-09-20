@@ -16,6 +16,7 @@ export default function CareerScene() {
   const rotateY = useTransform(mouseX, [-0.5, 0.5], [-16, 16]);
 
   const handlePointerMove = (e) => {
+    if (e.pointerType === 'touch') return;
     if (prefersReducedMotion || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -101,7 +102,7 @@ export default function CareerScene() {
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] flex items-center justify-center perspective-container select-none touch-none"
+      className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] flex items-center justify-center perspective-container select-none touch-pan-y"
       aria-label="Interactive 3D Career Progression Object"
     >
       {/* Monochromatic Career Path (Delicate SVG Ribbon Curve) */}
@@ -128,7 +129,7 @@ export default function CareerScene() {
           rotateX: prefersReducedMotion ? 0 : rotateX,
           rotateY: prefersReducedMotion ? 0 : rotateY,
         }}
-        className="relative w-full max-w-[340px] sm:max-w-[400px] h-full flex items-center justify-center preserve-3d"
+        className="relative w-full max-w-[320px] sm:max-w-[400px] h-full flex items-center justify-center preserve-3d"
       >
         {cards.map((card, idx) => {
           const isHovered = hoveredIndex === idx;
@@ -148,7 +149,7 @@ export default function CareerScene() {
               style={{
                 transformStyle: "preserve-3d",
               }}
-              className={`absolute w-[280px] sm:w-[340px] p-4 sm:p-5 rounded-card border transition-colors duration-200 cursor-pointer ${
+              className={`absolute w-[260px] sm:w-[340px] max-w-[calc(100vw-40px)] p-4 sm:p-5 rounded-card border transition-colors duration-200 cursor-pointer ${
                 card.isOutcome
                   ? 'bg-sp-white border-sp-ink shadow-2xl z-40 ring-1 ring-sp-ink/10'
                   : card.isPrimary

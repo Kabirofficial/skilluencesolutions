@@ -1,15 +1,14 @@
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
 export default function FinalCTA() {
   return (
     <section
-      className="relative min-h-[80svh] lg:min-h-[90svh] w-full bg-sp-ink text-sp-white py-24 sm:py-32 flex flex-col justify-center text-center border-b border-sp-charcoal overflow-hidden select-none"
+      className="relative min-h-[80svh] lg:min-h-[90svh] w-full bg-sp-ink text-sp-white py-24 sm:py-32 flex flex-col justify-center text-center border-b border-sp-charcoal overflow-hidden"
     >
       {/* Subtle Background Architectural Grid */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.08]"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
           backgroundImage: `
             linear-gradient(to right, #FFFFFF 1px, transparent 1px),
@@ -18,6 +17,42 @@ export default function FinalCTA() {
           backgroundSize: '100px 100px'
         }}
       />
+
+      {/* Subtle Oversized Abstract Career-Path Line Visual */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-25 z-0"
+        viewBox="0 0 1200 600"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* Abstract Career Vector Curve 1 */}
+        <path
+          d="M -100,500 C 200,480 350,150 600,280 C 850,410 1000,120 1300,100"
+          stroke="#4A4A4A"
+          strokeWidth="2"
+          strokeDasharray="6 6"
+        />
+        {/* Abstract Career Vector Curve 2 */}
+        <path
+          d="M -50,550 C 250,520 400,220 600,340 C 800,460 950,180 1350,160"
+          stroke="#6B6B6B"
+          strokeWidth="1.5"
+          opacity="0.6"
+        />
+        {/* Career Milestone Nodes */}
+        <circle cx="280" cy="360" r="5" fill="#3A3A3A" stroke="#8A8A8A" strokeWidth="1" />
+        <circle cx="600" cy="280" r="7" fill="#2B2B2B" stroke="#FFFFFF" strokeWidth="1.5" opacity="0.8" />
+        <circle cx="920" cy="250" r="5" fill="#3A3A3A" stroke="#8A8A8A" strokeWidth="1" />
+        
+        {/* Subtle Watermark Geometric Compass Emblem */}
+        <g transform="translate(600, 300)" opacity="0.08">
+          <circle cx="0" cy="0" r="180" stroke="#FFFFFF" strokeWidth="1.5" strokeDasharray="4 8" />
+          <circle cx="0" cy="0" r="120" stroke="#FFFFFF" strokeWidth="1" />
+          <line x1="-200" y1="0" x2="200" y2="0" stroke="#FFFFFF" strokeWidth="1" />
+          <line x1="0" y1="-200" x2="0" y2="200" stroke="#FFFFFF" strokeWidth="1" />
+        </g>
+      </svg>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-8">
         

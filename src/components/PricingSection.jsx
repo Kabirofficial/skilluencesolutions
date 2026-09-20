@@ -6,7 +6,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -145,7 +145,7 @@ export default function PricingSection() {
         </div>
 
         {/* Why Choose Our Approach (4 Pillars from Page 2 of PDF) */}
-        <div className="p-8 sm:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray mb-10">
+        <div className="p-5 sm:p-8 lg:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray mb-10">
           <h4 className="text-base sm:text-lg font-black text-sp-ink uppercase tracking-wider mb-6 text-center">
             WHY CHOOSE OUR APPROACH?
           </h4>

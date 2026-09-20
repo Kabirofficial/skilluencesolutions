@@ -29,7 +29,7 @@ export default function PhilosophySection() {
   return (
     <section
       id="about"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -49,7 +49,7 @@ export default function PhilosophySection() {
         </div>
 
         {/* Core Manifesto Card */}
-        <div className="mb-14 p-8 sm:p-12 rounded-card bg-sp-offWhite border border-sp-lightGray">
+        <div className="mb-14 p-5 sm:p-8 lg:p-12 rounded-card bg-sp-offWhite border border-sp-lightGray">
           <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-sp-ink italic leading-relaxed max-w-4xl font-normal">
             "{siteConfig.philosophyStatement}"
           </p>

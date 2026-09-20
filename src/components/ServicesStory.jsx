@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -16,13 +16,35 @@ import {
   Award
 } from 'lucide-react';
 import { servicesData } from '../data/siteData';
+import ServiceVisual from './ServiceVisuals';
 
 export default function ServicesStory() {
   const [activeServiceId, setActiveServiceId] = useState(servicesData[0].id);
   const [expandedModal, setExpandedModal] = useState(null);
   const scrollContainerRef = useRef(null);
 
-  const activeService = servicesData.find(s => s.id === activeServiceId) || servicesData[0];
+  // Lock body scroll when modal is open and restore on close
+  useEffect(() => {
+    if (expandedModal) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [expandedModal]);
+
+  // Support closing modal with Escape key
+  useEffect(() => {
+    if (!expandedModal) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setExpandedModal(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expandedModal]);
 
   const serviceIcons = {
     'resume-cv': <FileText className="w-5 h-5 text-sp-ink" />,
@@ -50,7 +72,7 @@ export default function ServicesStory() {
   return (
     <section
       id="services"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -93,7 +115,7 @@ export default function ServicesStory() {
         {/* Desktop Horizontal Scroll Track & Panels */}
         <div
           ref={scrollContainerRef}
-          className="flex lg:overflow-x-auto pb-6 space-x-5 sm:space-x-6 scrollbar-none snap-x snap-mandatory flex-col lg:flex-row lg:space-y-0 space-y-4"
+          className="flex flex-col lg:flex-row pb-6 space-y-4 lg:space-y-0 lg:gap-6 lg:overflow-x-auto lg:snap-x lg:snap-mandatory hide-scrollbar"
         >
           {servicesData.map((service, idx) => {
             const isSelected = activeServiceId === service.id;
@@ -104,7 +126,7 @@ export default function ServicesStory() {
                   setActiveServiceId(service.id);
                   setExpandedModal(service);
                 }}
-                className={`snap-start shrink-0 w-full lg:w-[320px] p-6 sm:p-8 rounded-card border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
+                className={`lg:snap-start shrink-0 w-full lg:w-[320px] p-6 sm:p-8 rounded-card border transition-all duration-300 cursor-pointer flex flex-col justify-between ${
                   isSelected
                     ? 'bg-sp-offWhite border-sp-ink shadow-md'
                     : 'bg-sp-white border-sp-lightGray hover:border-sp-gray hover:bg-sp-offWhite/60'
@@ -124,6 +146,9 @@ export default function ServicesStory() {
                     {service.title}
                   </h3>
 
+                  {/* Bespoke 2.5D Service Visual Composition */}
+                  <ServiceVisual id={service.id} />
+
                   <p className="text-xs sm:text-sm text-sp-midGray leading-relaxed mb-6 font-normal">
                     {service.shortDesc}
                   </p>
@@ -141,12 +166,26 @@ export default function ServicesStory() {
         {/* Service Details Modal / Flyout for Full Deliverables */}
         <AnimatePresence>
           {expandedModal && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-sp-ink/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-sp-ink/60 backdrop-blur-sm overflow-y-auto"
+              onClick={(e) => {
+                // Close modal when clicking on the backdrop (not the content)
+                if (e.target === e.currentTarget) {
+                  setExpandedModal(null);
+                }
+              }}
+            >
               <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="relative w-full max-w-xl bg-sp-white rounded-card border border-sp-ink p-8 sm:p-10 shadow-2xl"
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto bg-sp-white rounded-card border border-sp-ink p-8 sm:p-10 shadow-2xl my-auto"
+                onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between border-b border-sp-lightGray pb-4 mb-6">
                   <div className="flex items-center gap-2 font-mono text-xs text-sp-midGray font-bold uppercase">
@@ -166,6 +205,12 @@ export default function ServicesStory() {
                 <h3 className="text-2xl sm:text-3xl font-black text-sp-ink uppercase tracking-tight mb-3">
                   {expandedModal.title}
                 </h3>
+
+                {/* Modal Visual Representation */}
+                <div className="mb-6">
+                  <ServiceVisual id={expandedModal.id} inModal={true} />
+                </div>
+
                 <p className="text-sm text-sp-charcoal leading-relaxed mb-6">
                   {expandedModal.shortDesc}
                 </p>
@@ -198,7 +243,7 @@ export default function ServicesStory() {
                   </a>
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>
 

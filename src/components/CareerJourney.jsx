@@ -48,7 +48,7 @@ export default function CareerJourney() {
   return (
     <section
       id="journey"
-      className="relative min-h-[100svh] w-full bg-sp-ink text-sp-white py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-charcoal overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-ink text-sp-white py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-charcoal overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -99,7 +99,9 @@ export default function CareerJourney() {
                   key={stage.id}
                   type="button"
                   onClick={() => setActiveStageId(stage.id)}
-                  className="flex flex-col items-center text-center group focus:outline-none p-2 rounded-card transition-all"
+                  className={`flex flex-col items-center text-center group focus:outline-none p-2 rounded-card transition-all ${
+                    idx === journeyStages.length - 1 ? 'col-span-2 sm:col-span-1' : ''
+                  }`}
                   aria-pressed={isActive}
                 >
                   <motion.div
@@ -159,7 +161,7 @@ export default function CareerJourney() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-card bg-sp-charcoal/90 border border-sp-midGray/40 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
+            className="rounded-card bg-sp-charcoal/90 border border-sp-midGray/40 p-5 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-md"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               

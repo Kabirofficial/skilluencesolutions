@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Compass } from 'lucide-react';
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-[85svh] w-full bg-sp-white text-sp-ink flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 select-none">
+    <div className="min-h-[85svh] w-full bg-sp-white text-sp-ink flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-xl w-full text-center space-y-8">
         
         {/* Micro-Label */}

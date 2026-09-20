@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
@@ -71,7 +70,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -94,7 +93,7 @@ export default function ContactSection() {
           
           {/* Left Column: Form with Accessible Labels & State */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray shadow-sm">
+            <div className="p-5 sm:p-8 lg:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray shadow-sm">
               
               {submitted ? (
                 <div className="py-12 text-center space-y-4">
@@ -131,7 +130,9 @@ export default function ContactSection() {
                       </label>
                       <input
                         id="contact-fullname"
+                        name="name"
                         type="text"
+                        autoComplete="name"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="e.g. Alex Mercer"
@@ -158,7 +159,9 @@ export default function ContactSection() {
                       </label>
                       <input
                         id="contact-email"
+                        name="email"
                         type="email"
+                        autoComplete="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. alex@example.com"
@@ -187,7 +190,9 @@ export default function ContactSection() {
                       </label>
                       <input
                         id="contact-phone"
+                        name="phone"
                         type="tel"
+                        autoComplete="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="e.g. +1 (555) 019-2834"
@@ -214,6 +219,7 @@ export default function ContactSection() {
                       </label>
                       <select
                         id="contact-status"
+                        name="status"
                         value={formData.currentStatus}
                         onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
                         className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors"
@@ -238,7 +244,9 @@ export default function ContactSection() {
                     </label>
                     <input
                       id="contact-role"
+                      name="role"
                       type="text"
+                      autoComplete="organization-title"
                       value={formData.targetRole}
                       onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
                       placeholder="e.g. Associate Software Engineer, Business Analyst, etc."

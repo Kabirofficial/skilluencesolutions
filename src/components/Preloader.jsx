@@ -8,6 +8,14 @@ export default function Preloader({ onComplete }) {
   const [statusText, setStatusText] = useState("INITIALIZING PLATFORM...");
 
   useEffect(() => {
+    // Lock body scroll while preloader is active
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  useEffect(() => {
     // If reduced motion is requested, exit immediately without long animation
     if (prefersReducedMotion) {
       if (onComplete) onComplete();
@@ -86,6 +94,8 @@ export default function Preloader({ onComplete }) {
             <img
               src="/images/logo.png"
               alt="Skilluence Logo"
+              width="160"
+              height="48"
               className="h-10 sm:h-12 w-auto object-contain"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';

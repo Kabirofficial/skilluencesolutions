@@ -18,13 +18,14 @@ export default function Footer() {
     { name: "Testimonials", href: "#testimonials" },
     { name: "Why Us", href: "#why" },
     { name: "Audience", href: "#audience" },
+    { name: "Employers", href: "#employers" },
     { name: "About", href: "#about" },
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <footer className="bg-sp-ink text-sp-white border-t border-sp-charcoal pt-16 pb-12 select-none">
+    <footer className="bg-sp-ink text-sp-white border-t border-sp-charcoal pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-sp-charcoal">
@@ -35,6 +36,8 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="Skilluence Solutions Logo"
+                width="160"
+                height="36"
                 className="h-8 sm:h-9 w-auto object-contain brightness-125 contrast-125"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';

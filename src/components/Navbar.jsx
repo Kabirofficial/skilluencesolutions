@@ -102,6 +102,8 @@ export default function Navbar() {
           <img
             src="/images/logo.png"
             alt="Skilluence Solutions Logo"
+            width="160"
+            height="32"
             className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200"
             onError={(e) => {
               e.currentTarget.style.display = 'none';

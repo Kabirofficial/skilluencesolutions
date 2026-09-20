@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Users, Sparkles, MapPin, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Users, MapPin, CheckCircle } from 'lucide-react';
 import { indianTestimonials, siteConfig } from '../data/siteData';
 
 export default function TestimonialsCarousel() {
@@ -27,7 +27,7 @@ export default function TestimonialsCarousel() {
   return (
     <section
       id="testimonials"
-      className="relative min-h-[90svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[90svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -103,7 +103,7 @@ export default function TestimonialsCarousel() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="p-8 sm:p-12 rounded-card bg-sp-white border border-sp-ink shadow-lg flex flex-col justify-between"
+              className="p-5 sm:p-8 lg:p-12 rounded-card bg-sp-white border border-sp-ink shadow-lg flex flex-col justify-between"
             >
               <div className="space-y-6">
                 <Quote className="w-10 h-10 text-sp-lightGray" />

@@ -21,7 +21,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="relative min-h-[100svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+      className="relative min-h-[100svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -68,6 +68,7 @@ export default function FAQSection() {
           {filteredItems.map((faq, index) => {
             const isOpen = openIndex === index;
             const isGuarantee = faq.question.toLowerCase().includes('guarantee');
+            const panelId = `faq-panel-${selectedCategory.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${index}`;
 
             return (
               <div
@@ -82,6 +83,7 @@ export default function FAQSection() {
                   type="button"
                   onClick={() => toggleAccordion(index)}
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                   className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none gap-4"
                 >
                   <div className="flex items-start gap-3.5 pr-2">
@@ -111,6 +113,9 @@ export default function FAQSection() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={panelId}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
