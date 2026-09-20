@@ -1,125 +1,106 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle, Search, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
 import { faqItems } from '../data/siteData';
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState(0); // open first by default
-  const [searchQuery, setSearchQuery] = useState('');
+  const [openIndex, setOpenIndex] = useState(0); // first item open by default
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const filteredFaqs = faqItems.filter(
-    (item) =>
-      item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.answer.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   return (
-    <section id="faq" className="py-24 bg-white relative overflow-hidden border-b border-slate-200">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="faq"
+      className="relative min-h-[100svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-4 border border-blue-100">
-            <HelpCircle className="w-3.5 h-3.5" />
-            <span>Clarifications & Transparency</span>
+        <div className="text-center mb-14 sm:mb-18">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-white border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
+            <span>CLARITY & TRANSPARENCY / 10</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight mb-4">
-            Frequently Asked Questions
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
+            Frequently Asked Questions.
           </h2>
-          <p className="text-base text-slate-600 max-w-xl mx-auto">
-            Clear, honest answers about what we do, how we work, and how we keep career preparation accessible.
+          <p className="text-base sm:text-lg text-sp-midGray mt-4 max-w-xl mx-auto font-normal">
+            Direct, unfiltered answers regarding our services, mentorship scope, and operational ethics.
           </p>
-
-          {/* Quick Filter Search Bar */}
-          <div className="mt-8 max-w-md mx-auto relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search questions (e.g. guarantee, resume, pricing)..."
-              className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all shadow-sm"
-            />
-          </div>
         </div>
 
-        {/* FAQ Accordion List */}
-        <div className="space-y-4">
-          {filteredFaqs.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 text-sm">
-              No matching questions found. Feel free to contact our team below!
-            </div>
-          ) : (
-            filteredFaqs.map((faq, index) => {
-              const isOpen = openIndex === index;
-              const isGuaranteeQuestion = faq.question.toLowerCase().includes('guarantee');
+        {/* Accordion List */}
+        <div className="space-y-3.5">
+          {faqItems.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const isGuarantee = faq.question.toLowerCase().includes('guarantee');
 
-              return (
-                <div
-                  key={index}
-                  className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                    isOpen 
-                      ? 'bg-slate-50/80 border-blue-200 shadow-md' 
-                      : 'bg-white border-slate-200/90 hover:border-slate-300'
-                  }`}
+            return (
+              <div
+                key={index}
+                className={`rounded-card border transition-all duration-200 overflow-hidden ${
+                  isOpen
+                    ? 'bg-sp-white border-sp-ink shadow-md ring-1 ring-sp-ink/10'
+                    : 'bg-sp-white/70 border-sp-lightGray hover:border-sp-gray hover:bg-sp-white'
+                }`}
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleAccordion(index)}
+                  aria-expanded={isOpen}
+                  className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
                 >
-                  <button
-                    type="button"
-                    onClick={() => toggleAccordion(index)}
-                    aria-expanded={isOpen}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                  >
-                    <span className="flex items-center gap-3 pr-4">
-                      {isGuaranteeQuestion && (
-                        <span className="w-2 h-2 rounded-full bg-blue-600 shrink-0" />
-                      )}
-                      <span className="text-base sm:text-lg font-bold text-slate-900">
-                        {faq.question}
-                      </span>
+                  <span className="flex items-center gap-3 pr-4">
+                    <span className="font-mono text-xs font-bold text-sp-midGray">
+                      0{index + 1}
                     </span>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 bg-blue-600 text-white' : 'text-slate-500'
-                    }`}>
-                      <ChevronDown className="w-4 h-4" />
-                    </div>
-                  </button>
+                    <span className="text-base sm:text-lg font-bold text-sp-ink tracking-tight">
+                      {faq.question}
+                    </span>
+                  </span>
+                  <div
+                    className={`w-7 h-7 rounded-btn border border-sp-lightGray flex items-center justify-center shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 bg-sp-ink text-sp-white border-sp-ink' : 'bg-sp-white text-sp-charcoal'
+                    }`}
+                  >
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
+                </button>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100">
-                          {isGuaranteeQuestion ? (
-                            <div className="p-3.5 rounded-xl bg-blue-50/70 border border-blue-100 text-blue-950 font-medium">
-                              {faq.answer}
-                            </div>
-                          ) : (
-                            <p>{faq.answer}</p>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })
-          )}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 pt-1 text-sm sm:text-base text-sp-charcoal leading-relaxed border-t border-sp-lightGray/60">
+                        {isGuarantee ? (
+                          <div className="p-4 rounded-btn bg-sp-offWhite border border-sp-lightGray font-medium text-sp-ink">
+                            {faq.answer}
+                          </div>
+                        ) : (
+                          <p>{faq.answer}</p>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
-        {/* Bottom Help Prompt */}
-        <div className="mt-12 text-center text-xs text-slate-500">
-          Have a specific question not addressed above?{' '}
-          <a href="#contact" className="text-blue-600 font-bold hover:underline">
-            Reach out through our consultation form
+        {/* Bottom Contact Prompt */}
+        <div className="mt-12 text-center text-xs font-mono text-sp-midGray">
+          Have a question not covered above?{' '}
+          <a href="#contact" className="text-sp-ink font-bold hover:underline underline-offset-4">
+            Direct your inquiry to our advisory desk
           </a>
         </div>
 

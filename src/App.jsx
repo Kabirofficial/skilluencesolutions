@@ -2,34 +2,26 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-
 import HomePage from './pages/HomePage';
-import WhoAreWePage from './pages/WhoAreWePage';
-import CandidatesPage from './pages/CandidatesPage';
-import EmployersPage from './pages/EmployersPage';
-import ContactPage from './pages/ContactPage';
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#25283D] text-[#FAF8F2] flex flex-col font-sans selection:bg-[#D96C4A] selection:text-[#FAF8F2] antialiased overflow-x-hidden">
-        {/* Navigation */}
+      <div className="min-h-screen bg-sp-white text-sp-ink flex flex-col font-sans selection:bg-sp-ink selection:text-sp-white antialiased overflow-x-hidden">
+        {/* Editorial Monochrome Navigation */}
         <Navbar />
 
-        {/* Multi-Page Routes */}
+        {/* Master Editorial Narrative */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/who-are-we" element={<WhoAreWePage />} />
-            <Route path="/candidates" element={<CandidatesPage />} />
-            <Route path="/employers" element={<EmployersPage />} />
-            <Route path="/contact" element={<ContactPage />} />
+            {/* Direct fallback routes so existing bookmarks or links safely resolve to home narrative */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
 
-        {/* Global Footer */}
+        {/* Global Editorial Footer */}
         <Footer />
       </div>
     </Router>

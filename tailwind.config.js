@@ -7,61 +7,44 @@ export default {
   theme: {
     extend: {
       colors: {
-        editorial: {
-          ink: '#25283D',
-          moss: '#68705A',
-          sage: '#A8B09A',
-          bone: '#F3EFE6',
-          paper: '#FAF8F2',
-          terracotta: '#D96C4A',
-          clay: '#A95245',
+        // Figma Combination 56: Salt and Pepper Palette
+        sp: {
+          white: '#FFFFFF',
+          offWhite: '#F7F7F5',
+          lightGray: '#D4D4D4',
+          gray: '#B3B3B3',
+          midGray: '#6B6B6B',
+          charcoal: '#3A3A3A',
+          ink: '#2B2B2B',
         },
-        palette: {
-          dark: '#25283D',        // INK
-          deep: '#1C1E2E',        // DEEP INK
-          surface: '#2E324B',     // INK SURFACE
-          card: '#2B2E44',        // INK CARD
-          slate: '#68705A',       // MOSS
-          slateDark: '#545B49',   // MOSS DARK
-          silver: '#A8B09A',      // SAGE
-          silverLight: '#F3EFE6', // BONE
-          white: '#FAF8F2',       // PAPER
-          coral: '#D96C4A',       // TERRACOTTA
-          coralHover: '#A95245',  // CLAY
-          coralLight: '#E88B6E',  // LIGHT TERRACOTTA
-        }
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['Newsreader', 'Georgia', 'serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+      },
+      borderRadius: {
+        'container': '8px',
+        'btn': '6px',
+        'card': '10px',
+      },
+      letterSpacing: {
+        'micro': '0.18em',
+        'widest-editorial': '0.22em',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        'float-slow': {
-          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-          '50%': { transform: 'translateY(-12px) rotate(1deg)' },
-        },
-        pulseGlow: {
+        subtlePulse: {
           '0%, 100%': { opacity: '0.4' },
           '50%': { opacity: '0.8' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
-        marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         }
       },
       animation: {
-        float: 'float 4s ease-in-out infinite',
-        'float-slow': 'float-slow 7s ease-in-out infinite',
-        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
-        shimmer: 'shimmer 2.5s infinite linear',
-        marquee: 'marquee 25s linear infinite',
+        'subtle-pulse': 'subtlePulse 3s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
       }
     },
   },

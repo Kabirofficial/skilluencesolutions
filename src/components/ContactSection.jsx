@@ -1,19 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Send, 
-  CheckCircle2, 
-  Sparkles, 
-  AlertCircle,
-  RotateCcw
-} from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
-export default function ContactSection({ prefilledService }) {
+export default function ContactSection() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -26,18 +16,6 @@ export default function ContactSection({ prefilledService }) {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // If a prefilled service was selected from a service modal
-  useEffect(() => {
-    if (prefilledService) {
-      setFormData(prev => ({
-        ...prev,
-        message: prev.message 
-          ? `${prev.message} (Interested in: ${prefilledService})` 
-          : `I am interested in learning more about the ${prefilledService} service.`
-      }));
-    }
-  }, [prefilledService]);
 
   const validate = () => {
     const newErrors = {};
@@ -54,16 +32,12 @@ export default function ContactSection({ prefilledService }) {
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (formData.phone.trim().length < 8) {
+    } else if (formData.phone.trim().length < 7) {
       newErrors.phone = 'Please provide a valid contact number';
     }
 
-    if (!formData.currentStatus) {
-      newErrors.currentStatus = 'Please select your current status';
-    }
-
     if (!formData.targetRole.trim()) {
-      newErrors.targetRole = 'Please indicate your target role or field';
+      newErrors.targetRole = 'Please specify your target role or industry';
     }
 
     setErrors(newErrors);
@@ -75,11 +49,10 @@ export default function ContactSection({ prefilledService }) {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate frontend submission transition
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-    }, 600);
+    }, 400);
   };
 
   const handleReset = () => {
@@ -96,217 +69,165 @@ export default function ContactSection({ prefilledService }) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-900 text-white relative overflow-hidden">
-      {/* Background Radial Lights */}
-      <div 
-        className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute bottom-0 left-10 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[140px] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="contact"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden select-none"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
-            Consultation & Assessment
+        <div className="max-w-3xl mb-16 lg:mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
+            <span>DIRECT INTAKE / 11</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
-            Let's talk about your next step.
+
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
+            Start the Conversation.
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-            Tell us where you are in your career journey and what you're working toward. We'll explore how our personalized guidance can support your trajectory.
+          <p className="text-base sm:text-lg text-sp-midGray mt-4 max-w-xl font-normal">
+            Tell us about your current status and target role. We review your profile to recommend the most practical service module.
           </p>
         </div>
 
-        {/* Two Column Layout: Form + Contact Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Form or Success Card */}
-          <div className="lg:col-span-7 bg-slate-800/80 rounded-3xl p-8 sm:p-10 border border-slate-700/80 shadow-2xl backdrop-blur-xl">
-            <AnimatePresence mode="wait">
+          {/* Left Column: Form with Validation & Success State */}
+          <div className="lg:col-span-7">
+            <div className="p-8 sm:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray shadow-sm">
+              
               {submitted ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="py-8 text-center space-y-5"
-                >
-                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/10">
-                    <CheckCircle2 className="w-9 h-9" />
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-14 h-14 rounded-full bg-sp-white border border-sp-ink mx-auto flex items-center justify-center text-sp-ink">
+                    <CheckCircle2 className="w-7 h-7" />
                   </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-white tracking-tight">
-                      Thanks! Your enquiry has been received.
-                    </h3>
-                    <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                      Please check your email/phone for further communication.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-700 text-xs text-slate-400 max-w-md mx-auto text-left space-y-1">
-                    <div className="font-semibold text-slate-300">Submitted summary:</div>
-                    <div><span className="text-slate-400">Name:</span> {formData.fullName}</div>
-                    <div><span className="text-slate-400">Target Role:</span> {formData.targetRole}</div>
-                    <div><span className="text-slate-400">Status:</span> {formData.currentStatus}</div>
-                  </div>
-
-                  <div className="pt-4">
+                  <h3 className="text-2xl font-black text-sp-ink uppercase tracking-tight">
+                    Thanks! Your enquiry has been received.
+                  </h3>
+                  <p className="text-sm text-sp-midGray max-w-md mx-auto leading-relaxed">
+                    Our career advisory desk will review your details against our service modules and reach out via your provided email.
+                  </p>
+                  <div className="pt-6">
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-btn border border-sp-lightGray bg-sp-white hover:bg-sp-offWhite text-xs font-mono font-bold text-sp-ink transition-colors"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Submit Another Enquiry</span>
                     </button>
                   </div>
-                </motion.div>
+                </div>
               ) : (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  onSubmit={handleSubmit}
-                  noValidate
-                  className="space-y-5"
-                >
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-700/80">
-                    <h3 className="text-lg font-bold text-white">
-                      Career Assessment Enquiry
-                    </h3>
-                    <span className="text-[11px] text-slate-400">
-                      Confidential & Frontend Verified
-                    </span>
-                  </div>
-
-                  {/* Full Name */}
-                  <div>
-                    <label htmlFor="fullName" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Full Name *
-                    </label>
-                    <input
-                      id="fullName"
-                      type="text"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      placeholder="e.g. Alex Johnson"
-                      className={`w-full px-4 py-3 rounded-xl bg-slate-900/90 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        errors.fullName ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
-                      }`}
-                    />
-                    {errors.fullName && (
-                      <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                        <AlertCircle className="w-3 h-3" /> {errors.fullName}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Email & Phone Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Full Name */}
                     <div>
-                      <label htmlFor="email" className="block text-xs font-semibold text-slate-300 mb-1.5">
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        placeholder="e.g. Alex Mercer"
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                          errors.fullName ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
+                        }`}
+                      />
+                      {errors.fullName && (
+                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.fullName}</p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
                         Email Address *
                       </label>
                       <input
-                        id="email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="alex@example.com"
-                        className={`w-full px-4 py-3 rounded-xl bg-slate-900/90 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                          errors.email ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
+                        placeholder="e.g. alex@example.com"
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                          errors.email ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
                         }`}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Phone Number *
-                      </label>
-                      <input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 98765 00000"
-                        className={`w-full px-4 py-3 rounded-xl bg-slate-900/90 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                          errors.phone ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
-                        }`}
-                      />
-                      {errors.phone && (
-                        <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.phone}
-                        </p>
+                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.email}</p>
                       )}
                     </div>
                   </div>
 
-                  {/* Current Status & Target Role */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Phone */}
                     <div>
-                      <label htmlFor="currentStatus" className="block text-xs font-semibold text-slate-300 mb-1.5">
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        placeholder="e.g. +1 (555) 019-2834"
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                          errors.phone ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
+                        }`}
+                      />
+                      {errors.phone && (
+                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.phone}</p>
+                      )}
+                    </div>
+
+                    {/* Current Status */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
                         Current Status *
                       </label>
                       <select
-                        id="currentStatus"
                         value={formData.currentStatus}
                         onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                        className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink focus:outline-none focus:border-sp-ink transition-colors"
                       >
-                        <option value="Student">College Student</option>
+                        <option value="Student">Current Student</option>
                         <option value="Fresh Graduate">Fresh Graduate</option>
-                        <option value="Career Starter">Career Starter (0–2 yrs)</option>
+                        <option value="Career Starter">Career Starter (1-3 yrs)</option>
                         <option value="Job Seeker">Active Job Seeker</option>
-                        <option value="Working Professional">Working Professional</option>
-                        <option value="Other">Other</option>
                       </select>
                     </div>
+                  </div>
 
-                    <div>
-                      <label htmlFor="targetRole" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                        Target Role / Domain *
-                      </label>
-                      <input
-                        id="targetRole"
-                        type="text"
-                        value={formData.targetRole}
-                        onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
-                        placeholder="e.g. Frontend Dev / Business Analyst"
-                        className={`w-full px-4 py-3 rounded-xl bg-slate-900/90 border text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                          errors.targetRole ? 'border-red-500' : 'border-slate-700 focus:border-blue-500'
-                        }`}
-                      />
-                      {errors.targetRole && (
-                        <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" /> {errors.targetRole}
-                        </p>
-                      )}
-                    </div>
+                  {/* Target Role */}
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      Target Role / Domain *
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.targetRole}
+                      onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
+                      placeholder="e.g. Associate Software Engineer, Business Analyst, etc."
+                      className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                        errors.targetRole ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
+                      }`}
+                    />
+                    {errors.targetRole && (
+                      <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.targetRole}</p>
+                    )}
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-xs font-semibold text-slate-300 mb-1.5">
-                      Your Message / Current Hurdles (Optional)
+                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      Brief Message or Specific Service Needed (Optional)
                     </label>
                     <textarea
-                      id="message"
-                      rows={3}
+                      rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us what you would like support with (e.g. resume review, mock interviews, application tracking)..."
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                      placeholder="Share any specific challenges with your resume, LinkedIn, or upcoming interview..."
+                      className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors resize-none"
                     />
                   </div>
 
@@ -315,96 +236,88 @@ export default function ContactSection({ prefilledService }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 active:scale-[0.99] disabled:opacity-60 transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm transition-all shadow-sm active:scale-[0.98] disabled:opacity-50"
                     >
-                      {isSubmitting ? (
-                        <span>Processing enquiry...</span>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          <span>Send Enquiry</span>
-                        </>
-                      )}
+                      <span>{isSubmitting ? 'Transmitting Enquiry...' : 'Submit Profile for Advisory Review'}</span>
+                      <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
-                </motion.form>
+                </form>
               )}
-            </AnimatePresence>
+
+            </div>
           </div>
 
-          {/* Right Column: Contact Information Cards */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 rounded-3xl bg-slate-800/60 border border-slate-700/70">
-              <h4 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-blue-400" />
-                <span>Contact Channels</span>
-              </h4>
+          {/* Right Column: Authentic Contact Channels */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="p-8 rounded-card bg-sp-white border border-sp-lightGray space-y-6">
+              <h3 className="text-xl font-black text-sp-ink uppercase tracking-tight pb-3 border-b border-sp-lightGray">
+                Advisory Desk Channels
+              </h3>
 
-              <div className="space-y-4 text-sm">
+              <div className="space-y-4 text-sm text-sp-charcoal">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-700/70 flex items-center justify-center text-blue-400 shrink-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
+                  <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">
-                      Email Inquiries
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
+                      PRIMARY EMAIL
                     </span>
-                    <span className="text-slate-200 font-mono text-xs">
-                      {siteConfig.contactPlaceholders.email}
-                    </span>
+                    <a href={`mailto:${siteConfig.contact.email}`} className="font-mono text-sp-ink hover:underline">
+                      {siteConfig.contact.email}
+                    </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-700/70 flex items-center justify-center text-indigo-400 shrink-0">
-                    <Phone className="w-4 h-4" />
-                  </div>
+                  <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">
-                      Direct Line
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
+                      CAREERS DESK
                     </span>
-                    <span className="text-slate-200 font-mono text-xs">
-                      {siteConfig.contactPlaceholders.phone}
-                    </span>
+                    <a href={`mailto:${siteConfig.contact.deskEmail}`} className="font-mono text-sp-ink hover:underline">
+                      {siteConfig.contact.deskEmail}
+                    </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-700/70 flex items-center justify-center text-violet-400 shrink-0">
-                    <MapPin className="w-4 h-4" />
-                  </div>
+                  <Phone className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">
-                      Location & Mode
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
+                      TELEPHONE
                     </span>
-                    <span className="text-slate-200 text-xs">
-                      {siteConfig.contactPlaceholders.location}
-                    </span>
+                    <span className="font-mono text-sp-ink">{siteConfig.contact.phone}</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-700/70 flex items-center justify-center text-cyan-400 shrink-0">
-                    <Clock className="w-4 h-4" />
-                  </div>
+                  <Clock className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">
-                      Consultation Hours
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
+                      OPERATING HOURS
                     </span>
-                    <span className="text-slate-200 text-xs">
-                      {siteConfig.contactPlaceholders.workingHours}
+                    <span className="text-sp-charcoal">{siteConfig.contact.workingHours}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
+                      OPERATIONS
                     </span>
+                    <span className="text-sp-charcoal">{siteConfig.contact.location}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Quick Consultation Guarantee Disclaimer */}
-            <div className="p-6 rounded-3xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 leading-relaxed">
-              <span className="font-semibold text-slate-300 block mb-1">
-                Transparency Assurance:
+            {/* Honest Service Disclaimer */}
+            <div className="p-6 rounded-card bg-sp-offWhite border border-sp-lightGray text-xs text-sp-midGray leading-relaxed font-normal">
+              <span className="font-bold text-sp-ink block mb-1 font-mono uppercase">
+                Notice of Independent Advisory:
               </span>
-              We treat all candidate discussions with strict confidentiality. Our assessments prioritize honest evaluation of your current assets and practical avenues for improvement.
+              {siteConfig.disclaimer}
             </div>
           </div>
 

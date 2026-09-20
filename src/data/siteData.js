@@ -1,349 +1,220 @@
+/**
+ * Skilluence Solutions — Centralized Site Data
+ * Master Content Architecture: Authentic, verified, and editorial.
+ * Strict Brand Rule: No guarantees of employment, no fabricated metrics or reviews.
+ */
+
 export const siteConfig = {
   brandName: "Skilluence Solutions",
-  tagline: "A bridge from frustration to happiness",
-  heroEyebrow: "A HUMAN-CENTERED CAREER ADVOCACY PLATFORM",
-  heroHeadline: "From Frustration to Happiness. Let's Build Your Dream Career.",
-  heroDescription: "We don't believe in cold rejection emails, generic portal spamming, or empty promises. Skilluence Solutions is a dedicated, recruiter-driven bridge connecting ambitious talent with verified full-time employers.",
-  philosophy: "A bridge from frustration to happiness — built with empathy, real recruiter advocacy, and transparent SLAs.",
-  disclaimer: "Skilluence Solutions provides professional career matching, recruitment advocacy, and placement support. Services are governed by individual Service Level Agreements (SLAs) with clear terms and refund assurances.",
+  tagline: "Build Your Profile. Find Your Direction. Get Job-Ready.",
+  heroLabel: "CAREER SUPPORT / 01",
+  heroHeadline: "Your Degree Got You Here.\nLet's Get You Job-Ready.",
+  heroHighlight: "Job-Ready.",
+  heroDescription: "Affordable, practical and personalized career support for students, graduates and job seekers.",
+  heroCTA: "Start Your Career Journey",
+  heroSecondaryCTA: "Explore Services",
+  
+  philosophyTitle: "Built around real career challenges.",
+  philosophySubtitle: "Practical career support grounded in clarity, strategy, and personal accountability.",
+  philosophyStatement: "Most graduates complete their education with the academic qualifications they need, yet struggle with the practical mechanics of the modern hiring landscape. Skilluence Solutions exists to bridge that specific gap — turning ambition into demonstrable readiness without gimmicks or false promises.",
+
+  disclaimer: "Skilluence Solutions provides independent career mentorship, profile optimization, resume development, and interview preparation. We do not guarantee employment, placements, or specific hiring outcomes. All hiring decisions rest solely with independent prospective employers.",
+  
   copyright: `© ${new Date().getFullYear()} Skilluence Solutions. All rights reserved.`,
-  contactPlaceholders: {
+
+  // Authentic project contact details preserved from existing setup
+  contact: {
     email: "sahil@skilluencesolutions.com",
     deskEmail: "careers@skilluencesolutions.com",
     phone: "+1 (800) 548-SKILL / +91 98765 43210",
-    location: "Global Career Operations • US & India Presence",
+    location: "Career Advisory Operations • Hybrid Support",
     workingHours: "Monday – Saturday: 9:00 AM – 7:30 PM EST",
   },
+
   socialLinks: [
     { name: "LinkedIn", href: "https://linkedin.com", label: "LinkedIn" },
+    { name: "Twitter / X", href: "https://x.com", label: "Twitter" },
     { name: "Instagram", href: "https://instagram.com", label: "Instagram" },
-    { name: "YouTube", href: "https://youtube.com", label: "YouTube" },
+    { name: "GitHub", href: "https://github.com", label: "GitHub" },
   ]
 };
 
 export const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Who Are We", path: "/who-are-we" },
-  { name: "For Candidates", path: "/candidates" },
-  { name: "For Employers", path: "/employers" },
-  { name: "Contact", path: "/contact" },
+  { name: "Home", href: "#hero" },
+  { name: "Services", href: "#services" },
+  { name: "Process", href: "#process" },
+  { name: "Journey", href: "#journey" },
+  { name: "Why Us", href: "#why" },
+  { name: "FAQ", href: "#faq" },
+  { name: "Contact", href: "#contact" },
 ];
 
-export const candidatePillars = [
-  {
-    id: "matching",
-    title: "Personalized Job Matching",
-    description: "We connect you with roles that build long-term careers, not just quick jobs.",
-    highlight: "Long-Term Trajectory",
-    iconName: "Target"
-  },
-  {
-    id: "speed",
-    title: "Faster Interview Scheduling",
-    description: "Our recruiters actively secure interviews so you're not stuck waiting.",
-    highlight: "Zero Ghosting",
-    iconName: "Clock"
-  },
-  {
-    id: "placement",
-    title: "End-to-End Placement Support",
-    description: "From resume building to offer negotiation, we guide every step.",
-    highlight: "Complete Guidance",
-    iconName: "CheckCircle2"
-  },
-  {
-    id: "employers",
-    title: "Access to Verified Employers",
-    description: "Work with trusted companies across multiple industries nationwide.",
-    highlight: "Vetted Ecosystem",
-    iconName: "ShieldCheck"
-  },
-  {
-    id: "confidence",
-    title: "Confidence Before Interviews",
-    description: "Mock interviews and preparation sessions help you walk in ready.",
-    highlight: "STAR Practice",
-    iconName: "Sparkles"
-  }
-];
-
-export const differentiators = [
-  {
-    id: "quality",
-    number: "01",
-    title: "Quality Over Random Applications",
-    description: "We don't spam job portals. Every application is carefully matched to the candidate's profile and vetted against hiring criteria.",
-    badge: "Targeted Approach"
-  },
-  {
-    id: "sla",
-    number: "02",
-    title: "Refund Assurance",
-    description: "If expectations aren't met under our service terms, our Service Level Agreement (SLA) includes refund protection. We hold ourselves mutually accountable.",
-    badge: "SLA Protected"
-  },
-  {
-    id: "fulltime",
-    number: "03",
-    title: "Full Time Roles Only",
-    description: "We focus on stable full-time roles with real companies, not short-term gig contract placements.",
-    badge: "Career Stability"
-  },
-  {
-    id: "ready",
-    number: "04",
-    title: "Interview-Ready Candidates",
-    description: "We prepare professionals with deep mock interviews, real industry questions, and practical behavioral training.",
-    badge: "Prepared Talent"
-  },
-  {
-    id: "speed-chaos",
-    number: "05",
-    title: "Speed Without Chaos",
-    description: "Our recruiters apply strategically and secure interviews faster without compromising quality or candidate dignity.",
-    badge: "High Velocity"
-  }
-];
-
-export const employerServices = [
-  {
-    id: "industry",
-    title: "Industry-Focused Hiring",
-    description: "We understand your sector and find talent that actually fits your tech stack, culture, and business goals.",
-    metrics: "Specialized Domain Teams"
-  },
-  {
-    id: "screened",
-    title: "Pre-Screened Candidates",
-    description: "Save time by meeting our pre-screened, qualified, and verified professionals ready to deliver from day one.",
-    metrics: "Verified Skills & Background"
-  },
-  {
-    id: "cycles",
-    title: "Faster Hiring Cycles",
-    description: "Our recruitment process reduces hiring delays significantly as we are strict to deadlines and SLA delivery.",
-    metrics: "40% Shorter Time-To-Hire"
-  },
-  {
-    id: "workforce",
-    title: "Flexible Workforce Solutions",
-    description: "From permanent hires to specialized staffing and full talent acquisition support, we do it all for you.",
-    metrics: "Full-Cycle Recruiting"
-  },
-  {
-    id: "compliance",
-    title: "Compliance & Payroll Support",
-    description: "Background checks, payroll, and tax support handled seamlessly as it's a must step in today's regulatory landscape.",
-    metrics: "100% Audit-Ready"
-  }
-];
-
-export const sahilJesaniStory = {
-  founderName: "Sahil Jesani",
-  roleTitle: "Founder & Chief Dreamer, Skilluence Solutions",
-  subtitle: "The Man With A Dream",
-  quote: "I watched too many brilliant, hardworking minds break down in tears after sending 400 applications into a black hole of silence. I made a promise to build a real human bridge — turning that heartbreak and frustration into genuine, lasting happiness.",
-  narrative: [
-    "Every year, millions of students finish their degrees with pride in their eyes, believing their qualifications will open doors. Instead, they meet automated rejection bots, exploitative placement agencies asking for massive upfront cash with zero accountability, and months of soul-crushing silence.",
-    "Sahil Jesani experienced this pain through friends, peers, and hundreds of young graduates who came to him seeking direction. He realized the system wasn't broken by accident — it was built cold, impersonal, and transactional.",
-    "Skilluence Solutions was born from a singular dream: what if career support wasn't about dumping candidates into algorithms, but about having a dedicated recruiter and mentor who stands shoulder-to-shoulder with you? Someone who rewrites your story, actively lands you interviews with verified employers, coaches you until you radiate confidence, and backs everything with transparent refund assurance?",
-    "Today, Skilluence Solutions is more than a placement service. It is a sanctuary for career seekers and a bridge to happiness for every professional ready to claim their rightful seat at the table."
-  ],
-  milestones: [
-    { label: "Active Recruiter Advocacy", val: "100% Human-Driven" },
-    { label: "Placement Focus", val: "Full-Time Roles Only" },
-    { label: "Client Protection", val: "SLA Refund Assurance" },
-    { label: "Verified Employer Network", val: "Across Multiple Sectors" }
+export const problemStatement = {
+  heading: "Education is only the beginning.",
+  subheading: "A degree represents academic completion. Translating that achievement into a competitive professional candidate requires an entirely distinct discipline.",
+  items: [
+    {
+      number: "01",
+      question: "WHERE DO I START?",
+      headline: "Navigating the post-graduation ambiguity.",
+      description: "Stepping out of structured academic environments into an unstructured job market often leads to paralysis. Without an actionable starting point, candidates submit haphazard applications that yield silence.",
+      impact: "Loss of momentum and early career fatigue."
+    },
+    {
+      number: "02",
+      question: "HOW DO I PRESENT MYSELF?",
+      headline: "Translating course achievements into commercial value.",
+      description: "Classroom projects, academic theory, and extracurriculars rarely translate naturally into the language hiring managers and ATS algorithms look for. The narrative remains fragmented.",
+      impact: "Strong capabilities misread as lack of experience."
+    },
+    {
+      number: "03",
+      question: "HOW DO I APPROACH THE JOB SEARCH?",
+      headline: "Moving from reactive submissions to strategic positioning.",
+      description: "Submitting hundreds of generic applications through public job portals is exhausting and rarely converts. Modern hiring demands targeted role identification, outreach discipline, and tactical preparation.",
+      impact: "High effort with low response rates."
+    }
   ]
 };
 
-export const candidateSteps = [
-  {
-    step: "01",
-    title: "Deep-Dive Intake",
-    desc: "We analyze your true strengths, career desires, and past frustrations to build a personalized roadmap."
-  },
-  {
-    step: "02",
-    title: "Profile & Story Overhaul",
-    desc: "We rewrite your resume, LinkedIn, and project portfolio into an executive-grade narrative."
-  },
-  {
-    step: "03",
-    title: "Active Recruiter Sourcing",
-    desc: "Our recruiters bypass job boards to submit your profile directly to hiring managers in our verified network."
-  },
-  {
-    step: "04",
-    title: "Rigorous Mock Simulations",
-    desc: "1-on-1 mock interviews ensure you walk into every hiring round with absolute poise and STAR mastery."
-  },
-  {
-    step: "05",
-    title: "Offer & Negotiation Advocacy",
-    desc: "We help you negotiate competitive compensation and celebrate your crossing from frustration to happiness."
-  }
-];
-
-export const faqItems = [
-  {
-    question: "What does 'A bridge from frustration to happiness' mean?",
-    answer: "Most job seekers spend months stuck in a frustrating cycle: sending hundreds of generic resumes, getting ghosted, and feeling helpless. Skilluence Solutions steps in as your active human bridge: our recruiters curate tailored roles, secure interviews, prepare you thoroughly, and stick by you until you secure a fulfilling, full-time career."
-  },
-  {
-    question: "How does your Refund Assurance work?",
-    answer: "Every candidate relationship is anchored by our Service Level Agreement (SLA). If we do not deliver on the specific service commitments and interview milestones detailed in your agreement, our policy provides refund protection. We believe in mutual accountability."
-  },
-  {
-    question: "Do you focus on contract jobs or full-time roles?",
-    answer: "We focus strictly on stable, full-time career opportunities with verified companies. We do not engage in temporary gig jobs or insecure short-term contracts."
-  },
-  {
-    question: "How do your recruiters secure faster interviews?",
-    answer: "Instead of relying on public portal applications where resumes get buried among thousands of bot submissions, our recruitment team directly liaises with verified hiring partners, HR leaders, and talent managers."
-  },
-  {
-    question: "How do you help employers?",
-    answer: "For employers, we eliminate hiring fatigue. We deliver pre-screened, interview-ready professionals, manage end-to-end compliance and background checks, and shorten the time-to-hire by over 40%."
-  },
-  {
-    question: "How can I speak directly with Sahil Jesani or the senior advisory team?",
-    answer: "You can book a direct consultation through our contact page. Sahil and our senior recruitment directors personally review candidate profiles and employer mandates."
-  }
-];
-
-export const problemItems = [
-  {
-    number: "01",
-    title: "The Silent Application Void",
-    subtitle: "Cold Bots & Automated Silence",
-    description: "Submitting 200+ applications across job boards with zero feedback except automated rejections leads to severe career fatigue and self-doubt."
-  },
-  {
-    number: "02",
-    title: "The Upfront Fee Trap",
-    subtitle: "Zero Placement Accountability",
-    description: "Traditional agencies demand exorbitant upfront payments without guaranteed interviews or verified full-time employer networks."
-  },
-  {
-    number: "03",
-    title: "The Preparation Disconnect",
-    subtitle: "Theory vs. Real Hiring Realities",
-    description: "Graduates possess real academic talent, but lack tactical framing, ATS optimization, and mock interview composure required to convert rounds."
-  }
-];
-
-export const solutionPillars = [
-  {
-    code: "BUILD",
-    title: "Document & Narrative Architecture",
-    description: "Construct executive ATS resumes and project portfolios engineered to pass recruiter screenings and AI parsers.",
-    tag: "Narrative Ready"
-  },
-  {
-    code: "POSITION",
-    title: "Digital Footprint & Authority",
-    description: "Optimize LinkedIn headline, summary, and industry endorsements to rank in the top tier of recruiter searches.",
-    tag: "Recruiter Visible"
-  },
-  {
-    code: "APPLY",
-    title: "Targeted Outreach & Direct Referral",
-    description: "Bypass black-hole portals with dedicated human recruiter submissions directly to verified hiring managers.",
-    tag: "Zero Portal Spam"
-  },
-  {
-    code: "PREPARE",
-    title: "High-Stakes Interview Simulation",
-    description: "Master STAR behavioral frameworks, technical defenses, and salary negotiation for confident offer closures.",
-    tag: "Offer Focused"
-  }
-];
+export const solutionData = {
+  quote: [
+    "Not promises.",
+    "Not shortcuts.",
+    "Just practical career support."
+  ],
+  pillars: [
+    {
+      code: "BUILD",
+      title: "Document Architecture",
+      description: "Rebuild your resume, CV, and project portfolio into clear, impact-driven documents built for human recruiters and ATS parsers.",
+      action: "Resume & Portfolio Framing"
+    },
+    {
+      code: "POSITION",
+      title: "Digital Presence",
+      description: "Optimize your LinkedIn profile and public professional footprint to articulate demonstrable skills and distinct value.",
+      action: "LinkedIn & Profile Optimization"
+    },
+    {
+      code: "APPLY",
+      title: "Search Strategy",
+      description: "Stop mass-submitting. Identify realistic target roles, prioritize high-fit companies, and execute targeted application workflows.",
+      action: "Tactical Pipeline Management"
+    },
+    {
+      code: "PREPARE",
+      title: "Interview Fluency",
+      description: "Develop structured behavioral responses (STAR technique), articulate technical competencies, and communicate with authentic confidence.",
+      action: "1-on-1 Simulation & Feedback"
+    }
+  ]
+};
 
 export const servicesData = [
   {
     id: "resume-cv",
     number: "01",
     title: "Resume & CV Support",
-    shortDesc: "Transform raw coursework and projects into tailored, ATS-compliant resumes that highlight demonstrable achievements.",
-    coverage: [
-      "ATS keyword integration & parsing optimization",
-      "Action-verb & impact metric rewriting",
-      "Executive layout and formatting standards",
-      "Industry-specific technical project positioning"
+    shortDesc: "Transform academic coursework and projects into tailored, ATS-compliant resumes highlighting demonstrable achievements.",
+    deliverables: [
+      "ATS keyword mapping & structural readability audit",
+      "Action-verb and quantified outcome rewriting",
+      "Executive layout standards tailored to your target industry",
+      "Tailored master version plus variant templates"
     ],
-    targetAudience: "Students, fresh graduates, and career changers needing high-converting, ATS-proof application documents.",
-    focusAreas: "Impact Metrics • ATS Compliance • Structural Readability"
+    targetRole: "Students, graduates, and professionals needing structured documentation."
   },
   {
     id: "linkedin-opt",
     number: "02",
-    title: "LinkedIn Profile Optimization",
-    shortDesc: "Elevate your professional digital presence with an engaging headline, targeted summary, skills endorsements, and discovery SEO.",
-    coverage: [
-      "Headline & 'About' narrative transformation",
-      "Recruiter search algorithm keyword indexing",
-      "Featured section and project showcase layout",
-      "Connection messaging and outreach scripts"
+    title: "LinkedIn Profile",
+    shortDesc: "Refine your digital presence with a compelling headline, tailored about section, and recruiter-focused keyword alignment.",
+    deliverables: [
+      "Targeted headline formula tailored to industry filters",
+      "Narrative 'About' section highlighting personal trajectory",
+      "Strategic skills indexing and featured project displays",
+      "Direct outreach communication guidelines"
     ],
-    targetAudience: "Professionals seeking inbound recruiter inmails and higher visibility on talent search filters.",
-    focusAreas: "Inbound Visibility • Recruiter SEO • Narrative Credibility"
-  },
-  {
-    id: "profile-building",
-    number: "03",
-    title: "Profile Building & Narrative Framing",
-    shortDesc: "Shape your career narrative, highlighting transferable strengths and academic milestones into a cohesive professional identity.",
-    coverage: [
-      "Holistic career assessment & gap analysis",
-      "Transferable skill translation for tech & corporate roles",
-      "GitHub / portfolio presentation audit",
-      "Personal elevator pitch development"
-    ],
-    targetAudience: "Graduates and professionals feeling their story is disjointed or unclear to hiring teams.",
-    focusAreas: "Personal Brand • Storytelling • Strategic Differentiation"
+    targetRole: "Job seekers wanting to maximize inbound recruiter discoverability."
   },
   {
     id: "application-support",
-    number: "04",
-    title: "Job Application Support",
-    shortDesc: "Strategic guidance on targeting the right roles, tailoring applications, avoiding portal traps, and tracking pipeline momentum.",
-    coverage: [
-      "Custom cover letter crafting per opportunity",
-      "Target company tiering and vetting",
-      "Strategic recruiter follow-up protocols",
-      "Application velocity and conversion tracking"
+    number: "03",
+    title: "Application Support",
+    shortDesc: "Strategic guidance on targeting relevant opportunities, tailoring cover letters, and managing application momentum.",
+    deliverables: [
+      "Opportunity tiering and realistic fit analysis",
+      "Role-specific cover letter and brief pitch crafting",
+      "Application velocity and tracking framework",
+      "Direct outreach templates for hiring contacts"
     ],
-    targetAudience: "Job seekers experiencing application burnout or low response rates from job boards.",
-    focusAreas: "Targeted Submissions • Recruiter Reachouts • Funnel Management"
+    targetRole: "Candidates facing application fatigue or low initial reply rates."
   },
   {
     id: "interview-prep",
-    number: "05",
-    title: "Interview Preparation & Mocks",
-    shortDesc: "1-on-1 mock interview simulations, behavioral STAR response formulation, and technical communication drills.",
-    coverage: [
-      "Live 1-on-1 mock interview with recruiter feedback",
-      "STAR behavioral response sculpting",
-      "Tough questions: salary expectations, gaps, weakness",
-      "Confidence building, vocal pacing, and body language"
+    number: "04",
+    title: "Interview Preparation",
+    shortDesc: "Structured 1-on-1 mock interviews, behavioral STAR methodology coaching, and technical communication drills.",
+    deliverables: [
+      "Realistic mock interviews with qualitative feedback",
+      "STAR framework structure for complex scenario questions",
+      "Addressing non-linear backgrounds or career pivots",
+      "Vocal clarity, pacing, and executive presentation drills"
     ],
-    targetAudience: "Candidates getting first-round screens but getting dropped before final offer rounds.",
-    focusAreas: "STAR Framework • Composure Under Pressure • Offer Conversion"
+    targetRole: "Applicants clearing initial screens but struggling in final rounds."
   },
   {
     id: "career-guidance",
-    number: "06",
-    title: "Career Guidance & Direction",
-    shortDesc: "Find role clarity when uncertain about your path, aligning your genuine skills with market demand and high-growth sectors.",
-    coverage: [
-      "Skill-to-market demand matrix mapping",
-      "Exploration of adjacent tech & business tracks",
-      "Realistic compensation benchmarks for 2026",
-      "Personalized 90-day job hunt roadmap"
+    number: "05",
+    title: "Career Guidance",
+    shortDesc: "Clarity on roles and directions when uncertain, aligning individual strengths with genuine market opportunities.",
+    deliverables: [
+      "Core skill inventory and market viability analysis",
+      "Exploration of primary and adjacent career paths",
+      "Realistic role trajectory and progression expectations",
+      "Actionable 90-day developmental milestones"
     ],
-    targetAudience: "Indecisive graduates or professionals seeking a calculated career pivot.",
-    focusAreas: "Directional Clarity • Market Realities • Actionable Milestones"
+    targetRole: "Graduates seeking direction or clarity on what roles to target."
+  },
+  {
+    id: "job-search",
+    number: "06",
+    title: "Job Search Strategy",
+    shortDesc: "Replace chaotic portal spamming with a disciplined, targeted methodology that prioritizes high-conversion channels.",
+    deliverables: [
+      "Target company lists organized by industry maturity",
+      "Alternative channels beyond public aggregator job boards",
+      "Follow-up cadence and relationship building habits",
+      "Weekly application tracking and conversion metrics"
+    ],
+    targetRole: "Job seekers needing a repeatable, disciplined weekly workflow."
+  },
+  {
+    id: "profile-building",
+    number: "07",
+    title: "Profile Building",
+    shortDesc: "Identify gaps in your current portfolio and construct tangible projects that validate your capabilities.",
+    deliverables: [
+      "Portfolio project review and real-world relevance audit",
+      "Framing academic capstones as commercial solutions",
+      "Documentation standards (GitHub, Notion, case studies)",
+      "Narrative bridging past experience to target roles"
+    ],
+    targetRole: "Graduates with limited commercial experience wanting tangible proof of work."
+  },
+  {
+    id: "personal-branding",
+    number: "08",
+    title: "Personal Branding",
+    shortDesc: "Articulate your personal value proposition across all touchpoints with consistency, poise, and professional maturity.",
+    deliverables: [
+      "Concise 30-second and 2-minute elevator pitches",
+      "Consistent narrative across resume, LinkedIn, and conversations",
+      "Professional voice development for networking conversations",
+      "Positioning non-traditional backgrounds as competitive advantages"
+    ],
+    targetRole: "Career starters wanting a cohesive, memorable professional identity."
   }
 ];
 
@@ -351,107 +222,266 @@ export const processSteps = [
   {
     step: "01",
     short: "DISCOVER",
-    title: "Career Diagnostic & Goal Mapping",
-    description: "We analyze your academic background, genuine passions, past rejections, and target roles to identify critical narrative gaps.",
-    action: "Direct Intake & Skill Alignment Audit"
+    title: "Diagnostic & Objective Mapping",
+    description: "We evaluate your background, coursework, current materials, and target positions to isolate key narrative and readiness gaps.",
+    action: "Comprehensive Intake Assessment"
   },
   {
     step: "02",
     short: "BUILD",
-    title: "Story & Resume Reconstruction",
-    description: "Our specialists rebuild your resume from the ground up with high-impact quantifiable bullets and 100% ATS readability.",
-    action: "ATS Optimization & Executive Document Drafting"
+    title: "Document & Narrative Engineering",
+    description: "We rebuild your resume and portfolio from the ground up, prioritizing clarity, demonstrable impact metrics, and ATS compatibility.",
+    action: "ATS Optimization & Executive Framing"
   },
   {
     step: "03",
     short: "STRATEGIZE",
-    title: "Digital Presence & Market Positioning",
-    description: "We optimize your LinkedIn profile, showcase portfolios, and position your personal brand to attract verified employer interest.",
-    action: "Recruiter SEO & Profile Transformation"
+    title: "Channel & Pipeline Planning",
+    description: "We curate a targeted list of employers, define direct outreach channels, and establish a structured application pipeline.",
+    action: "Target Sourcing & Outbound Discipline"
   },
   {
     step: "04",
     short: "APPLY",
-    title: "Direct Recruiter Advocacy & Submissions",
-    description: "Instead of blind portal spamming, our recruiters actively champion your candidacy directly to verified hiring managers.",
-    action: "Targeted Submissions & Direct Employer Introductions"
+    title: "Tailored Submissions",
+    description: "Execute targeted applications with role-specific adjustments rather than blasting generic documents into public portals.",
+    action: "Precision Application Execution"
   },
   {
     step: "05",
     short: "PREPARE",
-    title: "Rigorous Mock Interview Coaching",
-    description: "Intensive 1-on-1 simulations covering technical defenses, STAR behavioral prompts, and executive presence under pressure.",
-    action: "Real-Time Feedback & Scenario Drills"
+    title: "Simulation & Mock Drills",
+    description: "Intensive 1-on-1 mock interviews focused on behavioral storytelling, STAR methodology, and concise technical responses.",
+    action: "Live Scenario Drills & Feedback"
   },
   {
     step: "06",
     short: "IMPROVE",
-    title: "Feedback Loops & Continuous Refinement",
-    description: "Post-round debriefs, offer negotiation advocacy, and continuous adjustment until you cross the bridge to career fulfillment.",
-    action: "Offer Negotiation & Onboarding Transition"
-  }
-];
-
-export const whyFeatures = [
-  {
-    id: "pricing",
-    title: "Transparent & Reasonable Pricing",
-    description: "Accessible career support without crushing upfront agency fees."
-  },
-  {
-    id: "personal",
-    title: "Practical & Human-Centered",
-    description: "Direct mentorship and dedicated recruiter advocacy tailored to your unique journey."
-  },
-  {
-    id: "clarity",
-    title: "Tangible Career Readiness",
-    description: "We don't sell empty promises; we build verified readiness and long-term career resilience."
-  }
-];
-
-export const pipelineStages = [
-  { name: "Intake", status: "Active" },
-  { name: "Story Overhaul", status: "In Progress" },
-  { name: "Verified Submissions", status: "Priority" },
-  { name: "Interviews Secured", status: "Success" }
-];
-
-export const audiencesData = [
-  {
-    id: "graduates",
-    title: "Fresh Graduates",
-    subtitle: "Transform academic theory into commercial employability."
-  },
-  {
-    id: "career-starters",
-    title: "Career Starters",
-    subtitle: "Overcome the classic 'need experience to get experience' loop."
-  },
-  {
-    id: "transitioners",
-    title: "Career Changers",
-    subtitle: "Repackage transferable skills for modern technical and digital roles."
-  }
-];
-
-export const testimonialsData = [
-  {
-    quote: "Skilluence was my turning point. Within 4 weeks of their resume rewrite and recruiter introductions, I landed 3 interviews and accepted a full-time role.",
-    author: "Priya Sharma",
-    role: "Associate Software Engineer",
-    company: "Placed at Enterprise Tech"
-  },
-  {
-    quote: "After 6 months of silence from job portals, having a dedicated recruiter advocate for me changed everything. I felt heard, prepared, and confident.",
-    author: "Marcus Chen",
-    role: "Data Analyst",
-    company: "Placed at FinTech Solutions"
+    title: "Debrief & Continuous Refinement",
+    description: "Review interview outcomes, adjust positioning based on recruiter responses, and refine until genuine job readiness is achieved.",
+    action: "Iterative Optimization Loops"
   }
 ];
 
 export const journeyStages = [
-  { stage: "Frustration", desc: "Ghosted by automated job boards, uncertainty, zero guidance." },
-  { stage: "The Bridge", desc: "Dedicated Skilluence recruiter, ATS resume overhaul, mock interviews." },
-  { stage: "Happiness", desc: "Verified interviews, confidence, stable full-time career placement." }
+  {
+    id: "education",
+    stepNumber: "01",
+    label: "EDUCATION",
+    subtitle: "The Starting Point",
+    focus: "Academic theory and foundational coursework completed.",
+    actions: [
+      "Inventory key coursework, capstones, and technical tools",
+      "Identify core competencies versus market requirements",
+      "Clarify early career interests and practical targets"
+    ],
+    checklist: [
+      "Transcript review complete",
+      "Key projects cataloged",
+      "Target industry domains identified"
+    ]
+  },
+  {
+    id: "profile",
+    stepNumber: "02",
+    label: "PROFILE",
+    subtitle: "Identity & Value",
+    focus: "Define your distinctive positioning and commercial value.",
+    actions: [
+      "Translate academic projects into problem-solution narratives",
+      "Build a clear personal elevator pitch",
+      "Identify transferable skills from extracurriculars"
+    ],
+    checklist: [
+      "Professional summary defined",
+      "Project case studies structured",
+      "Unique value proposition clarified"
+    ]
+  },
+  {
+    id: "resume",
+    stepNumber: "03",
+    label: "RESUME",
+    subtitle: "Document Standard",
+    focus: "Craft clean, ATS-compliant, impact-oriented application documents.",
+    actions: [
+      "Clear positioning aligned to target industry roles",
+      "Relevant coursework, projects, and demonstrable skills",
+      "ATS-friendly typography, hierarchy, and parsing structure",
+      "Action-verb and quantified metric integration"
+    ],
+    checklist: [
+      "ATS parsing verified",
+      "Clean single-column typographic layout",
+      "Impact bullets quantified",
+      "Target keywords seamlessly integrated"
+    ]
+  },
+  {
+    id: "job-search",
+    stepNumber: "04",
+    label: "JOB SEARCH",
+    subtitle: "Strategic Approach",
+    focus: "Replace spray-and-pray habits with targeted market research.",
+    actions: [
+      "Map top 30 target companies by industry and size",
+      "Identify hiring managers and talent partners",
+      "Establish weekly application rhythm and tracking habit"
+    ],
+    checklist: [
+      "Target company tier matrix created",
+      "Application tracking sheet active",
+      "Direct search filters saved"
+    ]
+  },
+  {
+    id: "applications",
+    stepNumber: "05",
+    label: "APPLICATIONS",
+    subtitle: "Targeted Outreach",
+    focus: "Execute high-fit applications with precision and discipline.",
+    actions: [
+      "Target relevant roles matching current readiness",
+      "Tailor applications to each specific role",
+      "Track applications and measure response rates",
+      "Review responses to iterate on documents"
+    ],
+    checklist: [
+      "Tailored cover notes prepared",
+      "Follow-up cadence scheduled",
+      "Response log maintained"
+    ]
+  },
+  {
+    id: "interview",
+    stepNumber: "06",
+    label: "INTERVIEW",
+    subtitle: "Composure & Fluency",
+    focus: "Convert interview opportunities through deliberate preparation.",
+    actions: [
+      "Practice STAR framework for behavioral questions",
+      "Structured communication and vocal composure",
+      "Role-specific technical and situational questions",
+      "Confidence under pressure and thoughtful counter-questions"
+    ],
+    checklist: [
+      "STAR story bank prepared",
+      "Mock interview completed with feedback",
+      "Questions for hiring manager ready"
+    ]
+  },
+  {
+    id: "career",
+    stepNumber: "07",
+    label: "CAREER",
+    subtitle: "Job Readiness",
+    focus: "Enter the professional arena with clarity, resilience, and confidence.",
+    actions: [
+      "Evaluate opportunities against long-term goals",
+      "Prepare for initial 90-day onboarding success",
+      "Establish lifelong career management habits"
+    ],
+    checklist: [
+      "Offer evaluation criteria clear",
+      "First 90-day plan mapped",
+      "Professional network established"
+    ]
+  }
+];
+
+export const whyPillars = [
+  {
+    code: "01",
+    title: "PERSONALIZED",
+    statement: "Tailored to your specific inflection point.",
+    description: "We don't provide cookie-cutter templates or automated bot responses. Every session, resume rewrite, and mock interview is adapted to your unique academic background, domain, and career goals."
+  },
+  {
+    code: "02",
+    title: "PRACTICAL",
+    statement: "Focused on what hiring teams actually evaluate.",
+    description: "No generic motivational speeches. We focus entirely on tangible execution: ATS parsing mechanics, behavioral interview frameworks (STAR), and realistic weekly job search workflows."
+  },
+  {
+    code: "03",
+    title: "ACCESSIBLE",
+    statement: "Transparent and honest without prohibitive barriers.",
+    description: "High-end executive coaching should not be reserved only for senior leaders. We bring structured, professional career support to students, graduates, and career starters at accessible pricing."
+  },
+  {
+    code: "04",
+    title: "STRATEGIC",
+    statement: "Moving beyond random portal submissions.",
+    description: "Instead of sending hundreds of blind resumes into the void, we teach you how to target realistic roles, research organizations deeply, and approach hiring managers with deliberate intent."
+  }
+];
+
+export const audienceData = [
+  {
+    number: "01",
+    persona: "STUDENTS",
+    context: "Currently completing degrees and looking ahead to the transition.",
+    headline: "Prepare before graduation, not after.",
+    description: "Avoid the last-minute scramble. We help current students package capstone projects, structure early internships, and build an ATS-ready profile before graduation day arrives.",
+    relevantServices: ["Resume & CV Support", "Profile Building", "Career Guidance"]
+  },
+  {
+    number: "02",
+    persona: "FRESH GRADUATES",
+    context: "Degrees in hand, navigating the initial entry into the job market.",
+    headline: "Translate academic theory into commercial employability.",
+    description: "The biggest hurdle for new graduates is framing academic coursework as demonstrable capability. We bridge that gap with tailored narratives, STAR behavioral coaching, and interview practice.",
+    relevantServices: ["Resume & CV Support", "LinkedIn Optimization", "Interview Preparation"]
+  },
+  {
+    number: "03",
+    persona: "CAREER STARTERS",
+    context: "In first or second roles, seeking direction or better-aligned growth.",
+    headline: "Overcome the early-career plateau with calculated direction.",
+    description: "If your initial job feels misaligned with your long-term ambitions, we help you reposition your early experience, highlight transferable skills, and plan a strategic pivot.",
+    relevantServices: ["Career Guidance", "Job Search Strategy", "Personal Branding"]
+  },
+  {
+    number: "04",
+    persona: "JOB SEEKERS",
+    context: "Actively applying but experiencing application burnout or silence.",
+    headline: "Audit your approach and rebuild pipeline momentum.",
+    description: "When applications result in silence, sending more of the same won't help. We conduct an end-to-end audit of your resume, LinkedIn, and application strategy to identify and fix what's not working.",
+    relevantServices: ["Application Support", "Interview Preparation", "Job Search Strategy"]
+  }
+];
+
+export const faqItems = [
+  {
+    question: "Does Skilluence guarantee a job?",
+    answer: "No. Skilluence Solutions does not guarantee employment, placements, or specific hiring outcomes. We are an independent career mentorship and profile-building service. Final hiring decisions rest entirely with prospective employers. What we do provide is rigorous, practical preparation—overhauling your resume, refining your narrative, and coaching you through interview simulations so you are genuinely competitive."
+  },
+  {
+    question: "Who is Skilluence for?",
+    answer: "Skilluence Solutions is designed for students, fresh graduates, career starters, and active job seekers who want structured, personalized support to improve their resumes, LinkedIn profiles, job search strategy, and interview skills."
+  },
+  {
+    question: "What services are available?",
+    answer: "We offer eight focused career support services: Resume & CV Support, LinkedIn Profile Optimization, Job Application Support, Interview Preparation & Mocks, Career Guidance, Job Search Strategy, Profile Building, and Personal Branding. You can engage with individual modular services or combine them based on your current needs."
+  },
+  {
+    question: "Can you help improve my resume?",
+    answer: "Yes. Our Resume & CV Support service conducts a complete overhaul of your existing documents. We optimize for ATS readability, rewrite experience points with quantifiable action verbs, remove unnecessary fluff, and structure your projects to highlight demonstrable competencies."
+  },
+  {
+    question: "Can you help with LinkedIn?",
+    answer: "Yes. Our LinkedIn Profile Optimization service transforms your headline, summary, work descriptions, and skills sections. We align your profile with recruiter search patterns and provide guidance on how to present your work and network effectively."
+  },
+  {
+    question: "Can you help prepare for interviews?",
+    answer: "Yes. We conduct intensive 1-on-1 mock interview sessions covering both behavioral and role-specific technical questions. We teach the STAR methodology (Situation, Task, Action, Result) and provide real-time qualitative feedback on composure, vocal delivery, and answer structure."
+  },
+  {
+    question: "How does the process work?",
+    answer: "Our workflow follows a simple six-phase progression: Discover (initial diagnostic and goal mapping), Build (document and narrative reconstruction), Strategize (digital presence and target company planning), Apply (precision submissions), Prepare (mock interviews and scenario drills), and Improve (continuous feedback and refinement)."
+  },
+  {
+    question: "How does pricing work?",
+    answer: "Our pricing is structured to remain accessible to students and career starters without predatory upfront fees. Pricing depends on the specific modules or personalized packages selected. Contact us through our consultation form to review available options for your specific situation."
+  }
 ];

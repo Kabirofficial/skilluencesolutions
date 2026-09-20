@@ -1,114 +1,153 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Compass, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, ChevronDown, Check } from 'lucide-react';
+import CareerScene from './CareerScene';
 import { siteConfig } from '../data/siteData';
-import CareerDashboard from './CareerDashboard';
+import useReducedMotion from '../hooks/useReducedMotion';
 
 export default function Hero() {
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
-    if (el) {
-      const topOffset = 80;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+
+  // Scroll storytelling transforms
+  const yHeadline = useTransform(scrollY, [0, 600], [0, prefersReducedMotion ? 0 : -80]);
+  const yScene = useTransform(scrollY, [0, 600], [0, prefersReducedMotion ? 0 : 50]);
+  const opacityHero = useTransform(scrollY, [0, 500], [1, prefersReducedMotion ? 1 : 0.2]);
 
   return (
-    <section 
-      id="hero" 
-      className="relative min-h-screen flex items-center justify-center pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-slate-950 text-white"
+    <section
+      id="hero"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink flex flex-col justify-between pt-24 pb-12 sm:pb-16 lg:pt-28 lg:pb-20 overflow-hidden border-b border-sp-lightGray"
     >
-      {/* Background Gradients & Grid */}
+      {/* Background Architectural Grid Lines */}
       <div 
-        className="absolute inset-0 bg-dot-pattern-dark opacity-35 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-blue-600/20 via-indigo-600/10 to-transparent blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div 
-        className="absolute -bottom-24 right-0 w-[500px] h-[500px] bg-violet-600/10 blur-[140px] pointer-events-none"
-        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none opacity-[0.45]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #D4D4D4 1px, transparent 1px),
+            linear-gradient(to bottom, #D4D4D4 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px'
+        }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-grow flex items-center">
+        <motion.div 
+          style={{ opacity: opacityHero }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full my-auto"
+        >
           
-          {/* Left Column: Hero Content */}
+          {/* Left Column: Editorial Headline & Copy */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+            style={{ y: yHeadline }}
+            className="lg:col-span-6 space-y-6 sm:space-y-8"
           >
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wide uppercase mb-6 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{siteConfig.heroEyebrow}</span>
+            {/* Micro-Label: CAREER SUPPORT / 01 */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="inline-flex items-center gap-3 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase text-sp-charcoal"
+            >
+              <span className="w-2 h-2 rounded-full bg-sp-ink" />
+              <span>{siteConfig.heroLabel}</span>
+            </motion.div>
+
+            {/* Main Editorial Headline */}
+            <div className="space-y-2">
+              <motion.h1
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-[74px] font-black tracking-tight text-sp-ink leading-[1.05]"
+              >
+                Your Degree Got You Here.{' '}
+                <span className="block mt-1 font-serif italic font-normal text-sp-charcoal underline decoration-sp-lightGray decoration-2 underline-offset-8">
+                  Let's Get You {siteConfig.heroHighlight}
+                </span>
+              </motion.h1>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-tight text-white leading-[1.08] mb-6">
-              Your Degree Got You Here.{' '}
-              <br className="hidden sm:inline" />
-              <span className="text-gradient-primary inline-block">
-                Let's Get You Job-Ready.
-              </span>
-            </h1>
-
-            {/* Description Copy */}
-            <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mb-8">
+            {/* Supporting Copy */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg lg:text-xl text-sp-midGray max-w-xl leading-relaxed font-normal"
+            >
               {siteConfig.heroDescription}
-            </p>
+            </motion.p>
 
-            {/* CTA Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto mb-8">
-              <button
-                type="button"
-                onClick={() => scrollTo('#contact')}
-                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 text-white font-semibold text-sm shadow-xl shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2"
+            >
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm tracking-wide transition-all duration-200 shadow-sm active:scale-[0.98]"
               >
-                <span>Start Your Career Journey</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+                <span>{siteConfig.heroCTA}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
 
-              <button
-                type="button"
-                onClick={() => scrollTo('#services')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-white hover:bg-slate-800/80 text-sm font-medium transition-all duration-200"
+              <a
+                href="#services"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-sp-offWhite hover:bg-sp-lightGray/70 border border-sp-lightGray text-sp-ink font-semibold text-sm transition-all duration-200 active:scale-[0.98]"
               >
-                <span>Explore Services</span>
-              </button>
-            </div>
+                <span>{siteConfig.heroSecondaryCTA}</span>
+              </a>
+            </motion.div>
 
-            {/* Sub-CTA Trust Strip */}
-            <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                <span>Practical support</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                <span>Personalized guidance</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
-                <span>Student-friendly approach</span>
-              </div>
-            </div>
+            {/* Micro Trust Proof: Clear & Authentic */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="pt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-[11px] sm:text-xs font-mono text-sp-midGray border-t border-sp-lightGray/80"
+            >
+              <span className="flex items-center gap-1.5">
+                <Check className="w-3.5 h-3.5 text-sp-ink" />
+                Individualized Mentorship
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Check className="w-3.5 h-3.5 text-sp-ink" />
+                ATS-Engineered Resumes
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Check className="w-3.5 h-3.5 text-sp-ink" />
+                STAR Interview Simulations
+              </span>
+            </motion.div>
+
           </motion.div>
 
-          {/* Right Column: Career Command Center Interactive Dashboard */}
-          <div className="lg:col-span-5 w-full">
-            <CareerDashboard />
-          </div>
+          {/* Right Column: 3D Career Object Visualization */}
+          <motion.div
+            style={{ y: yScene }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 w-full relative"
+          >
+            <CareerScene />
+          </motion.div>
 
-        </div>
+        </motion.div>
+      </div>
+
+      {/* Subtle Scroll Down Indicator */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-sp-midGray pt-4">
+        <span>EST. CAREER ADVISORY</span>
+        <a 
+          href="#problem"
+          className="flex items-center gap-1 hover:text-sp-ink transition-colors group"
+        >
+          <span>Scroll To Discover</span>
+          <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+        </a>
+        <span>FIGMA COMBINATION 56</span>
       </div>
     </section>
   );

@@ -14,3 +14,5 @@ export function useReducedMotion() {
 
   return matches;
 }
+
+export default useReducedMotion;

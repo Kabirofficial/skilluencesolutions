@@ -9,72 +9,55 @@
   }
 
   body {
-    background-color: #25283D;
-    color: #FAF8F2;
+    background-color: #FFFFFF;
+    color: #2B2B2B;
     overflow-x: hidden;
+    font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Custom Scrollbar in Modern Editorial Palette */
+/* Minimalist Monochrome Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1C1E2E;
+  background: #F7F7F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #68705A;
-  border-radius: 4px;
+  background: #D4D4D4;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D96C4A;
+  background: #B3B3B3;
 }
 
-/* Text Selection */
+/* Editorial Text Selection (Salt & Pepper) */
 ::selection {
-  background-color: #D96C4A;
-  color: #FAF8F2;
+  background-color: #2B2B2B;
+  color: #FFFFFF;
 }
 
-/* Glassmorphic Utilities for Modern Editorial Theme */
-.glass-panel {
-  background: rgba(37, 40, 61, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(168, 176, 154, 0.2);
+/* Thin Editorial Rules */
+.editorial-rule {
+  border-top: 1px solid #D4D4D4;
 }
 
-.glass-card {
-  background: rgba(37, 40, 61, 0.88);
-  border: 1px solid rgba(104, 112, 90, 0.5);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.editorial-rule-dark {
+  border-top: 1px solid #3A3A3A;
 }
 
-.glass-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(217, 108, 74, 0.6);
-  box-shadow: 0 20px 35px -10px rgba(217, 108, 74, 0.2);
+/* Subtle Perspective Containers for 2.5D / 3D Objects */
+.perspective-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
-/* Text Gradients based on Modern Editorial Palette */
-.text-gradient-terracotta {
-  background: linear-gradient(135deg, #FAF8F2 0%, #D96C4A 60%, #A95245 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-bone {
-  background: linear-gradient(135deg, #FAF8F2 0%, #F3EFE6 50%, #A8B09A 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Ambient Radial Glow */
-.terracotta-glow {
-  background: radial-gradient(circle at 50% 50%, rgba(217, 108, 74, 0.18) 0%, rgba(104, 112, 90, 0.1) 50%, transparent 75%);
+.preserve-3d {
+  transform-style: preserve-3d;
 }
 
 /* Reduced Motion Support */
