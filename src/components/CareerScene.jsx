@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { motion, useSpring, useTransform } from 'framer-motion';
-import { FileText, User, Send, CheckCircle2, ArrowUpRight, Compass } from 'lucide-react';
+import { FileText, User, Send, CheckCircle2, Award, ArrowUpRight, Compass } from 'lucide-react';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 export default function CareerScene() {
@@ -12,8 +12,8 @@ export default function CareerScene() {
   const mouseX = useSpring(0, { stiffness: 120, damping: 18 });
   const mouseY = useSpring(0, { stiffness: 120, damping: 18 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], [14, -14]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-18, 18]);
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [12, -12]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-16, 16]);
 
   const handlePointerMove = (e) => {
     if (prefersReducedMotion || !containerRef.current) return;
@@ -30,55 +30,69 @@ export default function CareerScene() {
     setHoveredIndex(null);
   };
 
+  // The 5-stage progression: PROFILE -> RESUME -> APPLICATION -> INTERVIEW -> CAREER
   const cards = [
     {
       id: 'profile',
       number: '01',
       title: 'Profile Architecture',
-      tag: 'IDENTITY',
+      tag: 'PROFILE',
       icon: <User className="w-3.5 h-3.5 text-sp-charcoal" />,
       detail: 'Personal narrative • Core positioning • Capstone mapping',
-      zOffset: 45,
-      yOffset: -75,
-      xOffset: -25,
+      zOffset: 30,
+      yOffset: -95,
+      xOffset: -20,
       tilt: -2,
     },
     {
       id: 'resume',
       number: '02',
       title: 'Executive ATS Resume',
-      tag: 'DOCUMENT',
+      tag: 'RESUME',
       icon: <FileText className="w-3.5 h-3.5 text-sp-charcoal" />,
       detail: 'Quantified impact bullets • 100% ATS readability • Clean hierarchy',
-      zOffset: 95,
-      yOffset: -10,
-      xOffset: 15,
+      zOffset: 75,
+      yOffset: -40,
+      xOffset: 12,
       tilt: 1.5,
       isPrimary: true,
     },
     {
-      id: 'applications',
+      id: 'application',
       number: '03',
       title: 'Targeted Applications',
-      tag: 'OUTREACH',
+      tag: 'APPLICATION',
       icon: <Send className="w-3.5 h-3.5 text-sp-charcoal" />,
-      detail: 'High-fit company tiering • Precision cover notes • Pipeline tracking',
-      zOffset: 140,
-      yOffset: 60,
-      xOffset: -15,
+      detail: 'High-fit company tiering • Precision cover notes • Pipeline discipline',
+      zOffset: 120,
+      yOffset: 20,
+      xOffset: -12,
       tilt: -1.5,
     },
     {
       id: 'interview',
       number: '04',
       title: 'Interview Composure',
-      tag: 'READINESS',
+      tag: 'INTERVIEW',
       icon: <CheckCircle2 className="w-3.5 h-3.5 text-sp-charcoal" />,
-      detail: 'STAR framework • 1-on-1 simulations • Offer negotiation',
-      zOffset: 185,
-      yOffset: 130,
-      xOffset: 20,
-      tilt: 2,
+      detail: 'STAR framework drills • 1-on-1 simulations • Composure under pressure',
+      zOffset: 160,
+      yOffset: 80,
+      xOffset: 16,
+      tilt: 1.5,
+    },
+    {
+      id: 'career',
+      number: '05',
+      title: 'Career Readiness',
+      tag: 'CAREER',
+      icon: <Award className="w-3.5 h-3.5 text-sp-ink" />,
+      detail: 'Verified readiness • Long-term trajectory • Competitive positioning',
+      zOffset: 200,
+      yOffset: 140,
+      xOffset: -10,
+      tilt: -1,
+      isOutcome: true,
     }
   ];
 
@@ -87,25 +101,25 @@ export default function CareerScene() {
       ref={containerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full h-[440px] sm:h-[500px] lg:h-[560px] flex items-center justify-center perspective-container select-none touch-none"
+      className="relative w-full h-[460px] sm:h-[520px] lg:h-[580px] flex items-center justify-center perspective-container select-none touch-none"
       aria-label="Interactive 3D Career Progression Object"
     >
-      {/* Monochromatic Career Path (SVG Ribbon Curve) */}
+      {/* Monochromatic Career Path (Delicate SVG Ribbon Curve) */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-0"
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-30 z-0"
         viewBox="0 0 600 600"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M 180,90 C 220,170 380,210 340,320 C 300,430 430,480 390,540"
+          d="M 180,70 C 220,150 380,190 340,300 C 300,410 430,460 380,550"
           stroke="#B3B3B3"
           strokeWidth="1.5"
           strokeDasharray="4 4"
         />
-        <circle cx="180" cy="90" r="3.5" fill="#2B2B2B" />
-        <circle cx="340" cy="320" r="3.5" fill="#2B2B2B" />
-        <circle cx="390" cy="540" r="3.5" fill="#2B2B2B" />
+        <circle cx="180" cy="70" r="3.5" fill="#2B2B2B" />
+        <circle cx="340" cy="300" r="3.5" fill="#2B2B2B" />
+        <circle cx="380" cy="550" r="3.5" fill="#2B2B2B" />
       </svg>
 
       {/* 3D Transform Pivot Layer */}
@@ -125,7 +139,7 @@ export default function CareerScene() {
               onMouseLeave={() => setHoveredIndex(null)}
               animate={{
                 z: card.zOffset + (isHovered ? 25 : 0),
-                y: card.yOffset + (isHovered ? -8 : 0),
+                y: card.yOffset + (isHovered ? -6 : 0),
                 x: card.xOffset,
                 rotateZ: card.tilt,
                 scale: isHovered ? 1.03 : 1,
@@ -134,43 +148,45 @@ export default function CareerScene() {
               style={{
                 transformStyle: "preserve-3d",
               }}
-              className={`absolute w-[290px] sm:w-[350px] p-5 sm:p-6 rounded-card border transition-colors duration-200 cursor-pointer ${
-                card.isPrimary
-                  ? 'bg-sp-white border-sp-ink shadow-2xl z-30 ring-1 ring-sp-ink/10'
-                  : 'bg-sp-offWhite border-sp-lightGray shadow-xl'
+              className={`absolute w-[280px] sm:w-[340px] p-4 sm:p-5 rounded-card border transition-colors duration-200 cursor-pointer ${
+                card.isOutcome
+                  ? 'bg-sp-white border-sp-ink shadow-2xl z-40 ring-1 ring-sp-ink/10'
+                  : card.isPrimary
+                    ? 'bg-sp-white border-sp-ink shadow-xl z-30 ring-1 ring-sp-ink/10'
+                    : 'bg-sp-offWhite border-sp-lightGray shadow-lg'
               } ${isHovered ? 'border-sp-ink shadow-2xl' : ''}`}
             >
               {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-sp-lightGray pb-3 mb-3">
+              <div className="flex items-center justify-between border-b border-sp-lightGray pb-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded border border-sp-lightGray flex items-center justify-center bg-sp-white">
+                  <div className="w-5 h-5 rounded border border-sp-lightGray flex items-center justify-center bg-sp-white">
                     {card.icon}
                   </div>
-                  <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-sp-charcoal">
+                  <span className="text-[9px] sm:text-[10px] font-mono tracking-widest uppercase font-bold text-sp-charcoal">
                     {card.number} • {card.tag}
                   </span>
                 </div>
-                <div className="flex items-center gap-1 text-[11px] font-mono text-sp-midGray">
+                <div className="flex items-center gap-1 text-[10px] font-mono text-sp-midGray">
                   <span>STAGE 0{idx + 1}</span>
                   <ArrowUpRight className="w-3 h-3 text-sp-charcoal" />
                 </div>
               </div>
 
               {/* Card Title & Content */}
-              <h3 className="text-sm sm:text-base font-extrabold text-sp-ink tracking-tight mb-1.5">
+              <h3 className="text-xs sm:text-sm font-extrabold text-sp-ink tracking-tight mb-1">
                 {card.title}
               </h3>
-              <p className="text-xs text-sp-midGray leading-relaxed mb-3">
+              <p className="text-[11px] sm:text-xs text-sp-midGray leading-snug mb-2.5">
                 {card.detail}
               </p>
 
-              {/* Structured Checklist Preview */}
-              <div className="pt-2 border-t border-sp-lightGray/60 flex items-center justify-between text-[10px] font-mono text-sp-charcoal">
+              {/* Status Indicator */}
+              <div className="pt-1.5 border-t border-sp-lightGray/60 flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-sp-charcoal">
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-                  Structured Progression
+                  <span className={`w-1.5 h-1.5 rounded-full ${card.isOutcome ? 'bg-sp-ink' : 'bg-sp-midGray'}`} />
+                  {card.isOutcome ? 'Verified Outcome' : 'Active Milestone'}
                 </span>
-                <span className="text-sp-midGray uppercase">Active Path</span>
+                <span className="text-sp-midGray uppercase">Step {idx + 1} of 5</span>
               </div>
             </motion.div>
           );

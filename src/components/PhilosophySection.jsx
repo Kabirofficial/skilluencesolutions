@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, ShieldCheck, HeartHandshake, FileCheck, Compass } from 'lucide-react';
+import { ShieldCheck, HeartHandshake, FileCheck, Compass } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
 export default function PhilosophySection() {

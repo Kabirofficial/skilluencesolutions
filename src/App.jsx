@@ -1,13 +1,27 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Preloader from './components/Preloader';
 import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <Router>
       <ScrollToTop />
+      
+      {/* Editorial Platform Preloader */}
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader key="platform-preloader" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
       <div className="min-h-screen bg-sp-white text-sp-ink flex flex-col font-sans selection:bg-sp-ink selection:text-sp-white antialiased overflow-x-hidden">
         {/* Editorial Monochrome Navigation */}
         <Navbar />
@@ -16,8 +30,8 @@ export default function App() {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* Direct fallback routes so existing bookmarks or links safely resolve to home narrative */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Custom 404 Catch-All Route */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
 

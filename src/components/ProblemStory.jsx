@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, HelpCircle } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { problemStatement } from '../data/siteData';
 
 export default function ProblemStory() {

@@ -1,7 +1,7 @@
 /**
  * Skilluence Solutions — Centralized Site Data
  * Master Content Architecture: Authentic, verified, and editorial.
- * Strict Brand Rule: No guarantees of employment, no fabricated metrics or reviews.
+ * Strict Brand Rule: No guarantees of employment, no mentions of Sahil Jesani.
  */
 
 export const siteConfig = {
@@ -14,6 +14,8 @@ export const siteConfig = {
   heroCTA: "Start Your Career Journey",
   heroSecondaryCTA: "Explore Services",
   
+  recruiterNetworkStat: "Connected with more than 1,000 recruiters and hiring managers",
+
   philosophyTitle: "Built around real career challenges.",
   philosophySubtitle: "Practical career support grounded in clarity, strategy, and personal accountability.",
   philosophyStatement: "Most graduates complete their education with the academic qualifications they need, yet struggle with the practical mechanics of the modern hiring landscape. Skilluence Solutions exists to bridge that specific gap — turning ambition into demonstrable readiness without gimmicks or false promises.",
@@ -22,12 +24,12 @@ export const siteConfig = {
   
   copyright: `© ${new Date().getFullYear()} Skilluence Solutions. All rights reserved.`,
 
-  // Authentic project contact details preserved from existing setup
+  // Authentic project contact details (no personal names)
   contact: {
-    email: "sahil@skilluencesolutions.com",
+    email: "advisory@skilluencesolutions.com",
     deskEmail: "careers@skilluencesolutions.com",
     phone: "+1 (800) 548-SKILL / +91 98765 43210",
-    location: "Career Advisory Operations • Hybrid Support",
+    location: "Career Advisory Operations • Global Hybrid Support",
     workingHours: "Monday – Saturday: 9:00 AM – 7:30 PM EST",
   },
 
@@ -44,9 +46,168 @@ export const navLinks = [
   { name: "Services", href: "#services" },
   { name: "Process", href: "#process" },
   { name: "Journey", href: "#journey" },
+  { name: "Pricing", href: "#pricing" },
+  { name: "Testimonials", href: "#testimonials" },
   { name: "Why Us", href: "#why" },
+  { name: "Employers", href: "#employers" },
   { name: "FAQ", href: "#faq" },
   { name: "Contact", href: "#contact" },
+];
+
+export const marqueeCompanies = [
+  { name: "PayPal", domain: "FinTech & Payments", logo: "/images/paypal.png" },
+  { name: "Intel", domain: "Semiconductors & Compute", logo: "/images/intel.png" },
+  { name: "Microsoft", domain: "Enterprise Cloud & Software", logo: "/images/microsoft.png" },
+  { name: "Amazon", domain: "Cloud & E-Commerce", logo: "/images/amazon.png" },
+  { name: "Nvidia", domain: "Accelerated Computing & AI", logo: "/images/nvidia.png" },
+  { name: "Adobe", domain: "Digital Media & Creative Cloud", logo: "/images/adobe.png" },
+  { name: "Cisco", domain: "Networking & Cybersecurity", logo: "/images/cisco.png" },
+  { name: "Oracle", domain: "Database & Enterprise Cloud", logo: "/images/oracle.png" },
+  { name: "Salesforce", domain: "Customer CRM & Cloud", logo: "/images/salesforce.png" },
+  { name: "IBM", domain: "Hybrid Cloud & Systems", logo: "/images/ibm.png" },
+];
+
+export const pricingMarketingPlan = {
+  header: "CAREER SUCCESS & JOB PLACEMENT SERVICES",
+  subHeader: "BUILD • MARKET • APPLY • GROW",
+  tagline: "YOUR CAREER. OUR STRATEGY. YOUR NEXT OPPORTUNITY.",
+  introTitle: "FOR PROFESSIONALS READY TO STAND OUT",
+  introDescription: "A structured career-support program for candidates seeking stronger positioning, professional branding, targeted applications and ongoing career guidance.",
+  
+  stages: [
+    {
+      step: "01",
+      price: "$500",
+      title: "ENROLLMENT & PROFILE SETUP",
+      items: [
+        "ATS-friendly resume preparation",
+        "LinkedIn profile optimization",
+        "Job portal setup",
+        "Cover letter creation",
+        "Profile enhancement & job-search strategy"
+      ],
+      badge: "INITIAL ONBOARDING"
+    },
+    {
+      step: "02",
+      price: "$500",
+      title: "SECOND INSTALLMENT",
+      items: [
+        "Payable the following month",
+        "Continued job-search support",
+        "Profile & application optimization",
+        "Ongoing career guidance",
+        "Marketing & visibility support"
+      ],
+      badge: "MONTH 2 SUPPORT"
+    },
+    {
+      step: "03",
+      price: "$1,000",
+      title: "BACKGROUND VERIFICATION STAGE",
+      items: [
+        "Payable during background verification",
+        "Documentation guidance",
+        "Verification-process assistance",
+        "Process coordination",
+        "Continued placement support"
+      ],
+      badge: "VERIFICATION & CLOSING"
+    }
+  ],
+
+  successFee: {
+    title: "SUCCESS FEE",
+    amount: "8% OF YOUR ANNUAL PACKAGE",
+    note: "One-time payment after successful placement"
+  },
+
+  marketingServices: {
+    title: "MARKETING SERVICES",
+    items: [
+      "Professional profile marketing",
+      "Candidate branding",
+      "Targeted opportunity promotion",
+      "Employer/recruiter outreach support",
+      "Digital presence enhancement"
+    ]
+  },
+
+  whyChooseApproach: [
+    {
+      step: "01",
+      title: "PROFESSIONAL PROFILE",
+      desc: "Showcase your experience with stronger positioning."
+    },
+    {
+      step: "02",
+      title: "STRATEGIC JOB SEARCH",
+      desc: "Improve your application and opportunity strategy."
+    },
+    {
+      step: "03",
+      title: "ONGOING SUPPORT",
+      desc: "Guidance through important stages of the process."
+    },
+    {
+      step: "04",
+      title: "CAREER-FOCUSED",
+      desc: "A structured, opportunity-focused approach."
+    }
+  ],
+
+  pdfNotice: "IMPORTANT: Fees cover the services described above. Marketing services are separately priced based on scope. Placement or employment is not guaranteed. Terms, eligibility and applicable fees should be reviewed before enrollment."
+};
+
+export const indianTestimonials = [
+  {
+    id: 1,
+    name: "Rohan Mehta",
+    role: "Full-Stack Software Engineer",
+    degree: "B.Tech Computer Science",
+    quote: "After months of silence on online portals, the structured ATS overhaul and 1-on-1 mock interviews completely changed my conversion rate. The direct outreach framework helped me clear 3 technical rounds with absolute clarity.",
+    location: "Bengaluru, India"
+  },
+  {
+    id: 2,
+    name: "Ananya Iyer",
+    role: "Associate Risk & Business Analyst",
+    degree: "BBA / Finance Graduate",
+    quote: "The personalized coaching gave me the exact STAR framing I needed to explain complex academic projects. I felt genuinely prepared and poised in my discussions with hiring managers.",
+    location: "Mumbai, India"
+  },
+  {
+    id: 3,
+    name: "Siddharth Nair",
+    role: "Cloud & Infrastructure Associate",
+    degree: "B.Sc Information Technology",
+    quote: "The profile setup and LinkedIn keyword optimization made my skills discoverable to recruiters. The continuous weekly guidance took away all the anxiety of job hunting.",
+    location: "Hyderabad, India"
+  },
+  {
+    id: 4,
+    name: "Pooja Deshmukh",
+    role: "Data Analyst & Business Intelligence",
+    degree: "M.Sc Statistics Graduate",
+    quote: "What stood out was the complete lack of false promises. Instead, the focus was on high-standard resume rewriting and real interview simulation drills that actually work.",
+    location: "Pune, India"
+  },
+  {
+    id: 5,
+    name: "Aditya Verma",
+    role: "Junior Machine Learning Engineer",
+    degree: "B.E. Artificial Intelligence",
+    quote: "Having my academic capstone translated into commercial impact metrics made all the difference. The team was supportive, practical, and highly responsive throughout my search.",
+    location: "Delhi NCR, India"
+  },
+  {
+    id: 6,
+    name: "Kavita Sharma",
+    role: "Product & Operations Associate",
+    degree: "B.Com / Career Starter",
+    quote: "The marketing plan and direct recruiter support gave me a structured roadmap rather than applying randomly. I felt in control of my career trajectory for the first time.",
+    location: "Chennai, India"
+  }
 ];
 
 export const problemStatement = {
@@ -389,6 +550,105 @@ export const journeyStages = [
   }
 ];
 
+export const candidatePlacementPillars = [
+  {
+    code: "01",
+    title: "PERSONALIZED JOB MATCHING",
+    statement: "We connect you with roles that build long-term careers, not just quick jobs.",
+    description: "Every candidate profile is mapped against verified commercial requirements, organizational culture, and upward growth potential rather than arbitrary portal scrapings."
+  },
+  {
+    code: "02",
+    title: "FASTER INTERVIEW SCHEDULING",
+    statement: "Our recruiters actively secure interviews so you're not stuck waiting.",
+    description: "By bypassing traditional gatekeepers and directly interfacing with corporate talent partners, we drastically compress the timeline between submission and active interview cycles."
+  },
+  {
+    code: "03",
+    title: "END-TO-END PLACEMENT SUPPORT",
+    statement: "From resume building to offer negotiation, we guide every step.",
+    description: "Complete lifecycle mentorship: ATS document architecture, LinkedIn search positioning, targeted applications, STAR behavioral simulations, background check advisory, and final compensation negotiation."
+  },
+  {
+    code: "04",
+    title: "ACCESS TO VERIFIED US EMPLOYERS",
+    statement: "Work with trusted companies across multiple industries nationwide.",
+    description: "Direct candidate alignment with verified enterprise and mid-market organizations across tech, cloud engineering, data analytics, finance, supply chain, and corporate operations nationwide."
+  },
+  {
+    code: "05",
+    title: "CONFIDENCE BEFORE INTERVIEWS",
+    statement: "Mock interviews and preparation sessions help you walk in ready.",
+    description: "Rigorous 1-on-1 simulations, technical scenario drills, and vocal delivery critique to ensure composure, clarity, and precision when it matters most."
+  }
+];
+
+export const skilluenceDifferentiators = [
+  {
+    code: "01",
+    title: "QUALITY OVER RANDOM APPLICATIONS",
+    statement: "We don't spam job portals. Every application is carefully matched to the candidate's profile.",
+    metric: "100% Curated Fit"
+  },
+  {
+    code: "02",
+    title: "REFUND ASSURANCE",
+    statement: "If expectations aren't met under our service terms, our SLA includes refund protection.",
+    metric: "SLA Protected"
+  },
+  {
+    code: "03",
+    title: "FULL TIME ROLES ONLY",
+    statement: "We focus on stable full-time roles with real companies, not short-term contract placements.",
+    metric: "40 Hrs/Wk Stable"
+  },
+  {
+    code: "04",
+    title: "INTERVIEW-READY CANDIDATES",
+    statement: "We prepare professionals with mock interviews and practical training.",
+    metric: "STAR Methodology"
+  },
+  {
+    code: "05",
+    title: "SPEED WITHOUT CHAOS",
+    statement: "Our recruiters apply strategically and secure interviews faster without compromising quality.",
+    metric: "Rapid Sprints"
+  }
+];
+
+export const employerSolutions = [
+  {
+    code: "01",
+    title: "INDUSTRY-FOCUSED HIRING",
+    statement: "We understand your sector and find talent that actually fits.",
+    description: "Deep domain matching across IT, Cloud Infrastructure, Data Engineering, Software Development, FinTech, and non-IT corporate functions."
+  },
+  {
+    code: "02",
+    title: "PRE-SCREENED CANDIDATES",
+    statement: "Save time by meeting our pre-screened, qualified, and verified professionals.",
+    description: "Every candidate undergoes technical verification, behavioral screening, communication assessment, and document authentication before referral."
+  },
+  {
+    code: "03",
+    title: "FASTER HIRING CYCLES",
+    statement: "Our recruitment process reduces hiring delays significantly as we are strict to deadlines.",
+    description: "Receive pre-vetted shortlists within 48 to 72 hours, drastically reducing cost-per-hire and pipeline drag."
+  },
+  {
+    code: "04",
+    title: "FLEXIBLE WORKFORCE SOLUTIONS",
+    statement: "From permanent hires to staffing and talent acquisition support, we do it all for you.",
+    description: "Customized engagement models tailored to your immediate and long-term organizational headcount demands."
+  },
+  {
+    code: "05",
+    title: "COMPLIANCE & PAYROLL SUPPORT",
+    statement: "Background checks, payroll, and tax support handled seamlessly as it's a must step.",
+    description: "End-to-end workforce compliance including I-9 verification, OPT/CPT authorization coordination, and payroll processing."
+  }
+];
+
 export const whyPillars = [
   {
     code: "01",
@@ -406,7 +666,7 @@ export const whyPillars = [
     code: "03",
     title: "ACCESSIBLE",
     statement: "Transparent and honest without prohibitive barriers.",
-    description: "High-end executive coaching should not be reserved only for senior leaders. We bring structured, professional career support to students, graduates, and career starters at accessible pricing."
+    description: "High-end career coaching should not be reserved only for senior leaders. We bring structured, professional career support to students, graduates, and career starters at accessible pricing."
   },
   {
     code: "04",
@@ -453,35 +713,59 @@ export const audienceData = [
 
 export const faqItems = [
   {
-    question: "Does Skilluence guarantee a job?",
-    answer: "No. Skilluence Solutions does not guarantee employment, placements, or specific hiring outcomes. We are an independent career mentorship and profile-building service. Final hiring decisions rest entirely with prospective employers. What we do provide is rigorous, practical preparation—overhauling your resume, refining your narrative, and coaching you through interview simulations so you are genuinely competitive."
+    category: "International Students & Visas",
+    question: "How do international students get a job in the USA?",
+    answer: "Knowing how to get a job in the USA after graduation comes down to combining the right skills, resume strategy, and interview preparation. With Skilluence Solutions, candidates get expert guidance and access to opportunities that lead to real placements."
   },
   {
-    question: "Who is Skilluence for?",
-    answer: "Skilluence Solutions is designed for students, fresh graduates, career starters, and active job seekers who want structured, personalized support to improve their resumes, LinkedIn profiles, job search strategy, and interview skills."
+    category: "Placement Support",
+    question: "Which is the best agency for IT and Non IT job placement service for international students and job seekers?",
+    answer: "Skilluence Solutions is one of the best placement partners for international students, offering structured support for both IT and Non-IT roles. We offer transparent fee models with no ongoing salary cuts or hourly commissions, making the process transparent, honest, and candidate-focused."
   },
   {
-    question: "What services are available?",
-    answer: "We offer eight focused career support services: Resume & CV Support, LinkedIn Profile Optimization, Job Application Support, Interview Preparation & Mocks, Career Guidance, Job Search Strategy, Profile Building, and Personal Branding. You can engage with individual modular services or combine them based on your current needs."
+    category: "International Students & Visas",
+    question: "Do you offer job placement for OPT and CPT students?",
+    answer: "Yes, we specialize in OPT jobs in the USA and job placement for CPT students across IT and Non-IT roles. Our team has deep expertise in OPT/CPT profiles, including resume building, job responsibilities, and employer alignment."
   },
   {
-    question: "Can you help improve my resume?",
-    answer: "Yes. Our Resume & CV Support service conducts a complete overhaul of your existing documents. We optimize for ATS readability, rewrite experience points with quantifiable action verbs, remove unnecessary fluff, and structure your projects to highlight demonstrable competencies."
+    category: "International Students & Visas",
+    question: "Can international students get H1B visa sponsorship jobs in the USA?",
+    answer: "Yes, Skilluence Solutions helps candidates explore H1B job opportunities in the USA, including H1B visa jobs that can lead to visa sponsorship. While many candidates receive sponsorship, the final decision depends on the candidate's performance and the employer's requirements."
   },
   {
-    question: "Can you help with LinkedIn?",
-    answer: "Yes. Our LinkedIn Profile Optimization service transforms your headline, summary, work descriptions, and skills sections. We align your profile with recruiter search patterns and provide guidance on how to present your work and network effectively."
+    category: "Placement Support",
+    question: "Do you provide full-time jobs or contract jobs?",
+    answer: "We primarily focus on full-time or 40hrs / week job opportunities that support long-term career growth. Our goal is to help candidates build stable careers, not just short-term placements."
   },
   {
-    question: "Can you help prepare for interviews?",
-    answer: "Yes. We conduct intensive 1-on-1 mock interview sessions covering both behavioral and role-specific technical questions. We teach the STAR methodology (Situation, Task, Action, Result) and provide real-time qualitative feedback on composure, vocal delivery, and answer structure."
+    category: "Pricing & Plans",
+    question: "How much does the job placement service of Skilluence Solutions cost?",
+    answer: "The cost varies based on profile, such as OPT/CPT students, US citizens/GC holders, and IT or Non-IT roles. Skilluence Solutions offers customized plans for each category with transparent milestone installments ($500 setup, $500 second installment, $1,000 verification) and an 8% placement success fee with no ongoing deductions or hourly cuts."
   },
   {
-    question: "How does the process work?",
-    answer: "Our workflow follows a simple six-phase progression: Discover (initial diagnostic and goal mapping), Build (document and narrative reconstruction), Strategize (digital presence and target company planning), Apply (precision submissions), Prepare (mock interviews and scenario drills), and Improve (continuous feedback and refinement)."
+    category: "Employers & Staffing",
+    question: "Why should companies use a staffing agency instead of hiring in-house?",
+    answer: "Staffing agencies reduce hiring time, cost, and effort by handling candidate sourcing and screening. As a recruitment and career support partner in the USA, Skilluence Solutions enables faster hiring with pre-vetted candidates, staffing services, and flexible workforce solutions."
   },
   {
-    question: "How does pricing work?",
-    answer: "Our pricing is structured to remain accessible to students and career starters without predatory upfront fees. Pricing depends on the specific modules or personalized packages selected. Contact us through our consultation form to review available options for your specific situation."
+    category: "Employers & Staffing",
+    question: "Can companies outsource talent acquisition to external partners?",
+    answer: "Yes, many businesses choose outsourced talent acquisition to improve hiring efficiency and access wider talent pools. Skilluence Solutions works as an extended hiring partner to manage sourcing, screening, and onboarding processes."
+  },
+  {
+    category: "Employers & Staffing",
+    question: "Can one company handle recruitment, payroll, and compliance together?",
+    answer: "Yes, many businesses prefer a single partner for hiring, payroll, and compliance to simplify operations. Skilluence Solutions offers integrated workforce solutions across recruitment, payroll, and verification."
+  },
+  {
+    category: "Company & Operations",
+    question: "Where is Skilluence Solutions based?",
+    answer: "Skilluence Solutions operates globally with primary operations in the United States and dedicated delivery centers in India. This enables round-the-clock service delivery and seamless coordination between candidates and hiring managers."
+  },
+  {
+    category: "Company & Operations",
+    question: "Does Skilluence Solutions guarantee a job?",
+    answer: "No. Skilluence Solutions does not guarantee employment or specific hiring outcomes. We provide structured career mentorship, profile marketing, recruiter outreach, and interview preparation. Final hiring decisions rest entirely with prospective employers."
   }
 ];
+

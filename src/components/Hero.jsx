@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink flex flex-col justify-between pt-24 pb-12 sm:pb-16 lg:pt-28 lg:pb-20 overflow-hidden border-b border-sp-lightGray"
+      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink flex flex-col justify-between pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 overflow-hidden border-b border-sp-lightGray"
     >
       {/* Background Architectural Grid Lines */}
       <div 
@@ -147,7 +147,6 @@ export default function Hero() {
           <span>Scroll To Discover</span>
           <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
         </a>
-        <span>FIGMA COMBINATION 56</span>
       </div>
     </section>
   );

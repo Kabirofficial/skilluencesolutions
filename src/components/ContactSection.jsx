@@ -92,7 +92,7 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Form with Validation & Success State */}
+          {/* Left Column: Form with Accessible Labels & State */}
           <div className="lg:col-span-7">
             <div className="p-8 sm:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray shadow-sm">
               
@@ -111,7 +111,7 @@ export default function ContactSection() {
                     <button
                       type="button"
                       onClick={handleReset}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-btn border border-sp-lightGray bg-sp-white hover:bg-sp-offWhite text-xs font-mono font-bold text-sp-ink transition-colors"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-btn border border-sp-lightGray bg-sp-white hover:bg-sp-offWhite text-xs font-mono font-bold text-sp-ink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sp-ink"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
                       <span>Submit Another Enquiry</span>
@@ -123,39 +123,55 @@ export default function ContactSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Full Name */}
                     <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      <label 
+                        htmlFor="contact-fullname"
+                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                      >
                         Full Name *
                       </label>
                       <input
+                        id="contact-fullname"
                         type="text"
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="e.g. Alex Mercer"
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                        aria-invalid={errors.fullName ? "true" : "false"}
+                        aria-describedby={errors.fullName ? "contact-fullname-error" : undefined}
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
                           errors.fullName ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
                         }`}
                       />
                       {errors.fullName && (
-                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.fullName}</p>
+                        <p id="contact-fullname-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
+                          {errors.fullName}
+                        </p>
                       )}
                     </div>
 
                     {/* Email */}
                     <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      <label 
+                        htmlFor="contact-email"
+                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                      >
                         Email Address *
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="e.g. alex@example.com"
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                        aria-invalid={errors.email ? "true" : "false"}
+                        aria-describedby={errors.email ? "contact-email-error" : undefined}
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
                           errors.email ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
                         }`}
                       />
                       {errors.email && (
-                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.email}</p>
+                        <p id="contact-email-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
+                          {errors.email}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -163,71 +179,97 @@ export default function ContactSection() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     {/* Phone */}
                     <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      <label 
+                        htmlFor="contact-phone"
+                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                      >
                         Phone Number *
                       </label>
                       <input
+                        id="contact-phone"
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="e.g. +1 (555) 019-2834"
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                        aria-invalid={errors.phone ? "true" : "false"}
+                        aria-describedby={errors.phone ? "contact-phone-error" : undefined}
+                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
                           errors.phone ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
                         }`}
                       />
                       {errors.phone && (
-                        <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.phone}</p>
+                        <p id="contact-phone-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
+                          {errors.phone}
+                        </p>
                       )}
                     </div>
 
                     {/* Current Status */}
                     <div>
-                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                      <label 
+                        htmlFor="contact-status"
+                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                      >
                         Current Status *
                       </label>
                       <select
+                        id="contact-status"
                         value={formData.currentStatus}
                         onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
-                        className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink focus:outline-none focus:border-sp-ink transition-colors"
+                        className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors"
                       >
                         <option value="Student">Current Student</option>
+                        <option value="OPT / CPT Student">OPT / CPT International Student</option>
                         <option value="Fresh Graduate">Fresh Graduate</option>
                         <option value="Career Starter">Career Starter (1-3 yrs)</option>
-                        <option value="Job Seeker">Active Job Seeker</option>
+                        <option value="Job Seeker">Active Job Seeker (H1B / Full-Time)</option>
+                        <option value="Employer / Hiring Manager">Employer / Hiring Manager Seeking Talent</option>
                       </select>
                     </div>
                   </div>
 
                   {/* Target Role */}
                   <div>
-                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                    <label 
+                      htmlFor="contact-role"
+                      className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                    >
                       Target Role / Domain *
                     </label>
                     <input
+                      id="contact-role"
                       type="text"
                       value={formData.targetRole}
                       onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
                       placeholder="e.g. Associate Software Engineer, Business Analyst, etc."
-                      className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors ${
+                      aria-invalid={errors.targetRole ? "true" : "false"}
+                      aria-describedby={errors.targetRole ? "contact-role-error" : undefined}
+                      className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
                         errors.targetRole ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
                       }`}
                     />
                     {errors.targetRole && (
-                      <p className="text-[11px] font-mono text-sp-charcoal mt-1">{errors.targetRole}</p>
+                      <p id="contact-role-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
+                        {errors.targetRole}
+                      </p>
                     )}
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2">
+                    <label 
+                      htmlFor="contact-message"
+                      className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
+                    >
                       Brief Message or Specific Service Needed (Optional)
                     </label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Share any specific challenges with your resume, LinkedIn, or upcoming interview..."
-                      className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors resize-none"
                     />
                   </div>
 
@@ -236,7 +278,7 @@ export default function ContactSection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm transition-all shadow-sm active:scale-[0.98] disabled:opacity-50"
+                      className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm transition-all shadow-sm active:scale-[0.98] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sp-ink"
                     >
                       <span>{isSubmitting ? 'Transmitting Enquiry...' : 'Submit Profile for Advisory Review'}</span>
                       <ArrowRight className="w-4 h-4" />

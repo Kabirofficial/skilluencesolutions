@@ -1,11 +1,15 @@
 import Hero from '../components/Hero';
+import CandidateMarquee from '../components/CandidateMarquee';
 import ProblemStory from '../components/ProblemStory';
 import SolutionStory from '../components/SolutionStory';
 import ServicesStory from '../components/ServicesStory';
 import ProcessStory from '../components/ProcessStory';
 import CareerJourney from '../components/CareerJourney';
+import PricingSection from '../components/PricingSection';
+import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import WhySkilluence from '../components/WhySkilluence';
 import AudienceStory from '../components/AudienceStory';
+import EmployerSolutions from '../components/EmployerSolutions';
 import PhilosophySection from '../components/PhilosophySection';
 import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
@@ -17,37 +21,49 @@ export default function HomePage() {
       {/* 1. CINEMATIC EDITORIAL HERO (WHITE) */}
       <Hero />
 
-      {/* 2. SEQUENTIAL PROBLEM SECTION (OFF-WHITE) */}
+      {/* 2. CANDIDATES PLACED IN MARQUEE (PAYPAL, INTEL, NVIDIA, AMAZON, MICROSOFT, ETC.) */}
+      <CandidateMarquee />
+
+      {/* 3. SEQUENTIAL PROBLEM SECTION (OFF-WHITE) */}
       <ProblemStory />
 
-      {/* 3. METHODOLOGY & CONNECTING LINE (DARK: #2B2B2B) */}
+      {/* 4. METHODOLOGY & CONNECTING LINE (DARK: #2B2B2B) */}
       <SolutionStory />
 
-      {/* 4. MODULAR SERVICES EDITORIAL PANELS (WHITE) */}
+      {/* 5. MODULAR SERVICES EDITORIAL PANELS (WHITE) */}
       <ServicesStory />
 
-      {/* 5. STICKY PROCESS STORYTELLING (OFF-WHITE) */}
+      {/* 6. STICKY PROCESS STORYTELLING (OFF-WHITE) */}
       <ProcessStory />
 
-      {/* 6. SIGNATURE CAREER JOURNEY 2.5D/3D (DARK: #2B2B2B) */}
+      {/* 7. SIGNATURE CAREER JOURNEY 2.5D/3D (DARK: #2B2B2B) */}
       <CareerJourney />
 
-      {/* 7. WHY SKILLUENCE FOUR PILLARS (WHITE) */}
+      {/* 8. MARKETING PLAN & PLACEMENT PRICING (WHITE) */}
+      <PricingSection />
+
+      {/* 9. TESTIMONIALS CAROUSEL (INDIAN NAMES & 1,000+ RECRUITERS STAT) (OFF-WHITE) */}
+      <TestimonialsCarousel />
+
+      {/* 10. WHAT MAKES SKILLUENCE DIFFERENT & CANDIDATE ADVANTAGE (WHITE) */}
       <WhySkilluence />
 
-      {/* 8. WHO WE HELP PERSONA PANELS (OFF-WHITE) */}
+      {/* 11. WHO WE HELP PERSONA PANELS (OFF-WHITE) */}
       <AudienceStory />
 
-      {/* 9. SERVICE PHILOSOPHY & MANIFESTO (WHITE) */}
+      {/* 12. FOR EMPLOYERS & ENTERPRISE STAFFING (WHITE) */}
+      <EmployerSolutions />
+
+      {/* 13. SERVICE PHILOSOPHY & MANIFESTO (OFF-WHITE) */}
       <PhilosophySection />
 
-      {/* 10. CLARITY & FAQ ACCORDION (OFF-WHITE) */}
+      {/* 14. CLARITY & FAQ ACCORDION WITH CATEGORIES (WHITE) */}
       <FAQSection />
 
-      {/* 11. DIRECT INTAKE CONTACT (WHITE) */}
+      {/* 15. DIRECT INTAKE CONTACT (OFF-WHITE) */}
       <ContactSection />
 
-      {/* 12. FINAL EDITORIAL CTA (DARK: #2B2B2B) */}
+      {/* 16. FINAL EDITORIAL CTA (DARK: #2B2B2B) */}
       <FinalCTA />
     </div>
   );

@@ -14,6 +14,8 @@ export default function Footer() {
     { name: "Services", href: "#services" },
     { name: "Process", href: "#process" },
     { name: "Journey", href: "#journey" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Testimonials", href: "#testimonials" },
     { name: "Why Us", href: "#why" },
     { name: "Audience", href: "#audience" },
     { name: "About", href: "#about" },
@@ -29,10 +31,15 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-btn bg-sp-white text-sp-ink font-mono font-black text-xs flex items-center justify-center">
-                S
-              </div>
+            <div className="flex items-center gap-3">
+              <img
+                src="/images/logo.png"
+                alt="Skilluence Solutions Logo"
+                className="h-8 sm:h-9 w-auto object-contain brightness-125 contrast-125"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
               <span className="font-black text-lg tracking-tight text-sp-white">
                 {siteConfig.brandName}
               </span>

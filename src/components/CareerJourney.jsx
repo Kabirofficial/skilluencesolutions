@@ -9,14 +9,15 @@ import {
   MessageSquareCode, 
   Award,
   CheckCircle2,
-  ArrowRight
+  ChevronRight
 } from 'lucide-react';
 import { journeyStages } from '../data/siteData';
 
 export default function CareerJourney() {
   const [activeStageId, setActiveStageId] = useState('resume');
 
-  const activeStage = journeyStages.find(s => s.id === activeStageId) || journeyStages[2];
+  const activeIndex = journeyStages.findIndex(s => s.id === activeStageId);
+  const activeStage = journeyStages[activeIndex] || journeyStages[2];
 
   const getStageIcon = (id, isActive) => {
     const className = `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isActive ? 'text-sp-white' : 'text-sp-gray'}`;
@@ -32,6 +33,18 @@ export default function CareerJourney() {
     }
   };
 
+  const nextStage = () => {
+    if (activeIndex < journeyStages.length - 1) {
+      setActiveStageId(journeyStages[activeIndex + 1].id);
+    }
+  };
+
+  const prevStage = () => {
+    if (activeIndex > 0) {
+      setActiveStageId(journeyStages[activeIndex - 1].id);
+    }
+  };
+
   return (
     <section
       id="journey"
@@ -43,7 +56,7 @@ export default function CareerJourney() {
         <div className="max-w-3xl mb-14 sm:mb-18">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-charcoal border border-sp-midGray/40 text-[11px] font-mono uppercase tracking-widest text-sp-lightGray mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-sp-white" />
-            <span>SIGNATURE ARCHITECTURE / 06</span>
+            <span>SIGNATURE ROADMAP / 06</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-white leading-tight mb-4">
@@ -54,40 +67,67 @@ export default function CareerJourney() {
           </h2>
 
           <p className="text-base sm:text-lg text-sp-gray leading-relaxed font-normal max-w-xl">
-            A 2.5D connected path from graduation ambiguity to structured readiness. Select any node to inspect the underlying mechanical standards.
+            A dynamic 2.5D path from graduation ambiguity to structured commercial readiness. Navigate the sequential nodes below to inspect each stage standard.
           </p>
         </div>
 
-        {/* 2.5D Monochromatic Node Path */}
+        {/* 2.5D Monochromatic Node Path with Progressive Animated Path Drawing */}
         <div className="relative mb-12 sm:mb-16">
-          {/* Subtle connecting path line for desktop */}
-          <div className="hidden md:block absolute top-7 left-8 right-8 h-[1px] bg-sp-charcoal z-0" />
+          
+          {/* Animated Connecting Path for Desktop */}
+          <div className="hidden md:block absolute top-7 left-10 right-10 h-0.5 z-0">
+            {/* Background dashed track */}
+            <div className="w-full h-full border-t border-dashed border-sp-midGray/50" />
+            
+            {/* Dynamic Animated Drawn Path */}
+            <motion.div
+              className="absolute top-0 left-0 h-0.5 bg-sp-white shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+              initial={{ width: 0 }}
+              animate={{ width: `${(activeIndex / (journeyStages.length - 1)) * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            />
+          </div>
 
-          {/* Node Grid */}
+          {/* Node Stepper Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3 sm:gap-4 relative z-10">
             {journeyStages.map((stage, idx) => {
               const isActive = stage.id === activeStageId;
+              const isPassed = idx < activeIndex;
+
               return (
                 <button
                   key={stage.id}
                   type="button"
                   onClick={() => setActiveStageId(stage.id)}
                   className="flex flex-col items-center text-center group focus:outline-none p-2 rounded-card transition-all"
+                  aria-pressed={isActive}
                 >
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.06, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    animate={{
+                      scale: isActive ? 1.12 : 1,
+                      z: isActive ? 16 : 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                    style={{ transformStyle: "preserve-3d" }}
                     className={`w-12 h-12 sm:w-14 sm:h-14 rounded-btn flex items-center justify-center transition-all duration-300 relative ${
                       isActive
-                        ? 'bg-sp-white text-sp-ink shadow-2xl ring-2 ring-sp-white'
-                        : 'bg-sp-charcoal border border-sp-midGray/40 hover:border-sp-lightGray'
+                        ? 'bg-sp-white/25 border-2 border-sp-white text-sp-white shadow-[0_0_20px_rgba(255,255,255,0.3)] ring-2 ring-sp-white/40 backdrop-blur-md'
+                        : isPassed
+                          ? 'bg-sp-charcoal border border-sp-lightGray text-sp-white'
+                          : 'bg-sp-charcoal/80 border border-sp-midGray/40 text-sp-gray hover:border-sp-lightGray'
                     }`}
                   >
                     {getStageIcon(stage.id, isActive)}
                     
-                    {/* Tiny Step Number */}
+                    {/* Stage Counter Badge */}
                     <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-[9px] font-mono font-bold flex items-center justify-center ${
-                      isActive ? 'bg-sp-ink text-sp-white' : 'bg-sp-charcoal text-sp-gray border border-sp-midGray/50'
+                      isActive 
+                        ? 'bg-sp-white text-sp-ink font-black shadow-sm' 
+                        : isPassed
+                          ? 'bg-sp-lightGray text-sp-ink font-bold'
+                          : 'bg-sp-charcoal text-sp-gray border border-sp-midGray/50'
                     }`}>
                       0{idx + 1}
                     </span>
@@ -96,12 +136,12 @@ export default function CareerJourney() {
                   <div className="mt-3">
                     <span
                       className={`text-[11px] font-mono font-bold tracking-wider block uppercase transition-colors ${
-                        isActive ? 'text-sp-white' : 'text-sp-gray group-hover:text-sp-lightGray'
+                        isActive ? 'text-sp-white font-extrabold drop-shadow-sm' : isPassed ? 'text-sp-lightGray' : 'text-sp-gray group-hover:text-sp-lightGray'
                       }`}
                     >
                       {stage.label}
                     </span>
-                    <span className="text-[10px] text-sp-midGray hidden sm:block">
+                    <span className={`text-[10px] hidden sm:block ${isActive ? 'text-sp-lightGray font-medium' : 'text-sp-midGray'}`}>
                       {stage.subtitle}
                     </span>
                   </div>
@@ -111,22 +151,22 @@ export default function CareerJourney() {
           </div>
         </div>
 
-        {/* Selected Node Details Display Panel */}
+        {/* Selected Node Details Display Panel (2.5D Depth Box) */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStage.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="rounded-card bg-sp-charcoal/90 border border-sp-midGray/40 p-6 sm:p-10 shadow-2xl backdrop-blur-md"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               
-              {/* Left Column: Stage Focus & Core Objective */}
+              {/* Left Column: Stage Focus & Navigation Controls */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="flex items-center gap-2 font-mono text-xs font-bold text-sp-lightGray uppercase tracking-widest">
-                  <span>STAGE {activeStage.stepNumber}</span>
+                  <span>STAGE {activeStage.stepNumber} OF 07</span>
                   <span>•</span>
                   <span>{activeStage.subtitle}</span>
                 </div>
@@ -144,18 +184,35 @@ export default function CareerJourney() {
                   </p>
                 </div>
 
-                <p className="text-xs text-sp-gray font-mono">
-                  * Systematic preparation replacing speculative applications with demonstrable standards.
-                </p>
+                {/* Stage Stepper Buttons */}
+                <div className="pt-2 flex items-center gap-3">
+                  <button
+                    type="button"
+                    disabled={activeIndex === 0}
+                    onClick={prevStage}
+                    className="px-4 py-2 rounded-btn border border-sp-midGray/40 hover:border-sp-white disabled:opacity-40 disabled:cursor-not-allowed text-xs font-mono font-bold text-sp-lightGray transition-all"
+                  >
+                    Previous Node
+                  </button>
+                  <button
+                    type="button"
+                    disabled={activeIndex === journeyStages.length - 1}
+                    onClick={nextStage}
+                    className="px-4 py-2 rounded-btn bg-sp-white hover:bg-sp-offWhite text-sp-ink disabled:opacity-40 disabled:cursor-not-allowed text-xs font-mono font-bold transition-all flex items-center gap-1"
+                  >
+                    <span>Advance Stage</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
 
-              {/* Right Column: Key Actions & Checklist */}
+              {/* Right Column: Key Actions & Readiness Checklist */}
               <div className="lg:col-span-7 space-y-6">
                 
-                {/* Tactical Actions */}
+                {/* Practical Actions */}
                 <div>
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sp-lightGray mb-3 flex items-center gap-2">
-                    <span>PRACTICAL IMPLEMENTATION</span>
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sp-lightGray mb-3">
+                    PRACTICAL EXECUTION STANDARDS
                   </h4>
                   <div className="space-y-2">
                     {activeStage.actions.map((act, aIdx) => (
@@ -177,7 +234,7 @@ export default function CareerJourney() {
                 {/* Stage Checklist */}
                 <div>
                   <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sp-lightGray mb-3">
-                    READINESS VERIFICATION
+                    READINESS VERIFICATION CHECKLIST
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {activeStage.checklist.map((chk, cIdx) => (
