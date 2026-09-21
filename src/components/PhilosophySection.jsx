@@ -41,7 +41,7 @@ export default function PhilosophySection() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
-            {siteConfig.philosophyTitle}
+            Built around <span className="font-times italic font-normal text-sp-charcoal">real career challenges.</span>
           </h2>
           <p className="text-base sm:text-lg text-sp-midGray mt-4 max-w-2xl font-normal">
             {siteConfig.philosophySubtitle}
@@ -50,7 +50,7 @@ export default function PhilosophySection() {
 
         {/* Core Manifesto Card */}
         <div className="mb-14 p-5 sm:p-8 lg:p-12 rounded-card bg-sp-offWhite border border-sp-lightGray">
-          <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-sp-ink italic leading-relaxed max-w-4xl font-normal">
+          <p className="font-times text-xl sm:text-2xl lg:text-3xl text-sp-ink italic leading-relaxed max-w-4xl font-normal">
             "{siteConfig.philosophyStatement}"
           </p>
           <div className="mt-6 pt-6 border-t border-sp-lightGray flex items-center justify-between text-xs font-mono text-sp-midGray">

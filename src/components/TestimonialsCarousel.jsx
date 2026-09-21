@@ -1,28 +1,49 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Users, MapPin, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Users, MapPin, CheckCircle, Shuffle } from 'lucide-react';
 import { indianTestimonials, siteConfig } from '../data/siteData';
 
+// Utility to shuffle array randomly (Fisher-Yates)
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default function TestimonialsCarousel() {
+  // Randomize testimonial order on initial load so different candidates appear every time
+  const [items, setItems] = useState(() => shuffleArray(indianTestimonials));
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? indianTestimonials.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === indianTestimonials.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
-  // Optional subtle auto-advance
+  const randomSlide = () => {
+    if (items.length <= 1) return;
+    let nextIdx = Math.floor(Math.random() * items.length);
+    while (nextIdx === currentIndex) {
+      nextIdx = Math.floor(Math.random() * items.length);
+    }
+    setCurrentIndex(nextIdx);
+  };
+
+  // Optional subtle auto-advance every 7 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
     }, 7000);
     return () => clearInterval(timer);
-  }, []);
+  }, [items.length]);
 
-  const current = indianTestimonials[currentIndex];
+  const current = items[currentIndex] || items[0];
 
   return (
     <section
@@ -59,19 +80,30 @@ export default function TestimonialsCarousel() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-white border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-              <span>CANDIDATE VOICES</span>
+              <span>CANDIDATE VOICES • RANDOM ROTATION</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
               Real Candidate Experiences.
             </h2>
             <p className="text-base sm:text-lg text-sp-midGray mt-3 max-w-xl font-normal">
-              Hear from graduates and career starters across India who structured their profiles, mastered their interviews, and transitioned with confidence.
+              Hear from Indian graduates and career starters across the <span className="font-times italic font-bold text-sp-ink">United States</span> who structured their profiles, mastered their interviews, and transitioned with confidence.
             </p>
           </div>
 
-          {/* Carousel Controls */}
-          <div className="flex items-center gap-3">
+          {/* Carousel Controls with Shuffle Button */}
+          <div className="flex items-center gap-2.5">
+            <button
+              type="button"
+              onClick={randomSlide}
+              className="px-3.5 py-3 rounded-btn border border-sp-lightGray hover:border-sp-ink bg-sp-white hover:bg-sp-offWhite text-sp-ink transition-colors flex items-center gap-1.5 text-xs font-mono font-bold"
+              title="Shuffle / Show Random Candidate Story"
+              aria-label="Show random candidate story"
+            >
+              <Shuffle className="w-3.5 h-3.5 text-sp-charcoal" />
+              <span className="hidden sm:inline">Randomize</span>
+            </button>
+
             <button
               type="button"
               onClick={prevSlide}
@@ -80,8 +112,8 @@ export default function TestimonialsCarousel() {
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <span className="font-mono text-xs font-bold text-sp-midGray px-2">
-              0{currentIndex + 1} / 0{indianTestimonials.length}
+            <span className="font-mono text-xs font-bold text-sp-midGray px-2 whitespace-nowrap">
+              {String(currentIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
             </span>
             <button
               type="button"
@@ -94,11 +126,11 @@ export default function TestimonialsCarousel() {
           </div>
         </div>
 
-        {/* Testimonial Active Slide Card */}
+        {/* Testimonial Active Slide Card with Times Roman typography */}
         <div className="relative min-h-[320px] sm:min-h-[300px]">
           <AnimatePresence mode="wait">
             <motion.div
-              key={current.id}
+              key={current.id || currentIndex}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -107,7 +139,7 @@ export default function TestimonialsCarousel() {
             >
               <div className="space-y-6">
                 <Quote className="w-10 h-10 text-sp-lightGray" />
-                <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-sp-ink italic leading-relaxed font-normal">
+                <p className="font-times text-xl sm:text-2xl lg:text-[28px] text-sp-ink italic leading-relaxed font-normal">
                   "{current.quote}"
                 </p>
               </div>
@@ -117,14 +149,14 @@ export default function TestimonialsCarousel() {
                   <h4 className="text-lg font-black text-sp-ink uppercase tracking-tight">
                     {current.name}
                   </h4>
-                  <div className="text-xs font-mono text-sp-midGray">
-                    {current.role} • <span className="text-sp-charcoal font-semibold">{current.degree}</span>
+                  <div className="text-xs font-mono text-sp-midGray mt-0.5">
+                    {current.role} • <span className="font-times italic text-sm text-sp-charcoal font-bold">{current.degree}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-1.5 text-xs font-mono text-sp-midGray">
                   <MapPin className="w-3.5 h-3.5 text-sp-charcoal" />
-                  <span>{current.location}</span>
+                  <span className="font-medium text-sp-ink">{current.location}</span>
                 </div>
               </div>
             </motion.div>
@@ -132,8 +164,8 @@ export default function TestimonialsCarousel() {
         </div>
 
         {/* Dot Indicators */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          {indianTestimonials.map((_, idx) => (
+        <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
+          {items.map((_, idx) => (
             <button
               key={idx}
               type="button"

@@ -61,7 +61,7 @@ export default function CareerJourney() {
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-white leading-tight mb-4">
             From uncertain<br />
-            <span className="font-serif italic font-normal text-sp-lightGray">
+            <span className="font-times italic font-normal text-sp-lightGray">
               to job-ready.
             </span>
           </h2>

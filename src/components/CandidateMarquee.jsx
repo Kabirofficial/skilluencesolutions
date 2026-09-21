@@ -35,7 +35,7 @@ export default function CandidateMarquee() {
                     width="80"
                     height="24"
                     loading="lazy"
-                    className="h-6 w-auto max-w-[85px] object-contain grayscale opacity-80 hover:opacity-100 transition-opacity"
+                    className="h-6 w-auto max-w-[85px] object-contain opacity-80 hover:opacity-100 transition-opacity"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}
@@ -71,7 +71,7 @@ export default function CandidateMarquee() {
                     width="80"
                     height="24"
                     loading="lazy"
-                    className="h-6 w-auto max-w-[85px] object-contain grayscale opacity-80 hover:opacity-100 transition-opacity"
+                    className="h-6 w-auto max-w-[85px] object-contain opacity-80 hover:opacity-100 transition-opacity"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}

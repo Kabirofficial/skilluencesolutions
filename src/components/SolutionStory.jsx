@@ -36,7 +36,7 @@ export default function SolutionStory() {
               transition={{ duration: 0.6, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
               className={`text-3xl sm:text-5xl md:text-6xl font-black tracking-tight ${
                 idx === 2
-                  ? 'text-sp-white'
+                  ? 'text-sp-white font-times italic font-normal tracking-normal'
                   : 'text-sp-gray/80 font-normal'
               }`}
             >

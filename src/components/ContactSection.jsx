@@ -310,7 +310,7 @@ export default function ContactSection() {
                   <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
                     <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      PRIMARY EMAIL
+                      MANAGEMENT & DIRECT DESK
                     </span>
                     <a href={`mailto:${siteConfig.contact.email}`} className="font-mono text-sp-ink hover:underline">
                       {siteConfig.contact.email}

@@ -65,7 +65,7 @@ export default function FinalCTA() {
         {/* Master CTA Headline */}
         <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-sp-white leading-[1.08]">
           Your next opportunity<br />
-          <span className="font-serif italic font-normal text-sp-lightGray">
+          <span className="font-times italic font-normal text-sp-lightGray">
             starts with a stronger strategy.
           </span>
         </h2>

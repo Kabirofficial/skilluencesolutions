@@ -25,7 +25,7 @@ export default function PricingSection() {
             {pricingMarketingPlan.subHeader}
           </div>
 
-          <p className="mt-2 text-sm sm:text-base font-serif italic text-sp-midGray">
+          <p className="mt-2 text-base sm:text-lg font-times italic text-sp-charcoal font-medium">
             "{pricingMarketingPlan.tagline}"
           </p>
 

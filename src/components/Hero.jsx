@@ -61,7 +61,7 @@ export default function Hero() {
                 className="text-[32px] sm:text-5xl md:text-6xl lg:text-[74px] font-black tracking-tight text-sp-ink leading-[1.08] sm:leading-[1.05]"
               >
                 Your Degree Got You Here.{' '}
-                <span className="block mt-1 font-serif italic font-normal text-sp-charcoal underline decoration-sp-lightGray decoration-2 underline-offset-8">
+                <span className="block mt-1 font-times italic font-normal text-sp-charcoal underline decoration-sp-lightGray decoration-2 underline-offset-8">
                   Let's Get You {siteConfig.heroHighlight}
                 </span>
               </motion.h1>
@@ -74,7 +74,7 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="text-base sm:text-lg lg:text-xl text-sp-midGray max-w-xl leading-relaxed font-normal"
             >
-              {siteConfig.heroDescription}
+              <span className="font-times italic font-medium text-sp-ink">Affordable, practical and personalized</span> career support for students, graduates and job seekers.
             </motion.p>
 
             {/* CTAs */}

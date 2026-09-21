@@ -26,9 +26,9 @@ export const siteConfig = {
 
   // Authentic project contact details (no personal names)
   contact: {
-    email: "advisory@skilluencesolutions.com",
-    deskEmail: "careers@skilluencesolutions.com",
-    phone: "+1 (800) 548-SKILL / +91 98765 43210",
+    email: "manager@skilluencesolutions.com",
+    deskEmail: "manager@skilluencesolutions.com",
+    // phone: "+1 (800) 548-SKILL / +91 98765 43210",
     location: "Career Advisory Operations • Global Hybrid Support",
     workingHours: "Monday – Saturday: 9:00 AM – 7:30 PM EST",
   },
@@ -164,49 +164,97 @@ export const indianTestimonials = [
     id: 1,
     name: "Rohan Mehta",
     role: "Full-Stack Software Engineer",
-    degree: "B.Tech Computer Science",
-    quote: "After months of silence on online portals, the structured ATS overhaul and 1-on-1 mock interviews completely changed my conversion rate. The direct outreach framework helped me clear 3 technical rounds with absolute clarity.",
-    location: "Bengaluru, India"
+    degree: "MS Computer Science",
+    quote: "Navigating the US tech market on OPT was daunting with constant portal rejections. The ATS resume reconstruction and targeted recruiter positioning completely shifted my traction. Within six weeks, I cleared three multi-round technical panels and landed my ideal software engineering role in Silicon Valley.",
+    location: "San Jose, CA"
   },
   {
     id: 2,
     name: "Ananya Iyer",
-    role: "Associate Risk & Business Analyst",
-    degree: "BBA / Finance Graduate",
-    quote: "The personalized coaching gave me the exact STAR framing I needed to explain complex academic projects. I felt genuinely prepared and poised in my discussions with hiring managers.",
-    location: "Mumbai, India"
+    role: "Senior Risk & Business Intelligence Analyst",
+    degree: "MS Business Analytics",
+    quote: "The personalized coaching gave me the exact executive framing and STAR storytelling I needed to communicate complex data models to Wall Street hiring managers. Skilluence gave me the strategic polish to interview with complete conviction.",
+    location: "New York, NY"
   },
   {
     id: 3,
-    name: "Siddharth Nair",
-    role: "Cloud & Infrastructure Associate",
-    degree: "B.Sc Information Technology",
-    quote: "The profile setup and LinkedIn keyword optimization made my skills discoverable to recruiters. The continuous weekly guidance took away all the anxiety of job hunting.",
-    location: "Hyderabad, India"
+    name: "Siddharth Patel",
+    role: "Cloud Infrastructure & DevOps Engineer",
+    degree: "MS Information Technology",
+    quote: "The profile optimization and recruiter outreach framework made my cloud architecture skill set stand out to US enterprise recruiters. Having weekly strategy reviews eliminated the stress of the job search and kept me focused on high-conversion leads.",
+    location: "Dallas, TX"
   },
   {
     id: 4,
     name: "Pooja Deshmukh",
-    role: "Data Analyst & Business Intelligence",
-    degree: "M.Sc Statistics Graduate",
-    quote: "What stood out was the complete lack of false promises. Instead, the focus was on high-standard resume rewriting and real interview simulation drills that actually work.",
-    location: "Pune, India"
+    role: "Data Scientist & Analytics Consultant",
+    degree: "MS Statistics & Applied Data",
+    quote: "What sets Skilluence apart is their honest, practical rigor—no exaggerated claims or false promises. The tailored resume overhaul and rigorous behavioral mock interviews prepared me thoroughly for top-tier Pacific Northwest tech interviews.",
+    location: "Seattle, WA"
   },
   {
     id: 5,
-    name: "Aditya Verma",
-    role: "Junior Machine Learning Engineer",
-    degree: "B.E. Artificial Intelligence",
-    quote: "Having my academic capstone translated into commercial impact metrics made all the difference. The team was supportive, practical, and highly responsive throughout my search.",
-    location: "Delhi NCR, India"
+    name: "Aditya Sharma",
+    role: "Machine Learning & AI Systems Engineer",
+    degree: "MS Artificial Intelligence",
+    quote: "Translating my academic research and capstone projects into clear commercial impact metrics made an immediate difference. Their proactive positioning helped me connect with hiring teams across the Austin tech ecosystem rapidly.",
+    location: "Austin, TX"
   },
   {
     id: 6,
-    name: "Kavita Sharma",
-    role: "Product & Operations Associate",
-    degree: "B.Com / Career Starter",
-    quote: "The marketing plan and direct recruiter support gave me a structured roadmap rather than applying randomly. I felt in control of my career trajectory for the first time.",
-    location: "Chennai, India"
+    name: "Kavita Reddy",
+    role: "Product & Technical Program Specialist",
+    degree: "MS Engineering Management",
+    quote: "Coming from a technical background into product management in the US required a sharp narrative pivot. Skilluence's roadmap, positioning strategy, and recruiter network access turned cold applications into direct stakeholder interviews.",
+    location: "Chicago, IL"
+  },
+  {
+    id: 7,
+    name: "Arjun Subramanian",
+    role: "Site Reliability & Systems Engineer",
+    degree: "MS Computer Engineering",
+    quote: "Moving past automated screeners in the Bay Area requires precise systems engineering language. Skilluence restructured my GitHub portfolio and technical metrics so hiring managers immediately understood my distributed systems competence.",
+    location: "San Francisco, CA"
+  },
+  {
+    id: 8,
+    name: "Divya Nambiar",
+    role: "Quantitative Risk & Portfolio Analyst",
+    degree: "MS Quantitative Finance",
+    quote: "The team helped me position my quantitative coursework and Python modeling specifically for Tier-1 US financial institutions. The structured interview drills gave me immense confidence during intensive Superday rounds.",
+    location: "Jersey City, NJ"
+  },
+  {
+    id: 9,
+    name: "Karthik Venkataraman",
+    role: "Data Platform & Pipeline Engineer",
+    degree: "MS Data Science",
+    quote: "As an international graduate looking for roles in the Northeast tech corridor, their direct recruiter networking strategy opened doors that standard LinkedIn applications never could. The preparation was comprehensive and direct.",
+    location: "Boston, MA"
+  },
+  {
+    id: 10,
+    name: "Meera Chawla",
+    role: "Cloud Security & Compliance Specialist",
+    degree: "MS Cybersecurity & Information Assurance",
+    quote: "The technical mock interviews and deep-dive alignment on US enterprise security standards gave me a distinct edge. I went from zero callbacks on job boards to multiple competitive offers in the Southeast tech market.",
+    location: "Atlanta, GA"
+  },
+  {
+    id: 11,
+    name: "Varun Kulkarni",
+    role: "Enterprise Solutions Architect",
+    degree: "MS Electrical & Computer Engineering",
+    quote: "The strategic guidance on employer alignment and how to pitch multi-disciplinary technical breadth gave me immediate clarity and accelerated my job search timeline dramatically.",
+    location: "Phoenix, AZ"
+  },
+  {
+    id: 12,
+    name: "Sneha Mukherjee",
+    role: "Senior FinTech Operations Analyst",
+    degree: "MBA & MS Information Systems",
+    quote: "Skilluence took the ambiguity out of the corporate banking recruiting cycle. Their resume reframing emphasized my cross-functional project leadership, leading directly to my target placement in Charlotte.",
+    location: "Charlotte, NC"
   }
 ];
 

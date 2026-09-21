@@ -203,10 +203,10 @@ export default function ProblemStory() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight mb-4">
-            {problemStatement.heading}
+            Education is <span className="font-times italic font-normal text-sp-charcoal">only the beginning.</span>
           </h2>
           <p className="text-base sm:text-lg text-sp-midGray leading-relaxed max-w-2xl font-normal">
-            {problemStatement.subheading}
+            <span className="font-times italic text-sp-ink font-semibold">A degree represents academic completion.</span> Translating that achievement into a competitive professional candidate requires an entirely distinct discipline.
           </p>
         </div>
 

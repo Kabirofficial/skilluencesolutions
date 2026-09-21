@@ -23,7 +23,7 @@ export default function ProcessStory() {
 
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
               A simple process.<br />
-              <span className="font-serif italic font-normal text-sp-charcoal">
+              <span className="font-times italic font-normal text-sp-charcoal">
                 A clearer path.
               </span>
             </h2>
