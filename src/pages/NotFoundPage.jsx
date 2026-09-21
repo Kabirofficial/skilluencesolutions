@@ -49,7 +49,7 @@ export default function NotFoundPage() {
           </Link>
 
           <Link
-            to="/#services"
+            to="/services"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-btn bg-sp-offWhite hover:bg-sp-lightGray/70 border border-sp-lightGray text-sp-ink font-semibold text-xs tracking-wide transition-all active:scale-[0.98]"
           >
             <span>Explore Services</span>

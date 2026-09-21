@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
@@ -76,20 +77,20 @@ export default function FinalCTA() {
 
         {/* Action CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-btn bg-sp-white hover:bg-sp-offWhite text-sp-ink font-bold text-sm transition-all shadow-sm active:scale-[0.98]"
           >
             <span>{siteConfig.heroCTA}</span>
             <ArrowRight className="w-4 h-4 text-sp-ink" />
-          </a>
+          </Link>
 
-          <a
-            href="#services"
+          <Link
+            to="/services"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-btn bg-sp-charcoal hover:bg-sp-midGray/40 border border-sp-midGray/40 text-sp-white font-semibold text-sm transition-all active:scale-[0.98]"
           >
             <span>{siteConfig.heroSecondaryCTA}</span>
-          </a>
+          </Link>
         </div>
 
         <div className="pt-8 text-xs font-mono text-sp-midGray">

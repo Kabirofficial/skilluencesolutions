@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { ArrowUp, Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { siteConfig } from '../data/siteData';
+import { siteConfig, navLinks } from '../data/siteData';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -9,36 +10,21 @@ export default function Footer() {
     });
   };
 
-  const navLinks = [
-    { name: "Home", href: "#hero" },
-    { name: "Services", href: "#services" },
-    { name: "Process", href: "#process" },
-    { name: "Journey", href: "#journey" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Why Us", href: "#why" },
-    { name: "Audience", href: "#audience" },
-    { name: "Employers", href: "#employers" },
-    { name: "About", href: "#about" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
-    <footer className="bg-sp-ink text-sp-white border-t border-sp-charcoal pt-16 pb-12">
+    <footer className="w-full bg-sp-ink text-sp-white pt-16 pb-12 border-t border-sp-charcoal selection:bg-sp-white selection:text-sp-ink">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-sp-charcoal">
           
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 group inline-flex">
               <img
                 src="/images/logo.png"
                 alt="Skilluence Solutions Logo"
                 width="160"
                 height="36"
-                className="h-8 sm:h-9 w-auto object-contain brightness-125 contrast-125"
+                className="h-8 sm:h-9 w-auto object-contain brightness-125 contrast-125 group-hover:scale-105 transition-transform"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none';
                 }}
@@ -46,7 +32,7 @@ export default function Footer() {
               <span className="font-black text-lg tracking-tight text-sp-white">
                 {siteConfig.brandName}
               </span>
-            </div>
+            </Link>
 
             <p className="text-sm text-sp-lightGray max-w-sm leading-relaxed font-semibold">
               "{siteConfig.tagline}"
@@ -64,13 +50,13 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col space-y-2 text-xs font-mono">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="text-sp-gray hover:text-sp-white transition-colors"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -88,10 +74,10 @@ export default function Footer() {
                   {siteConfig.contact.email}
                 </a>
               </div>
-              <div className="flex items-center gap-2.5">
+              {/* <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-sp-lightGray shrink-0" />
                 <span className="font-mono">{siteConfig.contact.phone}</span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-2.5">
                 <MapPin className="w-4 h-4 text-sp-lightGray shrink-0" />
                 <span>{siteConfig.contact.location}</span>

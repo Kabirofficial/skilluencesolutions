@@ -20,7 +20,7 @@ export default function CareerJourney() {
   const activeStage = journeyStages[activeIndex] || journeyStages[2];
 
   const getStageIcon = (id, isActive) => {
-    const className = `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isActive ? 'text-sp-white' : 'text-sp-gray'}`;
+    const className = `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isActive ? 'text-sp-ink font-bold' : 'text-sp-lightGray'}`;
     switch (id) {
       case 'education': return <GraduationCap className={className} />;
       case 'profile': return <UserCheck className={className} />;
@@ -115,18 +115,18 @@ export default function CareerJourney() {
                     style={{ transformStyle: "preserve-3d" }}
                     className={`w-12 h-12 sm:w-14 sm:h-14 rounded-btn flex items-center justify-center transition-all duration-300 relative ${
                       isActive
-                        ? 'bg-sp-white/25 border-2 border-sp-white text-sp-white shadow-[0_0_20px_rgba(255,255,255,0.3)] ring-2 ring-sp-white/40 backdrop-blur-md'
+                        ? 'bg-sp-white border-2 border-sp-white text-sp-ink shadow-[0_0_30px_rgba(255,255,255,0.45)] ring-4 ring-sp-white/20'
                         : isPassed
-                          ? 'bg-sp-charcoal border border-sp-lightGray text-sp-white'
-                          : 'bg-sp-charcoal/80 border border-sp-midGray/40 text-sp-gray hover:border-sp-lightGray'
+                          ? 'bg-sp-charcoal border border-sp-lightGray text-sp-white hover:border-sp-white'
+                          : 'bg-sp-charcoal/90 border border-sp-midGray/40 text-sp-gray hover:border-sp-lightGray'
                     }`}
                   >
                     {getStageIcon(stage.id, isActive)}
                     
-                    {/* Stage Counter Badge */}
+                    {/* Stage Counter Badge with High Contrast */}
                     <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-[9px] font-mono font-bold flex items-center justify-center ${
                       isActive 
-                        ? 'bg-sp-white text-sp-ink font-black shadow-sm' 
+                        ? 'bg-sp-ink text-sp-white font-black border border-sp-white shadow-md' 
                         : isPassed
                           ? 'bg-sp-lightGray text-sp-ink font-bold'
                           : 'bg-sp-charcoal text-sp-gray border border-sp-midGray/50'
@@ -138,12 +138,12 @@ export default function CareerJourney() {
                   <div className="mt-3">
                     <span
                       className={`text-[11px] font-mono font-bold tracking-wider block uppercase transition-colors ${
-                        isActive ? 'text-sp-white font-extrabold drop-shadow-sm' : isPassed ? 'text-sp-lightGray' : 'text-sp-gray group-hover:text-sp-lightGray'
+                        isActive ? 'text-sp-white font-extrabold underline decoration-sp-white decoration-2 underline-offset-4' : isPassed ? 'text-sp-lightGray' : 'text-sp-gray group-hover:text-sp-lightGray'
                       }`}
                     >
                       {stage.label}
                     </span>
-                    <span className={`text-[10px] hidden sm:block ${isActive ? 'text-sp-lightGray font-medium' : 'text-sp-midGray'}`}>
+                    <span className={`text-[10px] hidden sm:block ${isActive ? 'text-sp-white font-medium drop-shadow-xs' : 'text-sp-midGray'}`}>
                       {stage.subtitle}
                     </span>
                   </div>

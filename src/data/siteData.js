@@ -42,16 +42,14 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { name: "Home", href: "#hero" },
-  { name: "Services", href: "#services" },
-  { name: "Process", href: "#process" },
-  { name: "Journey", href: "#journey" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Why Us", href: "#why" },
-  { name: "Employers", href: "#employers" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Process", href: "/process" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Testimonials", href: "/testimonials" },
+  { name: "Employers", href: "/employers" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export const marqueeCompanies = [

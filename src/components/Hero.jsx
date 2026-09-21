@@ -1,10 +1,13 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronDown, Check } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ArrowRight, ChevronDown, Check, Sparkles, Layers, Building2, TrendingUp } from 'lucide-react';
 import CareerScene from './CareerScene';
 import { siteConfig } from '../data/siteData';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 export default function Hero() {
+  const [activeVisual, setActiveVisual] = useState('photo'); // 'photo' | '3d'
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
@@ -84,20 +87,20 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2"
             >
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm tracking-wide transition-all duration-200 shadow-sm active:scale-[0.98]"
               >
                 <span>{siteConfig.heroCTA}</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
 
-              <a
-                href="#services"
+              <Link
+                to="/process"
                 className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-sp-offWhite hover:bg-sp-lightGray/70 border border-sp-lightGray text-sp-ink font-semibold text-sm transition-all duration-200 active:scale-[0.98]"
               >
-                <span>{siteConfig.heroSecondaryCTA}</span>
-              </a>
+                <span>Explore 6-Stage Roadmap</span>
+              </Link>
             </motion.div>
 
             {/* Micro Trust Proof: Clear & Authentic */}
@@ -123,15 +126,93 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Column: 3D Career Object Visualization */}
+          {/* Right Column: Visual Strategy Showcase with Mode Switcher */}
           <motion.div
             style={{ y: yScene }}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 w-full relative"
+            className="lg:col-span-6 w-full relative flex flex-col items-center"
           >
-            <CareerScene />
+            {/* Visual View Mode Selector */}
+            <div className="flex items-center gap-1.5 p-1 rounded-full bg-sp-offWhite border border-sp-lightGray mb-4 shadow-sm z-20">
+              <button
+                type="button"
+                onClick={() => setActiveVisual('photo')}
+                className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase transition-all ${
+                  activeVisual === 'photo'
+                    ? 'bg-sp-ink text-sp-white shadow-xs'
+                    : 'text-sp-charcoal hover:text-sp-ink'
+                }`}
+              >
+                Strategy Studio
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveVisual('3d')}
+                className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase transition-all ${
+                  activeVisual === '3d'
+                    ? 'bg-sp-ink text-sp-white shadow-xs'
+                    : 'text-sp-charcoal hover:text-sp-ink'
+                }`}
+              >
+                3D Progression Stack
+              </button>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {activeVisual === 'photo' ? (
+                <motion.div
+                  key="photo-view"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative w-full rounded-card overflow-hidden border border-sp-lightGray shadow-2xl bg-sp-ink group"
+                >
+                  <img
+                    src="/images/career_strategy_workspace.jpg"
+                    alt="Skilluence Career Strategy Workspace"
+                    width="800"
+                    height="450"
+                    className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-sp-ink/80 via-transparent to-black/20 pointer-events-none" />
+
+                  {/* Floating Live Badge Top Right */}
+                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-card bg-sp-white/95 backdrop-blur-md border border-sp-lightGray shadow-lg flex items-center gap-2 text-[11px] font-mono text-sp-ink font-bold">
+                    <span className="w-2 h-2 rounded-full bg-sp-ink animate-pulse" />
+                    <span>1,000+ Active Recruiters</span>
+                  </div>
+
+                  {/* Floating Live Badge Bottom Left */}
+                  <div className="absolute bottom-4 left-4 right-4 sm:right-auto p-3.5 rounded-card bg-sp-white/95 backdrop-blur-md border border-sp-lightGray shadow-lg space-y-1">
+                    <div className="flex items-center justify-between gap-4 text-[10px] font-mono text-sp-midGray uppercase">
+                      <span className="font-bold text-sp-ink">CANDIDATE PLACEMENT HUB</span>
+                      <span>VERIFIED RESULTS</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-4 h-4 text-sp-ink shrink-0" />
+                      <span className="text-xs font-bold text-sp-ink font-mono">
+                        98% ATS Parsing Score • OPT / STEM OPT Ready
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="3d-view"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.4 }}
+                  className="w-full"
+                >
+                  <CareerScene />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </motion.div>
 
         </motion.div>
@@ -140,13 +221,14 @@ export default function Hero() {
       {/* Subtle Scroll Down Indicator */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-sp-midGray pt-4">
         <span>EST. CAREER ADVISORY</span>
-        <a 
-          href="#problem"
-          className="flex items-center gap-1 hover:text-sp-ink transition-colors group"
+        <button 
+          type="button"
+          onClick={() => window.scrollBy({ top: 600, behavior: 'smooth' })}
+          className="flex items-center gap-1 hover:text-sp-ink transition-colors group cursor-pointer"
         >
           <span>Scroll To Discover</span>
           <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-        </a>
+        </button>
       </div>
     </section>
   );
