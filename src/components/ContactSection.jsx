@@ -318,7 +318,7 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
+                {/* <div className="flex items-start gap-3">
                   <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
                     <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
@@ -328,9 +328,9 @@ export default function ContactSection() {
                       {siteConfig.contact.deskEmail}
                     </a>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="flex items-start gap-3">
+                {/* <div className="flex items-start gap-3">
                   <Phone className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
                     <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
@@ -338,7 +338,7 @@ export default function ContactSection() {
                     </span>
                     <span className="font-mono text-sp-ink">{siteConfig.contact.phone}</span>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
