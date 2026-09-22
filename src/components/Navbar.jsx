@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { navLinks } from '../data/siteData';
 
-// Curated desktop navigation links (excluding redundant Home and Contact which are in Logo and CTA)
+// Curated desktop navigation links
 const desktopNavLinks = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
@@ -13,6 +13,7 @@ const desktopNavLinks = [
   { name: "Employers", href: "/employers" },
   { name: "Testimonials", href: "/testimonials" },
   { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -50,24 +51,29 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on route navigation
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
-    <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-      <div
-        className={`w-full border-b transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#FAF7F2]/95 backdrop-blur-md border-[#E8E2D8] shadow-[0_2px_12px_rgba(20,47,35,0.03)]'
-            : 'bg-[#FAF7F2] border-[#E8E2D8]'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E2D8] shadow-xs'
+          : 'bg-[#FAF7F2] border-b border-[#E8E2D8]'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           
-          {/* Brand Logo & Editorial Masthead Title */}
-          <Link
-            to="/"
-            className="flex items-center gap-3 group select-none shrink-0 focus:outline-none"
-            aria-label="Skilluence Solutions - Return to Home"
+          {/* Brand Masthead: High-res Emblem + Editorial Serif Title */}
+          <Link 
+            to="/" 
+            className="flex items-center gap-3.5 group select-none shrink-0"
+            aria-label="Skilluence Solutions Home"
           >
-            <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-sm border border-[#E8E2D8] bg-white p-1 flex items-center justify-center shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-transform duration-200 group-hover:scale-105 shrink-0">
+            <div className="h-10 w-10 rounded-sm border border-[#E8E2D8] bg-white p-1 flex items-center justify-center shadow-xs">
               <img
                 src="/images/apple-touch-icon.png"
                 alt="Skilluence Solutions Emblem"
@@ -97,7 +103,7 @@ export default function Navbar() {
 
           {/* Curated Editorial Navigation Links */}
           <nav 
-            className="hidden lg:flex items-center space-x-8 text-xs font-sans uppercase tracking-[0.14em]"
+            className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-xs font-sans uppercase tracking-[0.11em] xl:tracking-[0.13em]"
             aria-label="Main Navigation"
           >
             {desktopNavLinks.map((item) => {
@@ -126,16 +132,16 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right Action CTA
+          {/* Right Action CTA */}
           <div className="hidden sm:flex items-center gap-4 shrink-0">
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#142F23] hover:bg-[#1C3F30] text-[#FAF7F2] text-xs font-sans uppercase tracking-[0.14em] font-medium transition-all duration-200 shadow-xs group"
             >
-              <span>Consult Advisory</span>
+              <span>Contact Us</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#C36B4E] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-          </div> */}
+          </div>
 
           {/* Mobile Menu Toggle Button */}
           <div className="flex items-center lg:hidden">
