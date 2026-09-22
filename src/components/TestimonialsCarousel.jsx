@@ -1,9 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote, Users, MapPin, CheckCircle, Shuffle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Users, MapPin, Check, Shuffle } from 'lucide-react';
 import { indianTestimonials, siteConfig } from '../data/siteData';
 
-// Utility to shuffle array randomly (Fisher-Yates)
 function shuffleArray(array) {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -14,7 +13,6 @@ function shuffleArray(array) {
 }
 
 export default function TestimonialsCarousel() {
-  // Randomize testimonial order on initial load so different candidates appear every time
   const [items, setItems] = useState(() => shuffleArray(indianTestimonials));
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -35,11 +33,10 @@ export default function TestimonialsCarousel() {
     setCurrentIndex(nextIdx);
   };
 
-  // Optional subtle auto-advance every 7 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 7000);
+    }, 9000);
     return () => clearInterval(timer);
   }, [items.length]);
 
@@ -48,130 +45,128 @@ export default function TestimonialsCarousel() {
   return (
     <section
       id="testimonials"
-      className="relative min-h-[90svh] w-full bg-sp-offWhite text-sp-ink py-20 sm:py-28 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
+      className="relative w-full bg-[#FBF9F5] text-[#1F2421] py-24 sm:py-32 border-b border-[#E8E2D8]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
-        {/* Prominent Recruiter Network Trust Banner */}
-        <div className="mb-14 sm:mb-16 p-6 sm:p-8 rounded-card bg-sp-ink text-sp-white border border-sp-charcoal flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="w-12 h-12 rounded-btn bg-sp-charcoal border border-sp-midGray/40 flex items-center justify-center shrink-0">
-              <Users className="w-6 h-6 text-sp-white" />
+        {/* Recruiter Network Trust Ledger */}
+        <div className="mb-16 p-8 sm:p-10 rounded-sm bg-[#142F23] text-[#FBF9F5] border border-[#142F23] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-5 text-center md:text-left">
+            <div className="w-12 h-12 rounded-sm bg-[#0E2118] border border-[#FBF9F5]/15 flex items-center justify-center shrink-0 text-[#C36B4E]">
+              <Users className="w-6 h-6" />
             </div>
             <div>
-              <div className="text-xs font-mono uppercase tracking-widest text-sp-lightGray font-bold flex items-center gap-2 justify-center md:justify-start">
-                <span className="w-2 h-2 rounded-full bg-sp-white animate-pulse" />
-                <span>ACTIVE INDUSTRY NETWORK</span>
+              <div className="text-[10px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+                Verified Recruiter Network
               </div>
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-sp-white tracking-tight mt-1">
+              <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#FBF9F5] tracking-tight mt-1">
                 {siteConfig.recruiterNetworkStat}
               </h3>
             </div>
           </div>
 
-          <div className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-btn bg-sp-charcoal border border-sp-midGray/50 text-xs font-mono text-sp-lightGray">
-            <CheckCircle className="w-4 h-4 text-sp-white" />
-            <span>Direct Hiring Channels</span>
+          <div className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-sm bg-[#0E2118] border border-[#FBF9F5]/15 text-xs font-sans text-[#FBF9F5]/80">
+            <Check className="w-4 h-4 text-[#C36B4E]" />
+            <span>Direct Enterprise Hiring Channels</span>
           </div>
         </div>
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-white border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-              <span>CANDIDATE VOICES • RANDOM ROTATION</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 pb-8 border-b border-[#E8E2D8]">
+          <div className="space-y-2">
+            <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+              <span>Candidate Reflections & Placements</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
-              Real Candidate Experiences.
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-[#142F23] leading-[1.12]">
+              Candid Candidate Experiences.
             </h2>
-            <p className="text-base sm:text-lg text-sp-midGray mt-3 max-w-xl font-normal">
-              Hear from Indian graduates and career starters across the <span className="font-times italic font-bold text-sp-ink">United States</span> who structured their profiles, mastered their interviews, and transitioned with confidence.
+            <p className="text-base text-[#5E6963] mt-2 max-w-xl font-normal leading-relaxed">
+              Direct accounts from international STEM and business graduates across the <span className="font-serif italic text-[#142F23]">United States</span> who navigated the recruitment landscape with disciplined advisory.
             </p>
           </div>
 
-          {/* Carousel Controls with Shuffle Button */}
-          <div className="flex items-center gap-2.5">
+          {/* Carousel Controls */}
+          <div className="flex items-center gap-3 shrink-0">
             <button
               type="button"
               onClick={randomSlide}
-              className="px-3.5 py-3 rounded-btn border border-sp-lightGray hover:border-sp-ink bg-sp-white hover:bg-sp-offWhite text-sp-ink transition-colors flex items-center gap-1.5 text-xs font-mono font-bold"
-              title="Shuffle / Show Random Candidate Story"
-              aria-label="Show random candidate story"
+              className="px-4 py-2 rounded-sm border border-[#E8E2D8] hover:border-[#142F23] bg-[#FFFFFF] text-[#142F23] transition-colors flex items-center gap-2 text-xs font-sans uppercase tracking-[0.12em] font-medium cursor-pointer"
+              title="Show Random Candidate Experience"
+              aria-label="Show random candidate experience"
             >
-              <Shuffle className="w-3.5 h-3.5 text-sp-charcoal" />
+              <Shuffle className="w-3.5 h-3.5 text-[#C36B4E]" />
               <span className="hidden sm:inline">Randomize</span>
             </button>
 
             <button
               type="button"
               onClick={prevSlide}
-              className="p-3 rounded-btn border border-sp-lightGray hover:border-sp-ink bg-sp-white hover:bg-sp-offWhite text-sp-ink transition-colors"
+              className="w-10 h-10 rounded-sm border border-[#E8E2D8] hover:border-[#142F23] bg-[#FFFFFF] text-[#142F23] transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="font-mono text-xs font-bold text-sp-midGray px-2 whitespace-nowrap">
-              {String(currentIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+            <span className="font-sans text-xs uppercase tracking-[0.14em] text-[#546B5F] px-2 whitespace-nowrap">
+              {currentIndex + 1} / {items.length}
             </span>
             <button
               type="button"
               onClick={nextSlide}
-              className="p-3 rounded-btn border border-sp-lightGray hover:border-sp-ink bg-sp-white hover:bg-sp-offWhite text-sp-ink transition-colors"
+              className="w-10 h-10 rounded-sm border border-[#E8E2D8] hover:border-[#142F23] bg-[#FFFFFF] text-[#142F23] transition-colors flex items-center justify-center cursor-pointer"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Testimonial Active Slide Card with Times Roman typography */}
-        <div className="relative min-h-[320px] sm:min-h-[300px]">
+        {/* Testimonial Active Slide */}
+        <div className="relative min-h-[300px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id || currentIndex}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="p-5 sm:p-8 lg:p-12 rounded-card bg-sp-white border border-sp-ink shadow-lg flex flex-col justify-between"
+              className="p-8 sm:p-12 lg:p-16 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] shadow-[0_4px_24px_rgba(20,47,35,0.03)] flex flex-col justify-between"
             >
               <div className="space-y-6">
-                <Quote className="w-10 h-10 text-sp-lightGray" />
-                <p className="font-times text-xl sm:text-2xl lg:text-[28px] text-sp-ink italic leading-relaxed font-normal">
+                <Quote className="w-10 h-10 text-[#C36B4E]" />
+                <p className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#142F23] italic leading-relaxed font-normal">
                   "{current.quote}"
                 </p>
               </div>
 
-              <div className="pt-8 mt-8 border-t border-sp-lightGray flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="pt-8 mt-8 border-t border-[#E8E2D8] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h4 className="text-lg font-black text-sp-ink uppercase tracking-tight">
+                  <h4 className="text-xl font-serif font-normal text-[#142F23] tracking-tight">
                     {current.name}
                   </h4>
-                  <div className="text-xs font-mono text-sp-midGray mt-0.5">
-                    {current.role} • <span className="font-times italic text-sm text-sp-charcoal font-bold">{current.degree}</span>
+                  <div className="text-sm font-sans text-[#5E6963] mt-1">
+                    {current.role} • <span className="font-serif italic text-[#142F23]">{current.degree}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-xs font-mono text-sp-midGray">
-                  <MapPin className="w-3.5 h-3.5 text-sp-charcoal" />
-                  <span className="font-medium text-sp-ink">{current.location}</span>
+                <div className="flex items-center gap-2 text-xs font-sans text-[#546B5F]">
+                  <MapPin className="w-3.5 h-3.5 text-[#C36B4E]" />
+                  <span>{current.location}</span>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Dot Indicators */}
+        {/* Progress Dots */}
         <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
           {items.map((_, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => setCurrentIndex(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                currentIndex === idx ? 'w-8 bg-sp-ink' : 'w-2 bg-sp-lightGray hover:bg-sp-gray'
+              className={`h-1 transition-all duration-300 cursor-pointer ${
+                currentIndex === idx ? 'w-8 bg-[#142F23]' : 'w-2 bg-[#E8E2D8] hover:bg-[#546B5F]'
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />

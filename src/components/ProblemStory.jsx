@@ -9,9 +9,9 @@ function UnfinishedResumeVisual() {
     <div className="p-4 sm:p-5 rounded-btn bg-sp-offWhite border border-sp-lightGray relative overflow-hidden font-mono text-[10px]">
       {/* Background architectural grid */}
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(to right, #B3B3B3 1px, transparent 1px), linear-gradient(to bottom, #B3B3B3 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(to right, #E4D5BF 1px, transparent 1px), linear-gradient(to bottom, #E4D5BF 1px, transparent 1px)',
           backgroundSize: '16px 16px'
         }}
       />
@@ -66,11 +66,11 @@ function UnfinishedResumeVisual() {
 // Monochromatic Editorial Visual 02: Profile Outline / Narrative Wireframe
 function ProfileOutlineVisual() {
   return (
-    <div className="p-4 sm:p-5 rounded-btn bg-sp-offWhite border border-sp-lightGray relative overflow-hidden font-mono text-[10px]">
+    <div className="p-4 sm:p-5 rounded-btn bg-sp-offWhite border border-sp-lightGray relative overflow-hidden font-sans text-[10px]">
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(to right, #B3B3B3 1px, transparent 1px), linear-gradient(to bottom, #B3B3B3 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(to right, #E4D5BF 1px, transparent 1px), linear-gradient(to bottom, #E4D5BF 1px, transparent 1px)',
           backgroundSize: '16px 16px'
         }}
       />
@@ -126,11 +126,11 @@ function ProfileOutlineVisual() {
 // Monochromatic Editorial Visual 03: Scattered Applications / Portal Queue Static
 function ScatteredApplicationsVisual() {
   return (
-    <div className="p-4 sm:p-5 rounded-btn bg-sp-offWhite border border-sp-lightGray relative overflow-hidden font-mono text-[10px]">
+    <div className="p-4 sm:p-5 rounded-btn bg-sp-offWhite border border-sp-lightGray relative overflow-hidden font-sans text-[10px]">
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-25 pointer-events-none"
         style={{
-          backgroundImage: 'linear-gradient(to right, #B3B3B3 1px, transparent 1px), linear-gradient(to bottom, #B3B3B3 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(to right, #E4D5BF 1px, transparent 1px), linear-gradient(to bottom, #E4D5BF 1px, transparent 1px)',
           backgroundSize: '16px 16px'
         }}
       />

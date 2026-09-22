@@ -3,21 +3,20 @@ import { marqueeCompanies } from '../data/siteData';
 
 export default function CandidateMarquee() {
   return (
-    <section className="py-14 bg-sp-offWhite border-b border-sp-lightGray overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-white border border-sp-lightGray text-[10px] font-mono uppercase tracking-widest text-sp-charcoal mb-2.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-          <span>PLACEMENT ECOSYSTEM</span>
+    <section className="py-16 bg-[#F4EFEA] border-b border-[#E8E2D8] overflow-hidden select-none">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
+        <div className="inline-flex items-center gap-2 text-[11px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold mb-2">
+          <span>Enterprise Placement Record</span>
         </div>
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-sp-ink uppercase">
-          Candidates Placed Across Global Enterprises
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-normal tracking-tight text-[#142F23]">
+          Candidates Placed Across Premier Global Institutions
         </h2>
-        <p className="text-xs sm:text-sm text-sp-midGray mt-1.5 max-w-xl mx-auto font-normal">
-          From high-growth innovators to Fortune 500 tech leaders, our candidates secure verified roles across premier organizations.
+        <p className="text-sm text-[#5E6963] mt-2 max-w-xl mx-auto font-normal leading-relaxed">
+          From Silicon Valley pioneers to Fortune 500 leaders, our candidates secure verified appointments across respected technology and finance organizations.
         </p>
       </div>
 
-      {/* Infinite Horizontal Marquee */}
+      {/* Editorial Horizontal Partner Strip */}
       <div className="relative w-full overflow-hidden marquee-mask">
         <div className="flex w-max animate-marquee select-none">
           
@@ -26,7 +25,7 @@ export default function CandidateMarquee() {
             {marqueeCompanies.map((company, index) => (
               <div
                 key={`track1-${company.name}-${index}`}
-                className="flex items-center gap-3.5 px-5 py-3 rounded-card bg-sp-white border border-sp-lightGray hover:border-sp-ink transition-all shadow-sm shrink-0 min-w-[210px]"
+                className="flex items-center gap-4 px-6 py-4 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#142F23]/40 transition-colors shadow-[0_2px_8px_rgba(20,47,35,0.02)] shrink-0 min-w-[230px]"
               >
                 {company.logo ? (
                   <img
@@ -35,21 +34,22 @@ export default function CandidateMarquee() {
                     width="80"
                     height="24"
                     loading="lazy"
-                    className="h-6 w-auto max-w-[85px] object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    decoding="async"
+                    className="h-6 w-auto max-w-[85px] object-contain opacity-85 hover:opacity-100 transition-opacity"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-btn bg-sp-offWhite border border-sp-lightGray flex items-center justify-center text-sp-ink shrink-0">
-                    <Building2 className="w-3.5 h-3.5" />
+                  <div className="w-8 h-8 rounded-sm bg-[#F4EFEA] border border-[#E8E2D8] flex items-center justify-center text-[#142F23] shrink-0">
+                    <Building2 className="w-4 h-4" />
                   </div>
                 )}
                 <div className="text-left">
-                  <div className="text-xs font-black text-sp-ink tracking-wide uppercase font-mono">
+                  <div className="text-xs font-semibold text-[#142F23] tracking-[0.08em] uppercase font-sans">
                     {company.name}
                   </div>
-                  <div className="text-[10px] text-sp-midGray font-mono whitespace-nowrap">
+                  <div className="text-[11px] text-[#5E6963] font-sans whitespace-nowrap">
                     {company.domain}
                   </div>
                 </div>
@@ -57,12 +57,12 @@ export default function CandidateMarquee() {
             ))}
           </div>
 
-          {/* Track 2 (Duplicate for seamless infinite loop) */}
+          {/* Track 2 */}
           <div className="flex shrink-0 items-center gap-6 pr-6" aria-hidden="true">
             {marqueeCompanies.map((company, index) => (
               <div
                 key={`track2-${company.name}-${index}`}
-                className="flex items-center gap-3.5 px-5 py-3 rounded-card bg-sp-white border border-sp-lightGray hover:border-sp-ink transition-all shadow-sm shrink-0 min-w-[210px]"
+                className="flex items-center gap-4 px-6 py-4 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] hover:border-[#142F23]/40 transition-colors shadow-[0_2px_8px_rgba(20,47,35,0.02)] shrink-0 min-w-[230px]"
               >
                 {company.logo ? (
                   <img
@@ -71,21 +71,22 @@ export default function CandidateMarquee() {
                     width="80"
                     height="24"
                     loading="lazy"
-                    className="h-6 w-auto max-w-[85px] object-contain opacity-80 hover:opacity-100 transition-opacity"
+                    decoding="async"
+                    className="h-6 w-auto max-w-[85px] object-contain opacity-85 hover:opacity-100 transition-opacity"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
                 ) : (
-                  <div className="w-7 h-7 rounded-btn bg-sp-offWhite border border-sp-lightGray flex items-center justify-center text-sp-ink shrink-0">
-                    <Building2 className="w-3.5 h-3.5" />
+                  <div className="w-8 h-8 rounded-sm bg-[#F4EFEA] border border-[#E8E2D8] flex items-center justify-center text-[#142F23] shrink-0">
+                    <Building2 className="w-4 h-4" />
                   </div>
                 )}
                 <div className="text-left">
-                  <div className="text-xs font-black text-sp-ink tracking-wide uppercase font-mono">
+                  <div className="text-xs font-semibold text-[#142F23] tracking-[0.08em] uppercase font-sans">
                     {company.name}
                   </div>
-                  <div className="text-[10px] text-sp-midGray font-mono whitespace-nowrap">
+                  <div className="text-[11px] text-[#5E6963] font-sans whitespace-nowrap">
                     {company.domain}
                   </div>
                 </div>

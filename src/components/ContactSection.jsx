@@ -1,371 +1,318 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2, RotateCcw } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
+import { Mail, MapPin, Clock, ArrowRight, CheckCircle2, RotateCcw, AlertCircle, Loader2 } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
 
+const FORMSPREE_FORM_ID = import.meta.env.VITE_FORMSPREE_ID || "mljdbwwa";
+
+function ContactFormInner({ onResetSuccess }) {
+  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
+
+  if (state.succeeded) {
+    return (
+      <div className="py-14 text-center space-y-5">
+        <div className="w-14 h-14 rounded-sm bg-[#F4EFEA] border border-[#E8E2D8] mx-auto flex items-center justify-center text-[#142F23]">
+          <CheckCircle2 className="w-7 h-7 text-[#142F23]" />
+        </div>
+        <h3 className="text-2xl sm:text-3xl font-serif font-normal text-[#142F23] tracking-tight">
+          Thank You. Your Profile Dossier Has Been Received.
+        </h3>
+        <p className="text-sm text-[#5E6963] max-w-md mx-auto leading-relaxed font-normal">
+          Our senior advisory desk has received your submission and will review your technical and educational background. An advisor will contact you within one business day.
+        </p>
+        <div className="pt-4">
+          <button
+            type="button"
+            onClick={onResetSuccess}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-sm border border-[#E8E2D8] bg-[#FBF9F5] hover:border-[#142F23] text-xs font-sans uppercase tracking-[0.14em] font-semibold text-[#142F23] transition-colors cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-[#C36B4E]" />
+            <span>Submit Another Consultation Request</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Global Formspree Error if any */}
+      {state.errors && state.errors.length > 0 && (
+        <div className="p-4 rounded-sm bg-[#C36B4E]/10 border border-[#C36B4E]/30 text-[#C36B4E] text-xs font-medium flex items-start gap-3">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+          <div>
+            <ValidationError errors={state.errors} />
+          </div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* Full Name */}
+        <div>
+          <label 
+            htmlFor="fullname"
+            className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+          >
+            Full Name *
+          </label>
+          <input
+            id="fullname"
+            type="text"
+            name="name"
+            required
+            autoComplete="name"
+            placeholder="e.g. Alex Mercer"
+            className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] placeholder-[#5E6963]/50 focus:outline-none focus:border-[#142F23] transition-colors"
+          />
+          <ValidationError 
+            prefix="Full Name" 
+            field="name"
+            errors={state.errors}
+            className="text-xs text-[#C36B4E] font-medium mt-1 block"
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label 
+            htmlFor="email"
+            className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+          >
+            Email Address *
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            required
+            autoComplete="email"
+            placeholder="e.g. alex@example.com"
+            className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] placeholder-[#5E6963]/50 focus:outline-none focus:border-[#142F23] transition-colors"
+          />
+          <ValidationError 
+            prefix="Email" 
+            field="email"
+            errors={state.errors}
+            className="text-xs text-[#C36B4E] font-medium mt-1 block"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* Phone */}
+        <div>
+          <label 
+            htmlFor="phone"
+            className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+          >
+            Phone Number *
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            required
+            autoComplete="tel"
+            placeholder="e.g. +1 (555) 019-2834"
+            className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] placeholder-[#5E6963]/50 focus:outline-none focus:border-[#142F23] transition-colors"
+          />
+          <ValidationError 
+            prefix="Phone" 
+            field="phone"
+            errors={state.errors}
+            className="text-xs text-[#C36B4E] font-medium mt-1 block"
+          />
+        </div>
+
+        {/* Current Status */}
+        <div>
+          <label 
+            htmlFor="status"
+            className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+          >
+            Current Status *
+          </label>
+          <select
+            id="status"
+            name="status"
+            className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] focus:outline-none focus:border-[#142F23] transition-colors"
+          >
+            <option value="Student">Current Student</option>
+            <option value="OPT / CPT Student">OPT / CPT International Student</option>
+            <option value="Fresh Graduate">Fresh Graduate</option>
+            <option value="Career Starter">Career Starter (1-3 yrs)</option>
+            <option value="Job Seeker">Active Job Seeker (H1B / Full-Time)</option>
+            <option value="Employer / Hiring Manager">Employer / Hiring Manager Seeking Talent</option>
+          </select>
+          <ValidationError 
+            prefix="Status" 
+            field="status"
+            errors={state.errors}
+            className="text-xs text-[#C36B4E] font-medium mt-1 block"
+          />
+        </div>
+      </div>
+
+      {/* Target Role */}
+      <div>
+        <label 
+          htmlFor="targetRole"
+          className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+        >
+          Target Role / Domain *
+        </label>
+        <input
+          id="targetRole"
+          type="text"
+          name="targetRole"
+          required
+          autoComplete="organization-title"
+          placeholder="e.g. Associate Software Engineer, Data Scientist, etc."
+          className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] placeholder-[#5E6963]/50 focus:outline-none focus:border-[#142F23] transition-colors"
+        />
+        <ValidationError 
+          prefix="Target Role" 
+          field="targetRole"
+          errors={state.errors}
+          className="text-xs text-[#C36B4E] font-medium mt-1 block"
+        />
+      </div>
+
+      {/* Message */}
+      <div>
+        <label 
+          htmlFor="message"
+          className="block text-xs font-sans uppercase tracking-[0.12em] font-semibold text-[#1F2421] mb-2"
+        >
+          Brief Message or Specific Advisory Needed (Optional)
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows={4}
+          placeholder="Share your timeline, visa status, or specific challenges with your current search..."
+          className="w-full px-4 py-3 rounded-sm bg-[#FBF9F5] border border-[#E8E2D8] text-sm text-[#1F2421] placeholder-[#5E6963]/50 focus:outline-none focus:border-[#142F23] transition-colors resize-none"
+        />
+        <ValidationError 
+          prefix="Message" 
+          field="message"
+          errors={state.errors}
+          className="text-xs text-[#C36B4E] font-medium mt-1 block"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <div className="pt-2">
+        <button
+          type="submit"
+          disabled={state.submitting}
+          className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-sm bg-[#142F23] hover:bg-[#1B3E2F] text-[#FBF9F5] font-sans uppercase tracking-[0.14em] font-semibold text-xs transition-colors duration-200 disabled:opacity-50 cursor-pointer"
+        >
+          {state.submitting ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin text-[#C36B4E]" />
+              <span>Transmitting to Advisory Desk...</span>
+            </>
+          ) : (
+            <>
+              <span>Request Advisory Consultation</span>
+              <ArrowRight className="w-4 h-4 text-[#C36B4E]" />
+            </>
+          )}
+        </button>
+      </div>
+    </form>
+  );
+}
+
 export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    currentStatus: 'Student',
-    targetRole: '',
-    message: ''
-  });
-
-  const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const validate = () => {
-    const newErrors = {};
-
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full Name is required';
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email address is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = 'Please provide a valid email address';
-    }
-
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
-    } else if (formData.phone.trim().length < 7) {
-      newErrors.phone = 'Please provide a valid contact number';
-    }
-
-    if (!formData.targetRole.trim()) {
-      newErrors.targetRole = 'Please specify your target role or industry';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 400);
-  };
-
-  const handleReset = () => {
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      currentStatus: 'Student',
-      targetRole: '',
-      message: ''
-    });
-    setErrors({});
-    setSubmitted(false);
-  };
+  const [formKey, setFormKey] = useState(0);
 
   return (
     <section
       id="contact"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
+      className="relative w-full bg-[#FBF9F5] text-[#1F2421] py-24 sm:py-32 border-b border-[#E8E2D8]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16 lg:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-            <span>DIRECT INTAKE / 11</span>
+        <div className="max-w-3xl mb-16 space-y-3">
+          <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+            <span>Confidential Advisory Intake</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight">
-            Start the Conversation.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-[#142F23] leading-[1.1]">
+            Begin Your Consultation.
           </h2>
-          <p className="text-base sm:text-lg text-sp-midGray mt-4 max-w-xl font-normal">
-            Tell us about your current status and target role. We review your profile to recommend the most practical service module.
+          <p className="text-base sm:text-lg text-[#5E6963] mt-3 max-w-xl font-normal leading-relaxed">
+            Tell us about your educational background and target career objectives. Our senior advisory desk will review your profile to recommend the appropriate guidance engagement.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column: Form with Accessible Labels & State */}
+          {/* Left Column: Formspree Intake Suite */}
           <div className="lg:col-span-7">
-            <div className="p-5 sm:p-8 lg:p-10 rounded-card bg-sp-offWhite border border-sp-lightGray shadow-sm">
-              
-              {submitted ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-14 h-14 rounded-full bg-sp-white border border-sp-ink mx-auto flex items-center justify-center text-sp-ink">
-                    <CheckCircle2 className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-2xl font-black text-sp-ink uppercase tracking-tight">
-                    Thanks! Your enquiry has been received.
-                  </h3>
-                  <p className="text-sm text-sp-midGray max-w-md mx-auto leading-relaxed">
-                    Our career advisory desk will review your details against our service modules and reach out via your provided email.
-                  </p>
-                  <div className="pt-6">
-                    <button
-                      type="button"
-                      onClick={handleReset}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-btn border border-sp-lightGray bg-sp-white hover:bg-sp-offWhite text-xs font-mono font-bold text-sp-ink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sp-ink"
-                    >
-                      <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Submit Another Enquiry</span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Full Name */}
-                    <div>
-                      <label 
-                        htmlFor="contact-fullname"
-                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                      >
-                        Full Name *
-                      </label>
-                      <input
-                        id="contact-fullname"
-                        name="name"
-                        type="text"
-                        autoComplete="name"
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        placeholder="e.g. Alex Mercer"
-                        aria-invalid={errors.fullName ? "true" : "false"}
-                        aria-describedby={errors.fullName ? "contact-fullname-error" : undefined}
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
-                          errors.fullName ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
-                        }`}
-                      />
-                      {errors.fullName && (
-                        <p id="contact-fullname-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
-                          {errors.fullName}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label 
-                        htmlFor="contact-email"
-                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                      >
-                        Email Address *
-                      </label>
-                      <input
-                        id="contact-email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. alex@example.com"
-                        aria-invalid={errors.email ? "true" : "false"}
-                        aria-describedby={errors.email ? "contact-email-error" : undefined}
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
-                          errors.email ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
-                        }`}
-                      />
-                      {errors.email && (
-                        <p id="contact-email-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Phone */}
-                    <div>
-                      <label 
-                        htmlFor="contact-phone"
-                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                      >
-                        Phone Number *
-                      </label>
-                      <input
-                        id="contact-phone"
-                        name="phone"
-                        type="tel"
-                        autoComplete="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="e.g. +1 (555) 019-2834"
-                        aria-invalid={errors.phone ? "true" : "false"}
-                        aria-describedby={errors.phone ? "contact-phone-error" : undefined}
-                        className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
-                          errors.phone ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
-                        }`}
-                      />
-                      {errors.phone && (
-                        <p id="contact-phone-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
-                          {errors.phone}
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Current Status */}
-                    <div>
-                      <label 
-                        htmlFor="contact-status"
-                        className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                      >
-                        Current Status *
-                      </label>
-                      <select
-                        id="contact-status"
-                        name="status"
-                        value={formData.currentStatus}
-                        onChange={(e) => setFormData({ ...formData, currentStatus: e.target.value })}
-                        className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors"
-                      >
-                        <option value="Student">Current Student</option>
-                        <option value="OPT / CPT Student">OPT / CPT International Student</option>
-                        <option value="Fresh Graduate">Fresh Graduate</option>
-                        <option value="Career Starter">Career Starter (1-3 yrs)</option>
-                        <option value="Job Seeker">Active Job Seeker (H1B / Full-Time)</option>
-                        <option value="Employer / Hiring Manager">Employer / Hiring Manager Seeking Talent</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Target Role */}
-                  <div>
-                    <label 
-                      htmlFor="contact-role"
-                      className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                    >
-                      Target Role / Domain *
-                    </label>
-                    <input
-                      id="contact-role"
-                      name="role"
-                      type="text"
-                      autoComplete="organization-title"
-                      value={formData.targetRole}
-                      onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
-                      placeholder="e.g. Associate Software Engineer, Business Analyst, etc."
-                      aria-invalid={errors.targetRole ? "true" : "false"}
-                      aria-describedby={errors.targetRole ? "contact-role-error" : undefined}
-                      className={`w-full px-4 py-3 rounded-btn bg-sp-white border text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors ${
-                        errors.targetRole ? 'border-sp-ink ring-1 ring-sp-ink' : 'border-sp-lightGray'
-                      }`}
-                    />
-                    {errors.targetRole && (
-                      <p id="contact-role-error" className="text-[11px] font-mono text-sp-charcoal mt-1">
-                        {errors.targetRole}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label 
-                      htmlFor="contact-message"
-                      className="block text-xs font-mono font-bold uppercase tracking-wider text-sp-charcoal mb-2"
-                    >
-                      Brief Message or Specific Service Needed (Optional)
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Share any specific challenges with your resume, LinkedIn, or upcoming interview..."
-                      className="w-full px-4 py-3 rounded-btn bg-sp-white border border-sp-lightGray text-sm text-sp-ink placeholder-sp-gray focus:outline-none focus:border-sp-ink focus-visible:ring-1 focus-visible:ring-sp-ink transition-colors resize-none"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm transition-all shadow-sm active:scale-[0.98] disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-sp-ink"
-                    >
-                      <span>{isSubmitting ? 'Transmitting Enquiry...' : 'Submit Profile for Advisory Review'}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </form>
-              )}
-
+            <div className="p-8 sm:p-12 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] shadow-[0_4px_24px_rgba(20,47,35,0.03)]">
+              <ContactFormInner 
+                key={formKey} 
+                onResetSuccess={() => setFormKey(prev => prev + 1)} 
+              />
             </div>
           </div>
 
-          {/* Right Column: Authentic Contact Channels */}
+          {/* Right Column: Advisory Desk Channels */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="p-8 rounded-card bg-sp-white border border-sp-lightGray space-y-6">
-              <h3 className="text-xl font-black text-sp-ink uppercase tracking-tight pb-3 border-b border-sp-lightGray">
+            <div className="p-8 sm:p-10 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] space-y-6">
+              <h3 className="text-xl font-serif font-normal text-[#142F23] pb-4 border-b border-[#E8E2D8]">
                 Advisory Desk Channels
               </h3>
 
-              <div className="space-y-4 text-sm text-sp-charcoal">
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
+              <div className="space-y-5 text-sm text-[#1F2421]">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-sm bg-[#F4EFEA] flex items-center justify-center text-[#142F23] shrink-0 mt-0.5">
+                    <Mail className="w-4 h-4 text-[#C36B4E]" />
+                  </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      MANAGEMENT & DIRECT DESK
+                    <span className="text-[10px] font-sans uppercase tracking-[0.16em] text-[#546B5F] block font-semibold">
+                      Direct Advisory Desk
                     </span>
-                    <a href={`mailto:${siteConfig.contact.email}`} className="font-mono text-sp-ink hover:underline">
+                    <a href={`mailto:${siteConfig.contact.email}`} className="font-sans text-sm text-[#142F23] hover:underline underline-offset-4 font-medium">
                       {siteConfig.contact.email}
                     </a>
                   </div>
                 </div>
 
-                {/* <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      CAREERS DESK
-                    </span>
-                    <a href={`mailto:${siteConfig.contact.deskEmail}`} className="font-mono text-sp-ink hover:underline">
-                      {siteConfig.contact.deskEmail}
-                    </a>
+                <div className="flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-sm bg-[#F4EFEA] flex items-center justify-center text-[#142F23] shrink-0 mt-0.5">
+                    <Clock className="w-4 h-4 text-[#C36B4E]" />
                   </div>
-                </div> */}
-
-                {/* <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      TELEPHONE
+                    <span className="text-[10px] font-sans uppercase tracking-[0.16em] text-[#546B5F] block font-semibold">
+                      Consultation Hours
                     </span>
-                    <span className="font-mono text-sp-ink">{siteConfig.contact.phone}</span>
-                  </div>
-                </div> */}
-
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      OPERATING HOURS
-                    </span>
-                    <span className="text-sp-charcoal">{siteConfig.contact.workingHours}</span>
+                    <span className="text-sm text-[#1F2421]">{siteConfig.contact.workingHours}</span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-sp-ink mt-1 shrink-0" />
+                <div className="flex items-start gap-3.5">
+                  <div className="w-8 h-8 rounded-sm bg-[#F4EFEA] flex items-center justify-center text-[#142F23] shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4 text-[#C36B4E]" />
+                  </div>
                   <div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-sp-midGray block font-bold">
-                      OPERATIONS
+                    <span className="text-[10px] font-sans uppercase tracking-[0.16em] text-[#546B5F] block font-semibold">
+                      Practice Operations
                     </span>
-                    <span className="text-sp-charcoal">{siteConfig.contact.location}</span>
+                    <span className="text-sm text-[#1F2421]">{siteConfig.contact.location}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Honest Service Disclaimer */}
-            <div className="p-6 rounded-card bg-sp-offWhite border border-sp-lightGray text-xs text-sp-midGray leading-relaxed font-normal">
-              <span className="font-bold text-sp-ink block mb-1 font-mono uppercase">
-                Notice of Independent Advisory:
+            {/* Ethical Representation Statement */}
+            <div className="p-6 rounded-sm bg-[#F4EFEA] border border-[#E8E2D8] text-xs text-[#5E6963] leading-relaxed font-normal">
+              <span className="font-serif font-bold text-[#142F23] block mb-1 text-sm">
+                Charter of Ethical Representation
               </span>
               {siteConfig.disclaimer}
             </div>

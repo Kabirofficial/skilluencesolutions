@@ -1,233 +1,158 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronDown, Check, Sparkles, Layers, Building2, TrendingUp } from 'lucide-react';
-import CareerScene from './CareerScene';
-import { siteConfig } from '../data/siteData';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, ChevronDown, Check } from 'lucide-react';
 import useReducedMotion from '../hooks/useReducedMotion';
 
 export default function Hero() {
-  const [activeVisual, setActiveVisual] = useState('photo'); // 'photo' | '3d'
   const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
-  // Scroll storytelling transforms
-  const yHeadline = useTransform(scrollY, [0, 600], [0, prefersReducedMotion ? 0 : -80]);
-  const yScene = useTransform(scrollY, [0, 600], [0, prefersReducedMotion ? 0 : 50]);
-  const opacityHero = useTransform(scrollY, [0, 500], [1, prefersReducedMotion ? 1 : 0.2]);
+  const yHeadline = useTransform(scrollY, [0, 600], [0, prefersReducedMotion ? 0 : -35]);
+  const opacityHero = useTransform(scrollY, [0, 500], [1, prefersReducedMotion ? 1 : 0.4]);
 
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink flex flex-col justify-between pt-28 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20 overflow-hidden border-b border-sp-lightGray"
+      className="relative min-h-[92svh] w-full bg-[#FBF9F5] text-[#1F2421] flex flex-col justify-between pt-32 pb-14 sm:pt-40 sm:pb-16 lg:pt-44 lg:pb-20 border-b border-[#E8E2D8]"
     >
-      {/* Background Architectural Grid Lines */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.45]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #D4D4D4 1px, transparent 1px),
-            linear-gradient(to bottom, #D4D4D4 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px'
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-grow flex items-center">
         <motion.div 
           style={{ opacity: opacityHero }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full my-auto"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full my-auto"
         >
           
-          {/* Left Column: Editorial Headline & Copy */}
+          {/* Left Column: Editorial Headline & Consultation Proposition */}
           <motion.div 
             style={{ y: yHeadline }}
-            className="lg:col-span-6 space-y-6 sm:space-y-8"
+            className="lg:col-span-7 space-y-7"
           >
-            {/* Micro-Label: CAREER SUPPORT / 01 */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-3 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase text-sp-charcoal"
-            >
-              <span className="w-2 h-2 rounded-full bg-sp-ink" />
-              <span>{siteConfig.heroLabel}</span>
-            </motion.div>
+            {/* Kicker / Chapter Marker */}
+            <div className="inline-flex items-center gap-2.5 text-xs font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C36B4E]" />
+              <span>Independent Career Representation & Advisory</span>
+            </div>
 
-            {/* Main Editorial Headline */}
+            {/* Editorial Serif Headline */}
             <div className="space-y-2">
               <motion.h1
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[32px] sm:text-5xl md:text-6xl lg:text-[74px] font-black tracking-tight text-sp-ink leading-[1.08] sm:leading-[1.05]"
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-6xl lg:text-[72px] font-serif font-normal tracking-tight text-[#142F23] leading-[1.08]"
               >
-                Your Degree Got You Here.{' '}
-                <span className="block mt-1 font-times italic font-normal text-sp-charcoal underline decoration-sp-lightGray decoration-2 underline-offset-8">
-                  Let's Get You {siteConfig.heroHighlight}
+                Your degree opened the door.{' '}
+                <span className="block mt-2 font-serif italic text-[#C36B4E]">
+                  We secure your seat at the table.
                 </span>
               </motion.h1>
             </div>
 
-            {/* Supporting Copy */}
+            {/* Refined Supporting Narrative */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="text-base sm:text-lg lg:text-xl text-sp-midGray max-w-xl leading-relaxed font-normal"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-base sm:text-lg text-[#5E6963] max-w-xl leading-relaxed font-normal"
             >
-              <span className="font-times italic font-medium text-sp-ink">Affordable, practical and personalized</span> career support for students, graduates and job seekers.
+              Independent, fiduciary career advisory for ambitious international graduates and early-career specialists. Strategic narrative positioning, executive behavioral calibration, and direct placement across premier US enterprises.
             </motion.p>
 
-            {/* CTAs */}
+            {/* Architectural Call to Actions */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1"
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-btn bg-sp-ink hover:bg-sp-charcoal text-sp-white font-bold text-sm tracking-wide transition-all duration-200 shadow-sm active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-sm bg-[#142F23] hover:bg-[#1B3E2F] text-[#FBF9F5] font-sans uppercase tracking-[0.14em] font-semibold text-xs transition-colors duration-200"
               >
-                <span>{siteConfig.heroCTA}</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Request Advisory Consultation</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#C36B4E]" />
               </Link>
 
               <Link
                 to="/process"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-btn bg-sp-offWhite hover:bg-sp-lightGray/70 border border-sp-lightGray text-sp-ink font-semibold text-sm transition-all duration-200 active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-sm border border-[#E8E2D8] hover:border-[#142F23] bg-transparent text-[#142F23] font-sans uppercase tracking-[0.14em] font-semibold text-xs transition-colors duration-200"
               >
-                <span>Explore 6-Stage Roadmap</span>
+                <span>The Advisory Method</span>
               </Link>
             </motion.div>
 
-            {/* Micro Trust Proof: Clear & Authentic */}
+            {/* Institutional Commitments */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="pt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-[11px] sm:text-xs font-mono text-sp-midGray border-t border-sp-lightGray/80"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="pt-6 flex flex-wrap items-center gap-y-2 gap-x-7 text-xs font-sans text-[#5E6963] border-t border-[#E8E2D8]"
             >
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-sp-ink" />
-                Individualized Mentorship
+              <span className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-[#142F23]" />
+                Senior 1-on-1 Counsel
               </span>
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-sp-ink" />
-                ATS-Engineered Resumes
+              <span className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-[#142F23]" />
+                Hiring Authority Calibrated
               </span>
-              <span className="flex items-center gap-1.5">
-                <Check className="w-3.5 h-3.5 text-sp-ink" />
-                STAR Interview Simulations
+              <span className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-[#142F23]" />
+                Fiduciary Independence
               </span>
             </motion.div>
 
           </motion.div>
 
-          {/* Right Column: Visual Strategy Showcase with Mode Switcher */}
+          {/* Right Column: Photographic Spread with Editorial Folio */}
           <motion.div
-            style={{ y: yScene }}
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 w-full relative flex flex-col items-center"
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 w-full relative"
           >
-            {/* Visual View Mode Selector */}
-            <div className="flex items-center gap-1.5 p-1 rounded-full bg-sp-offWhite border border-sp-lightGray mb-4 shadow-sm z-20">
-              <button
-                type="button"
-                onClick={() => setActiveVisual('photo')}
-                className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase transition-all ${
-                  activeVisual === 'photo'
-                    ? 'bg-sp-ink text-sp-white shadow-xs'
-                    : 'text-sp-charcoal hover:text-sp-ink'
-                }`}
-              >
-                Strategy Studio
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveVisual('3d')}
-                className={`px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase transition-all ${
-                  activeVisual === '3d'
-                    ? 'bg-sp-ink text-sp-white shadow-xs'
-                    : 'text-sp-charcoal hover:text-sp-ink'
-                }`}
-              >
-                3D Progression Stack
-              </button>
+            <div className="border border-[#E8E2D8] bg-[#FFFFFF] p-3 rounded-sm shadow-[0_10px_30px_rgba(20,47,35,0.04)]">
+              <div className="relative overflow-hidden rounded-none">
+                <img
+                  src="/images/career_strategy_workspace.jpg"
+                  alt="Skilluence Advisory Strategy Workspace"
+                  width="800"
+                  height="550"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-[360px] sm:h-[420px] lg:h-[460px] object-cover"
+                />
+                
+                {/* Editorial Caption Tag */}
+                <div className="p-5 border-t border-[#E8E2D8] bg-[#FFFFFF] space-y-1.5">
+                  <div className="flex items-center justify-between text-[10px] font-sans uppercase tracking-[0.16em] text-[#C36B4E] font-semibold">
+                    <span>Field Documentation</span>
+                    <span className="text-[#546B5F]">Plate 01 / Advisory Desk</span>
+                  </div>
+                  <h3 className="font-serif text-base text-[#142F23] font-normal leading-snug">
+                    Bespoke Candidate Portfolio & Behavioral Modeling
+                  </h3>
+                  <p className="text-xs text-[#5E6963] font-normal leading-relaxed">
+                    Preparing STEM and business graduates for high-stakes technical defense and salary negotiation across US corporate corridors.
+                  </p>
+                </div>
+              </div>
             </div>
-
-            <AnimatePresence mode="wait">
-              {activeVisual === 'photo' ? (
-                <motion.div
-                  key="photo-view"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative w-full rounded-card overflow-hidden border border-sp-lightGray shadow-2xl bg-sp-ink group"
-                >
-                  <img
-                    src="/images/career_strategy_workspace.jpg"
-                    alt="Skilluence Career Strategy Workspace"
-                    width="800"
-                    height="450"
-                    className="w-full h-[380px] sm:h-[460px] lg:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-sp-ink/80 via-transparent to-black/20 pointer-events-none" />
-
-                  {/* Floating Live Badge Top Right */}
-                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-card bg-sp-white/95 backdrop-blur-md border border-sp-lightGray shadow-lg flex items-center gap-2 text-[11px] font-mono text-sp-ink font-bold">
-                    <span className="w-2 h-2 rounded-full bg-sp-ink animate-pulse" />
-                    <span>1,000+ Active Recruiters</span>
-                  </div>
-
-                  {/* Floating Live Badge Bottom Left */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:right-auto p-3.5 rounded-card bg-sp-white/95 backdrop-blur-md border border-sp-lightGray shadow-lg space-y-1">
-                    <div className="flex items-center justify-between gap-4 text-[10px] font-mono text-sp-midGray uppercase">
-                      <span className="font-bold text-sp-ink">CANDIDATE PLACEMENT HUB</span>
-                      <span>VERIFIED RESULTS</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-sp-ink shrink-0" />
-                      <span className="text-xs font-bold text-sp-ink font-mono">
-                        98% ATS Parsing Score • OPT / STEM OPT Ready
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="3d-view"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.4 }}
-                  className="w-full"
-                >
-                  <CareerScene />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
           </motion.div>
 
         </motion.div>
       </div>
 
-      {/* Subtle Scroll Down Indicator */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-mono uppercase tracking-widest text-sp-midGray pt-4">
-        <span>EST. CAREER ADVISORY</span>
+      {/* Subtle Editorial Folio Indicator */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-sans uppercase tracking-[0.18em] text-[#546B5F] pt-8 border-t border-[#E8E2D8]">
+        <span>Skilluence Solutions • Volume MMXXVI</span>
         <button 
           type="button"
-          onClick={() => window.scrollBy({ top: 600, behavior: 'smooth' })}
-          className="flex items-center gap-1 hover:text-sp-ink transition-colors group cursor-pointer"
+          onClick={() => window.scrollBy({ top: 650, behavior: 'smooth' })}
+          className="flex items-center gap-1.5 hover:text-[#142F23] transition-colors cursor-pointer font-medium"
         >
-          <span>Scroll To Discover</span>
-          <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+          <span>Explore The Practice</span>
+          <ChevronDown className="w-3.5 h-3.5" />
         </button>
       </div>
     </section>

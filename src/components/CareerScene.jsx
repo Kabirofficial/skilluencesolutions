@@ -114,13 +114,13 @@ export default function CareerScene() {
       >
         <path
           d="M 180,70 C 220,150 380,190 340,300 C 300,410 430,460 380,550"
-          stroke="#B3B3B3"
+          stroke="#2F6B4F"
           strokeWidth="1.5"
           strokeDasharray="4 4"
         />
-        <circle cx="180" cy="70" r="3.5" fill="#2B2B2B" />
-        <circle cx="340" cy="300" r="3.5" fill="#2B2B2B" />
-        <circle cx="380" cy="550" r="3.5" fill="#2B2B2B" />
+        <circle cx="180" cy="70" r="3.5" fill="#12372A" />
+        <circle cx="340" cy="300" r="3.5" fill="#168AAD" />
+        <circle cx="380" cy="550" r="3.5" fill="#E76F51" />
       </svg>
 
       {/* 3D Transform Pivot Layer */}

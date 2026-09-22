@@ -1,83 +1,70 @@
-import { TrendingUp, Clock, ShieldCheck, MapPin } from 'lucide-react';
-
 export default function HomeMacroStats() {
   const stats = [
     {
-      icon: TrendingUp,
       value: '$118,500',
       label: 'Median Starting Base Offer',
-      detail: 'Across 2024-2025 candidate cohorts in US tech markets',
+      detail: 'Documented across recent international candidate cohorts in primary US technology corridors.',
     },
     {
-      icon: Clock,
       value: '42 Days',
-      label: 'Average Cycle to 1st Round',
-      detail: 'From initial intake audit to first corporate interview screen',
+      label: 'Average Cycle to First Round',
+      detail: 'From intake calibration and narrative overhaul to the initial enterprise technical evaluation.',
     },
     {
-      icon: ShieldCheck,
       value: '94%',
-      label: 'ATS Parser Benchmark Score',
-      detail: 'Screen pass-through rate on Workday, Greenhouse & Lever',
+      label: 'ATS Screen Clearance Rate',
+      detail: 'Direct recruiter screen pass-through rate across enterprise corporate candidate portals.',
     },
     {
-      icon: MapPin,
       value: '12+ Metros',
-      label: 'US Tech Corridors Covered',
-      detail: 'San Jose, NYC, Seattle, Austin, Dallas, Chicago & more',
+      label: 'US Innovation Hubs Represented',
+      detail: 'Including Silicon Valley, Seattle, New York, Austin, Chicago, Boston, and Dallas.',
     },
   ];
 
   return (
-    <section className="w-full bg-sp-white border-y border-sp-lightGray py-12 sm:py-16">
+    <section className="w-full bg-[#FBF9F5] border-b border-[#E8E2D8] py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header Micro */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-sp-lightGray">
-          <div>
-            <div className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-sp-midGray mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-              <span>MACRO BENCHMARKS & TELEMETRY</span>
+        {/* Section Header */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-12 border-b border-[#E8E2D8]">
+          <div className="max-w-2xl space-y-3">
+            <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+              <span>Section II • Empirical Benchmarks</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-sp-ink tracking-tight">
-              Data-Backed Advisory Outcomes in the US Tech Market.
-            </h3>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-[#142F23] tracking-tight leading-tight">
+              Documented Placement Trajectories Across the US Market.
+            </h2>
           </div>
-          <div className="text-xs font-mono text-sp-midGray text-left sm:text-right">
-            Independent Advisory • Real Commercial Metrics
+          <div className="text-xs font-sans uppercase tracking-[0.14em] text-[#546B5F] font-medium max-w-xs">
+            Independent Verification • Transparent Candidate Performance Ledger
           </div>
         </div>
 
-        {/* 4-Stat Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
-          {stats.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div 
-                key={index}
-                className="p-6 rounded-card bg-sp-offWhite border border-sp-lightGray hover:border-sp-ink/30 transition-all duration-300 group shadow-sm hover:shadow-md"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[11px] font-mono text-sp-midGray">
-                    METRIC 0{index + 1}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-sp-white border border-sp-lightGray flex items-center justify-center text-sp-ink group-hover:bg-sp-ink group-hover:text-sp-white transition-colors">
-                    <Icon className="w-4 h-4" />
-                  </div>
-                </div>
+        {/* 4-Column Editorial Ledger */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E8E2D8] border-b border-[#E8E2D8]">
+          {stats.map((item, index) => (
+            <div 
+              key={index}
+              className="py-10 sm:py-12 sm:px-8 lg:px-10 first:sm:pl-0 last:sm:pr-0 flex flex-col justify-between space-y-8"
+            >
+              <div className="text-[10px] font-sans uppercase tracking-[0.2em] text-[#546B5F] font-semibold">
+                Metric [ 0{index + 1} ]
+              </div>
 
-                <div className="text-3xl sm:text-4xl font-black text-sp-ink tracking-tight">
+              <div>
+                <div className="text-4xl sm:text-5xl lg:text-[54px] font-serif font-normal text-[#142F23] tracking-tight leading-none">
                   {item.value}
                 </div>
-                <div className="text-xs font-bold uppercase tracking-wider font-mono text-sp-charcoal mt-1">
+                <div className="text-xs font-semibold uppercase tracking-[0.12em] font-sans text-[#1F2421] mt-4">
                   {item.label}
                 </div>
-                <p className="text-xs text-sp-midGray mt-2 leading-relaxed">
+                <p className="text-xs text-[#5E6963] mt-3 leading-relaxed font-normal">
                   {item.detail}
                 </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
       </div>

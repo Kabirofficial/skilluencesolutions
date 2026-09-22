@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, ShieldCheck, Zap, Briefcase, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { skilluenceDifferentiators, candidatePlacementPillars } from '../data/siteData';
 
 export default function WhySkilluence() {
@@ -8,28 +9,29 @@ export default function WhySkilluence() {
   return (
     <section
       id="why"
-      className="relative min-h-[100svh] w-full bg-sp-white text-sp-ink py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-lightGray overflow-hidden"
+      className="relative min-h-[85svh] w-full bg-[#FAF7F2] text-[#1F2421] py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-[#E8E2D8] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full space-y-24">
         
         {/* PART 1: WHAT MAKES SKILLUENCE SOLUTIONS DIFFERENT */}
         <div>
-          <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-              <span>THE SKILLUENCE STANDARD / 07</span>
+          <div className="max-w-3xl mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#E8E2D8] bg-[#FBF9F5] text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-[#142F23] mb-6">
+              <span className="w-1.5 h-1.5 bg-[#C36B4E]" />
+              <span>The Skilluence Standard</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-ink leading-tight uppercase">
-              What Makes Skilluence Different.
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-[#142F23] leading-[1.12]">
+              What Distinguishes Our <br />
+              <span className="italic font-serif text-[#C36B4E]">Advisory Framework.</span>
             </h2>
-            <p className="text-base sm:text-lg text-sp-midGray mt-4 max-w-2xl font-normal">
-              We don’t spam job portals or make empty claims. Our framework is engineered around precision matching, SLA refund protection, and high-conversion interviews.
+            <p className="text-base sm:text-lg text-[#556059] mt-5 max-w-2xl font-light leading-relaxed">
+              We don’t spam job portals or make empty claims. Our framework is engineered around precision matching, contractual protection, and high-conversion interviews.
             </p>
           </div>
 
           {/* 5 Differentiator Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
             {skilluenceDifferentiators.map((diff, idx) => {
               const IconComponent = icons[idx % icons.length];
               return (
@@ -39,34 +41,34 @@ export default function WhySkilluence() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.08 }}
-                  className="p-6 rounded-card bg-sp-offWhite border border-sp-lightGray hover:border-sp-ink hover:bg-sp-white transition-all duration-200 flex flex-col justify-between group shadow-sm"
+                  className="p-6 bg-white border border-[#E8E2D8] hover:border-[#142F23] transition-colors duration-300 flex flex-col justify-between group shadow-[0_1px_3px_rgba(0,0,0,0.02)]"
                 >
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[11px] font-bold text-sp-midGray">
+                    <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-3">
+                      <span className="font-serif text-sm text-[#142F23]">
                         {diff.code}
                       </span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-btn bg-sp-white border border-sp-lightGray text-sp-charcoal font-semibold">
+                      <span className="text-[10px] font-sans px-2 py-0.5 border border-[#E8E2D8] bg-[#FAF7F2] text-[#C36B4E] font-medium">
                         {diff.metric}
                       </span>
                     </div>
 
-                    <div className="w-8 h-8 rounded-btn bg-sp-white border border-sp-lightGray flex items-center justify-center text-sp-ink group-hover:bg-sp-ink group-hover:text-sp-white transition-colors">
+                    <div className="w-8 h-8 border border-[#E8E2D8] bg-[#FAF7F2] flex items-center justify-center text-[#142F23] group-hover:bg-[#142F23] group-hover:text-[#FBF9F5] transition-colors">
                       <IconComponent className="w-4 h-4" />
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-black tracking-tight text-sp-ink uppercase leading-snug">
+                    <h3 className="text-sm sm:text-base font-serif font-normal tracking-tight text-[#142F23] leading-snug">
                       {diff.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-sp-midGray leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-[#556059] leading-relaxed font-light">
                       {diff.statement}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-sp-lightGray/60 flex items-center justify-between text-[10px] font-mono text-sp-charcoal">
-                    <span>VERIFIED SLA</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
+                  <div className="pt-4 mt-6 border-t border-[#E8E2D8] flex items-center justify-between text-[10px] font-sans text-[#556059]">
+                    <span className="uppercase tracking-widest text-[#C36B4E] font-semibold">Verified SLA</span>
+                    <span className="w-1 h-1 bg-[#142F23]" />
                   </div>
                 </motion.div>
               );
@@ -75,17 +77,18 @@ export default function WhySkilluence() {
         </div>
 
         {/* PART 2: CANDIDATE PLACEMENT ADVANTAGE */}
-        <div className="border-t border-sp-lightGray pt-16">
-          <div className="max-w-3xl mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-offWhite border border-sp-lightGray text-[11px] font-mono uppercase tracking-widest text-sp-charcoal mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-sp-ink" />
-              <span>CAREER ADVANTAGE</span>
+        <div className="border-t border-[#E8E2D8] pt-20">
+          <div className="max-w-3xl mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-[#E8E2D8] bg-[#FBF9F5] text-[11px] font-sans font-medium uppercase tracking-[0.2em] text-[#142F23] mb-6">
+              <span className="w-1.5 h-1.5 bg-[#C36B4E]" />
+              <span>Career Advantage</span>
             </div>
 
-            <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-sp-ink uppercase">
-              End-To-End Placement Support.
+            <h3 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight text-[#142F23] leading-[1.12]">
+              End-To-End Placement <br />
+              <span className="italic font-serif text-[#C36B4E]">Advisory Support.</span>
             </h3>
-            <p className="text-sm sm:text-base text-sp-midGray mt-3 max-w-xl font-normal">
+            <p className="text-sm sm:text-base text-[#556059] mt-4 max-w-xl font-light leading-relaxed">
               Direct access to recruiters, verified US employers, and interview training designed for stable long-term career growth.
             </p>
           </div>
@@ -99,32 +102,32 @@ export default function WhySkilluence() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="p-6 sm:p-7 rounded-card bg-sp-white border border-sp-lightGray hover:border-sp-ink transition-all shadow-sm flex flex-col justify-between"
+                className="p-7 md:p-8 bg-white border border-[#E8E2D8] hover:border-[#142F23] transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-xs font-bold text-sp-midGray">
-                      ADVANTAGE {pillar.code}
+                  <div className="flex items-center justify-between mb-4 border-b border-[#E8E2D8] pb-3">
+                    <span className="font-serif text-sm font-normal text-[#142F23]">
+                      Advantage {pillar.code}
                     </span>
-                    <span className="w-2 h-2 rounded-full bg-sp-ink" />
+                    <span className="w-1.5 h-1.5 bg-[#C36B4E]" />
                   </div>
 
-                  <h4 className="text-lg font-black text-sp-ink uppercase tracking-tight mb-2.5">
+                  <h4 className="text-lg font-serif font-normal text-[#142F23] tracking-tight mb-2.5">
                     {pillar.title}
                   </h4>
 
-                  <p className="text-sm font-semibold text-sp-charcoal mb-2 leading-snug">
+                  <p className="text-sm font-medium text-[#142F23] mb-2.5 leading-snug">
                     {pillar.statement}
                   </p>
 
-                  <p className="text-xs sm:text-sm text-sp-midGray leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-[#556059] leading-relaxed font-light">
                     {pillar.description}
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-sp-lightGray/70 flex items-center justify-between text-[11px] font-mono text-sp-midGray">
-                  <span>CAREER PILLAR</span>
-                  <span className="text-sp-ink font-bold">READY →</span>
+                <div className="mt-8 pt-4 border-t border-[#E8E2D8] flex items-center justify-between text-[11px] font-sans text-[#556059]">
+                  <span className="uppercase tracking-widest text-[10px] text-[#C36B4E] font-semibold">Career Pillar</span>
+                  <span className="text-[#142F23] font-medium">Ready →</span>
                 </div>
               </motion.div>
             ))}
@@ -135,26 +138,26 @@ export default function WhySkilluence() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.5 }}
-              className="p-6 sm:p-7 rounded-card bg-sp-ink text-sp-white border border-sp-ink shadow-md flex flex-col justify-between"
+              className="p-7 md:p-8 bg-[#142F23] text-[#FBF9F5] border border-[#142F23] shadow-md flex flex-col justify-between"
             >
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-sp-lightGray block mb-3">
-                  READY TO START?
+                <span className="font-sans text-[11px] uppercase tracking-[0.2em] text-[#E8E2D8]/70 block mb-4">
+                  Ready To Engage?
                 </span>
-                <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-3 text-sp-white">
+                <h4 className="text-xl sm:text-2xl font-serif font-normal tracking-tight mb-3 text-white leading-snug">
                   Get Interview-Ready This Week.
                 </h4>
-                <p className="text-xs sm:text-sm text-sp-lightGray leading-relaxed mb-6 font-normal">
+                <p className="text-xs sm:text-sm text-[#E8E2D8]/80 leading-relaxed mb-8 font-light">
                   Connect with our advisory desk, review your profile, and receive a direct roadmap tailored to your target roles.
                 </p>
               </div>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-btn bg-sp-white text-sp-ink font-bold text-xs uppercase tracking-wider hover:bg-sp-offWhite transition-colors"
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#C36B4E] hover:bg-[#A8553B] text-white font-medium text-xs uppercase tracking-wider transition-colors"
               >
                 Schedule Diagnostic Call
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>

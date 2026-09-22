@@ -28,6 +28,9 @@ export const siteConfig = {
   contact: {
     email: "manager@skilluencesolutions.com",
     deskEmail: "manager@skilluencesolutions.com",
+    // Formspree form endpoint (ID: mljdbwwa)
+    formspreeEndpoint: import.meta.env.VITE_FORMSPREE_ENDPOINT || "https://formspree.io/f/mljdbwwa",
+    formspreeId: import.meta.env.VITE_FORMSPREE_ID || "mljdbwwa",
     // phone: "+1 (800) 548-SKILL / +91 98765 43210",
     location: "Career Advisory Operations • Global Hybrid Support",
     workingHours: "Monday – Saturday: 9:00 AM – 7:30 PM EST",

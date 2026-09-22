@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -40,6 +41,24 @@ const pageMetadata = {
   }
 };
 
+const SITE_URL = 'https://skilluencesolutions.com';
+
+function setMetaTag(selector, attribute, value) {
+  let el = document.querySelector(selector);
+  if (!el) {
+    el = document.createElement('meta');
+    if (selector.startsWith('meta[name=')) {
+      const name = selector.match(/meta\[name="([^"]+)"\]/)?.[1];
+      if (name) el.setAttribute('name', name);
+    } else if (selector.startsWith('meta[property=')) {
+      const prop = selector.match(/meta\[property="([^"]+)"\]/)?.[1];
+      if (prop) el.setAttribute('property', prop);
+    }
+    document.head.appendChild(el);
+  }
+  el.setAttribute(attribute, value);
+}
+
 export default function PageMeta() {
   const { pathname } = useLocation();
 
@@ -49,12 +68,32 @@ export default function PageMeta() {
       description: 'The requested page could not be found. Return to Skilluence Solutions home.'
     };
 
+    // Update document title
     document.title = meta.title;
 
-    let metaTag = document.querySelector('meta[name="description"]');
-    if (metaTag) {
-      metaTag.setAttribute('content', meta.description);
+    // Update meta description
+    setMetaTag('meta[name="description"]', 'content', meta.description);
+
+    // Update canonical link
+    const canonicalPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+    const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
     }
+    canonicalLink.setAttribute('href', canonicalUrl);
+
+    // Update Open Graph tags
+    setMetaTag('meta[property="og:title"]', 'content', meta.title);
+    setMetaTag('meta[property="og:description"]', 'content', meta.description);
+    setMetaTag('meta[property="og:url"]', 'content', canonicalUrl);
+
+    // Update Twitter card tags
+    setMetaTag('meta[name="twitter:title"]', 'content', meta.title);
+    setMetaTag('meta[name="twitter:description"]', 'content', meta.description);
+    setMetaTag('meta[name="twitter:url"]', 'content', canonicalUrl);
   }, [pathname]);
 
   return null;

@@ -9,7 +9,7 @@ import FinalCTA from '../components/FinalCTA';
 
 export default function HomePage() {
   return (
-    <div className="w-full bg-sp-white text-sp-ink overflow-x-hidden">
+    <div className="w-full bg-[#FAF7F2] text-[#1F2421] overflow-x-hidden">
       {/* 1. CINEMATIC EDITORIAL HERO */}
       <Hero />
 

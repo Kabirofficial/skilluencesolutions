@@ -9,62 +9,53 @@
   }
 
   body {
-    background-color: #FFFFFF;
-    color: #2B2B2B;
+    background-color: #FBF9F5;
+    color: #1F2421;
     overflow-x: hidden;
     font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
-  .font-times, .font-serif {
-    font-family: "Times New Roman", Times, "Nimbus Roman No9 L", Georgia, serif;
+  .font-serif, .font-times, .font-editorial {
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-feature-settings: "liga", "clig";
   }
 }
 
-/* Minimalist Monochrome Scrollbar */
+/* Restrained Editorial Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F7F5;
+  background: #FBF9F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D4;
-  border-radius: 3px;
+  background: #E8E2D8;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B3B3B3;
+  background: #142F23;
 }
 
-/* Editorial Text Selection (Salt & Pepper) */
+/* Deep Botanical Green Text Selection */
 ::selection {
-  background-color: #2B2B2B;
-  color: #FFFFFF;
+  background-color: #142F23;
+  color: #FBF9F5;
 }
 
-/* Thin Editorial Rules */
+/* Editorial Hairline Dividers */
 .editorial-rule {
-  border-top: 1px solid #D4D4D4;
+  border-top: 1px solid #E8E2D8;
 }
 
 .editorial-rule-dark {
-  border-top: 1px solid #3A3A3A;
+  border-top: 1px solid rgba(244, 239, 234, 0.18);
 }
 
-/* Subtle Perspective Containers for 2.5D / 3D Objects */
-.perspective-container {
-  perspective: 1200px;
-  transform-style: preserve-3d;
-}
-
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-
-/* Infinite Marquee Animation */
+/* Infinite Marquee Animation for Partner Logos */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -77,7 +68,7 @@
 .animate-marquee {
   display: flex !important;
   width: max-content !important;
-  animation: marquee 32s linear infinite !important;
+  animation: marquee 38s linear infinite !important;
   will-change: transform;
 }
 
@@ -86,18 +77,18 @@
 }
 
 .marquee-mask {
-  -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 32px, black calc(100% - 32px), transparent 100%);
 }
 
 @media (min-width: 640px) {
   .marquee-mask {
-    -webkit-mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 96px, black calc(100% - 96px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, black 96px, black calc(100% - 96px), transparent 100%);
   }
 }
 
-/* Hide scrollbar utility (keeps scroll functional) */
+/* Hide scrollbar utility */
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -116,7 +107,6 @@
     scroll-behavior: auto !important;
   }
   .animate-marquee {
-    animation-duration: 65s !important;
+    animation-duration: 70s !important;
   }
 }
-

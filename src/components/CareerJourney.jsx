@@ -7,11 +7,13 @@ import {
   Compass, 
   Send, 
   MessageSquareCode, 
-  Award,
-  CheckCircle2,
-  ChevronRight
+  Award, 
+  Check, 
+  ChevronRight 
 } from 'lucide-react';
 import { journeyStages } from '../data/siteData';
+
+const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
 
 export default function CareerJourney() {
   const [activeStageId, setActiveStageId] = useState('resume');
@@ -20,7 +22,7 @@ export default function CareerJourney() {
   const activeStage = journeyStages[activeIndex] || journeyStages[2];
 
   const getStageIcon = (id, isActive) => {
-    const className = `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isActive ? 'text-sp-ink font-bold' : 'text-sp-lightGray'}`;
+    const className = `w-4 h-4 transition-colors ${isActive ? 'text-[#FBF9F5]' : 'text-[#546B5F]'}`;
     switch (id) {
       case 'education': return <GraduationCap className={className} />;
       case 'profile': return <UserCheck className={className} />;
@@ -48,184 +50,142 @@ export default function CareerJourney() {
   return (
     <section
       id="journey"
-      className="relative min-h-[100svh] w-full bg-sp-ink text-sp-white py-20 sm:py-28 lg:py-32 flex flex-col justify-center border-b border-sp-charcoal overflow-hidden"
+      className="relative w-full bg-[#142F23] text-[#FBF9F5] py-24 sm:py-32 border-b border-[#0E2118]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-14 sm:mb-18">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-btn bg-sp-charcoal border border-sp-midGray/40 text-[11px] font-mono uppercase tracking-widest text-sp-lightGray mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-sp-white" />
-            <span>SIGNATURE ROADMAP / 06</span>
+        <div className="max-w-3xl mb-14 sm:mb-18 space-y-3">
+          <div className="text-[11px] font-sans uppercase tracking-[0.2em] text-[#C36B4E] font-semibold">
+            <span>Milestone Architecture</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-sp-white leading-tight mb-4">
-            From uncertain<br />
-            <span className="font-times italic font-normal text-sp-lightGray">
-              to job-ready.
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-normal tracking-tight text-[#FBF9F5] leading-[1.12]">
+            From Academic Ambiguity{' '}
+            <span className="block mt-1 font-serif italic text-[#C36B4E]">
+              to Executive Appointment.
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-sp-gray leading-relaxed font-normal max-w-xl">
-            A dynamic 2.5D path from graduation ambiguity to structured commercial readiness. Navigate the sequential nodes below to inspect each stage standard.
+          <p className="text-base sm:text-lg text-[#FBF9F5]/75 leading-relaxed font-normal pt-1">
+            A structured sequential methodology transforming academic credentials into verified commercial authority. Inspect each developmental milestone below.
           </p>
         </div>
 
-        {/* 2.5D Monochromatic Node Path with Progressive Animated Path Drawing */}
-        <div className="relative mb-12 sm:mb-16">
-          
-          {/* Animated Connecting Path for Desktop */}
-          <div className="hidden md:block absolute top-7 left-10 right-10 h-0.5 z-0">
-            {/* Background dashed track */}
-            <div className="w-full h-full border-t border-dashed border-sp-midGray/50" />
-            
-            {/* Dynamic Animated Drawn Path */}
-            <motion.div
-              className="absolute top-0 left-0 h-0.5 bg-sp-white shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-              initial={{ width: 0 }}
-              animate={{ width: `${(activeIndex / (journeyStages.length - 1)) * 100}%` }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-            />
-          </div>
+        {/* Milestone Stepper Bar */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-0 border border-[#FBF9F5]/15 bg-[#0E2118] mb-12 divide-y sm:divide-y-0 sm:divide-x divide-[#FBF9F5]/15">
+          {journeyStages.map((stage, idx) => {
+            const isActive = stage.id === activeStageId;
+            const isPassed = idx < activeIndex;
 
-          {/* Node Stepper Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-3 sm:gap-4 relative z-10">
-            {journeyStages.map((stage, idx) => {
-              const isActive = stage.id === activeStageId;
-              const isPassed = idx < activeIndex;
+            return (
+              <button
+                key={stage.id}
+                type="button"
+                onClick={() => setActiveStageId(stage.id)}
+                className={`p-4 sm:p-5 text-left transition-all duration-200 flex flex-col justify-between cursor-pointer relative ${
+                  isActive
+                    ? 'bg-[#142F23]'
+                    : 'bg-[#0E2118] hover:bg-[#142F23]/60'
+                }`}
+              >
+                {isActive && (
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#C36B4E]" />
+                )}
 
-              return (
-                <button
-                  key={stage.id}
-                  type="button"
-                  onClick={() => setActiveStageId(stage.id)}
-                  className={`flex flex-col items-center text-center group focus:outline-none p-2 rounded-card transition-all ${
-                    idx === journeyStages.length - 1 ? 'col-span-2 sm:col-span-1' : ''
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.06, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    animate={{
-                      scale: isActive ? 1.12 : 1,
-                      z: isActive ? 16 : 0,
-                    }}
-                    transition={{ type: "spring", stiffness: 240, damping: 18 }}
-                    style={{ transformStyle: "preserve-3d" }}
-                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-btn flex items-center justify-center transition-all duration-300 relative ${
-                      isActive
-                        ? 'bg-sp-white border-2 border-sp-white text-sp-ink shadow-[0_0_30px_rgba(255,255,255,0.45)] ring-4 ring-sp-white/20'
-                        : isPassed
-                          ? 'bg-sp-charcoal border border-sp-lightGray text-sp-white hover:border-sp-white'
-                          : 'bg-sp-charcoal/90 border border-sp-midGray/40 text-sp-gray hover:border-sp-lightGray'
-                    }`}
-                  >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-7 h-7 rounded-sm bg-[#0E2118] border border-[#FBF9F5]/15 flex items-center justify-center">
                     {getStageIcon(stage.id, isActive)}
-                    
-                    {/* Stage Counter Badge with High Contrast */}
-                    <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-[9px] font-mono font-bold flex items-center justify-center ${
-                      isActive 
-                        ? 'bg-sp-ink text-sp-white font-black border border-sp-white shadow-md' 
-                        : isPassed
-                          ? 'bg-sp-lightGray text-sp-ink font-bold'
-                          : 'bg-sp-charcoal text-sp-gray border border-sp-midGray/50'
-                    }`}>
-                      0{idx + 1}
-                    </span>
-                  </motion.div>
-
-                  <div className="mt-3">
-                    <span
-                      className={`text-[11px] font-mono font-bold tracking-wider block uppercase transition-colors ${
-                        isActive ? 'text-sp-white font-extrabold underline decoration-sp-white decoration-2 underline-offset-4' : isPassed ? 'text-sp-lightGray' : 'text-sp-gray group-hover:text-sp-lightGray'
-                      }`}
-                    >
-                      {stage.label}
-                    </span>
-                    <span className={`text-[10px] hidden sm:block ${isActive ? 'text-sp-white font-medium drop-shadow-xs' : 'text-sp-midGray'}`}>
-                      {stage.subtitle}
-                    </span>
                   </div>
-                </button>
-              );
-            })}
-          </div>
+                  <span className={`text-[11px] font-serif italic ${isActive ? 'text-[#C36B4E] font-bold' : 'text-[#546B5F]'}`}>
+                    {romanNumerals[idx] || idx + 1}
+                  </span>
+                </div>
+
+                <div>
+                  <div className={`text-xs font-sans uppercase tracking-[0.1em] ${isActive ? 'text-[#FBF9F5] font-semibold' : 'text-[#FBF9F5]/70'}`}>
+                    {stage.label}
+                  </div>
+                  <div className="text-[10px] text-[#546B5F] mt-0.5 truncate hidden sm:block">
+                    {stage.subtitle}
+                  </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Selected Node Details Display Panel (2.5D Depth Box) */}
+        {/* Selected Milestone Detail Spread */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStage.id}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-card bg-sp-charcoal/90 border border-sp-midGray/40 p-5 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-md"
+            className="p-8 sm:p-12 rounded-sm bg-[#FBF9F5] text-[#1F2421] border border-[#E8E2D8] shadow-2xl"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               
-              {/* Left Column: Stage Focus & Navigation Controls */}
-              <div className="lg:col-span-5 space-y-4">
-                <div className="flex items-center gap-2 font-mono text-xs font-bold text-sp-lightGray uppercase tracking-widest">
-                  <span>STAGE {activeStage.stepNumber} OF 07</span>
-                  <span>•</span>
-                  <span>{activeStage.subtitle}</span>
+              {/* Left Column: Stage Focus & Controls */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="text-[11px] font-sans uppercase tracking-[0.18em] text-[#C36B4E] font-semibold">
+                  Milestone {romanNumerals[activeIndex] || activeIndex + 1} of VII • {activeStage.subtitle}
                 </div>
 
-                <h3 className="text-2xl sm:text-4xl font-black text-sp-white tracking-tight uppercase">
+                <h3 className="text-2xl sm:text-4xl font-serif font-normal text-[#142F23] tracking-tight leading-snug">
                   {activeStage.label}
                 </h3>
 
-                <div className="p-4 rounded-btn bg-sp-ink/80 border border-sp-midGray/30">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-sp-gray block mb-1">
-                    PRIMARY DELIVERABLE
+                <div className="p-5 rounded-sm bg-[#F4EFEA] border-l-2 border-[#C36B4E]">
+                  <span className="text-[10px] font-sans uppercase tracking-[0.16em] text-[#546B5F] block mb-1 font-semibold">
+                    Strategic Objective
                   </span>
-                  <p className="text-sm text-sp-white font-medium leading-relaxed">
+                  <p className="text-sm text-[#1F2421] font-normal leading-relaxed">
                     {activeStage.focus}
                   </p>
                 </div>
 
-                {/* Stage Stepper Buttons */}
+                {/* Stepper Buttons */}
                 <div className="pt-2 flex items-center gap-3">
                   <button
                     type="button"
                     disabled={activeIndex === 0}
                     onClick={prevStage}
-                    className="px-4 py-2 rounded-btn border border-sp-midGray/40 hover:border-sp-white disabled:opacity-40 disabled:cursor-not-allowed text-xs font-mono font-bold text-sp-lightGray transition-all"
+                    className="px-4 py-2.5 rounded-sm border border-[#E8E2D8] hover:border-[#142F23] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-sans uppercase tracking-[0.12em] text-[#1F2421] transition-colors cursor-pointer"
                   >
-                    Previous Node
+                    Previous Milestone
                   </button>
                   <button
                     type="button"
                     disabled={activeIndex === journeyStages.length - 1}
                     onClick={nextStage}
-                    className="px-4 py-2 rounded-btn bg-sp-white hover:bg-sp-offWhite text-sp-ink disabled:opacity-40 disabled:cursor-not-allowed text-xs font-mono font-bold transition-all flex items-center gap-1"
+                    className="px-5 py-2.5 rounded-sm bg-[#142F23] hover:bg-[#1B3E2F] text-[#FBF9F5] disabled:opacity-30 disabled:cursor-not-allowed text-xs font-sans uppercase tracking-[0.12em] font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
                   >
-                    <span>Advance Stage</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <span>Advance Milestone</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-[#C36B4E]" />
                   </button>
                 </div>
               </div>
 
-              {/* Right Column: Key Actions & Readiness Checklist */}
-              <div className="lg:col-span-7 space-y-6">
+              {/* Right Column: Practical Actions & Verification Checklist */}
+              <div className="lg:col-span-7 space-y-7">
                 
                 {/* Practical Actions */}
                 <div>
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sp-lightGray mb-3">
-                    PRACTICAL EXECUTION STANDARDS
+                  <h4 className="text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[#142F23] mb-3">
+                    Execution Protocols
                   </h4>
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     {activeStage.actions.map((act, aIdx) => (
                       <div
                         key={aIdx}
-                        className="p-3.5 rounded-btn bg-sp-ink/50 border border-sp-midGray/30 flex items-start gap-3"
+                        className="p-3.5 rounded-sm bg-[#FFFFFF] border border-[#E8E2D8] flex items-start gap-3"
                       >
-                        <span className="text-xs font-mono font-bold text-sp-lightGray mt-0.5">
-                          0{aIdx + 1}
+                        <span className="text-xs font-serif italic text-[#C36B4E] font-bold mt-0.5">
+                          {romanNumerals[aIdx] || aIdx + 1}.
                         </span>
-                        <span className="text-xs sm:text-sm text-sp-lightGray leading-relaxed">
+                        <span className="text-xs sm:text-sm text-[#5E6963] leading-relaxed font-normal">
                           {act}
                         </span>
                       </div>
@@ -235,16 +195,16 @@ export default function CareerJourney() {
 
                 {/* Stage Checklist */}
                 <div>
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sp-lightGray mb-3">
-                    READINESS VERIFICATION CHECKLIST
+                  <h4 className="text-xs font-sans uppercase tracking-[0.16em] font-semibold text-[#142F23] mb-3">
+                    Readiness Verification Milestones
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {activeStage.checklist.map((chk, cIdx) => (
                       <div
                         key={cIdx}
-                        className="p-3 rounded-btn bg-sp-ink border border-sp-midGray/40 flex items-center gap-2.5 text-xs text-sp-gray"
+                        className="p-3 rounded-sm bg-[#F4EFEA] border border-[#E8E2D8] flex items-center gap-2.5 text-xs text-[#1F2421]"
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-sp-white shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-[#142F23] shrink-0" />
                         <span>{chk}</span>
                       </div>
                     ))}
