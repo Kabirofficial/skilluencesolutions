@@ -103,7 +103,7 @@ export default function Navbar() {
 
           {/* Curated Editorial Navigation Links */}
           <nav 
-            className="hidden lg:flex items-center space-x-4 xl:space-x-6 text-xs font-sans uppercase tracking-[0.11em] xl:tracking-[0.13em]"
+            className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-xs font-sans uppercase tracking-[0.14em]"
             aria-label="Main Navigation"
           >
             {desktopNavLinks.map((item) => {
@@ -131,17 +131,6 @@ export default function Navbar() {
               );
             })}
           </nav>
-
-          {/* Right Action CTA */}
-          <div className="hidden sm:flex items-center gap-4 shrink-0">
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#142F23] hover:bg-[#1C3F30] text-[#FAF7F2] text-xs font-sans uppercase tracking-[0.14em] font-medium transition-all duration-200 shadow-xs group"
-            >
-              <span>Contact Us</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-[#C36B4E] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </div>
 
           {/* Mobile Menu Toggle Button */}
           <div className="flex items-center lg:hidden">
